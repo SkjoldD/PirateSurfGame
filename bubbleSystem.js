@@ -23,6 +23,7 @@ export class BubbleSystem {
             maxSpeed: 1.2,          // Maximum speed
             sideOffset: 1.5,        // How far to the side of the ship
             verticalOffset: -0.8,   // How far below the ship
+            offsetZ: -2.5,          // How far behind the ship to spawn bubbles
             color1: new BABYLON.Color4(0.8, 0.9, 1.0, 0.7),  // Light blue
             color2: new BABYLON.Color4(0.95, 0.98, 1.0, 0.4), // Almost white
             ...options
@@ -62,7 +63,18 @@ export class BubbleSystem {
     update(deltaTime) {
         if (!this.ship) return;
         
-        const shipSpeed = this.ship.getSpeed ? this.ship.getSpeed() : 0;
+        // Get ship speed from physics if available, otherwise use 0
+        let shipSpeed = 0;
+        if (this.ship._collider && this.ship._collider.physicsImpostor) {
+            const velocity = this.ship._collider.physicsImpostor.getLinearVelocity();
+            if (velocity) {
+                shipSpeed = velocity.length();
+            }
+        } else if (this.ship.getSpeed) {
+            // Fallback to getSpeed method if it exists
+            shipSpeed = this.ship.getSpeed();
+        }
+        
         const shouldEmit = shipSpeed > 0.1; // Only emit when moving
         
         // Emit new bubbles
@@ -103,33 +115,53 @@ export class BubbleSystem {
             }
             
             try {
+                // Skip if we don't have a valid sphere
+                if (!particle.sphere || !particle.sphere.scaling) {
+                    bubbles.splice(i, 1);
+                    continue;
+                }
+
                 // Update position with some randomness
                 if (particle.position && particle.velocity) {
                     particle.position.addInPlace(particle.velocity.scale(deltaTime));
                     
                     // Add some horizontal drift based on ship movement
-                    if (this.ship._shipControls) {
+                    if (this.ship._shipControls && this.ship._shipControls.velocity) {
                         const drift = this.ship._shipControls.velocity.scale(0.5 * deltaTime);
                         particle.position.addInPlace(drift);
                     }
                     
-                    particle.sphere.position.copyFrom(particle.position);
-                    
-                    // Scale based on lifetime with some random variation
-                    const lifeRatio = particle.lifetime / particle.maxLifetime;
-                    const baseScale = 0.5 + lifeRatio * 0.5; // Scale up slightly over lifetime
-                    const randomScale = 0.9 + Math.random() * 0.2; // Add some random jitter
-                    const scale = particle.size * baseScale * randomScale;
-                    particle.sphere.scaling.setAll(scale);
-                    
-                    // Fade out
-                    if (particle.sphere.material) {
-                        particle.sphere.material.alpha = 0.2 + 0.8 * lifeRatio;
+                    try {
+                        particle.sphere.position.copyFrom(particle.position);
+                        
+                        // Scale based on lifetime with some random variation
+                        const lifeRatio = Math.max(0, Math.min(1, particle.lifetime / (particle.maxLifetime || 1)));
+                        const baseScale = 0.5 + lifeRatio * 0.5; // Scale up slightly over lifetime
+                        const randomScale = 0.9 + Math.random() * 0.2; // Add some random jitter
+                        const scale = (particle.size || 1) * baseScale * randomScale;
+                        
+                        // Ensure scaling is valid
+                        if (!isNaN(scale) && isFinite(scale) && scale > 0) {
+                            particle.sphere.scaling.set(scale, scale, scale);
+                        }
+                        
+                        // Fade out
+                        if (particle.sphere.material) {
+                            particle.sphere.material.alpha = 0.2 + 0.8 * lifeRatio;
+                        }
+                        
+                        // Add some bobbing motion
+                        particle.sphere.position.y += Math.sin((particle.time || 0) * 3) * 0.005;
+                        particle.time = (particle.time || 0) + deltaTime;
+                    } catch (e) {
+                        console.warn('Error updating bubble properties:', e);
+                        // Remove problematic bubble
+                        if (particle.sphere) {
+                            particle.sphere.dispose();
+                        }
+                        bubbles.splice(i, 1);
+                        continue;
                     }
-                    
-                    // Add some bobbing motion
-                    particle.sphere.position.y += Math.sin(particle.time * 3) * 0.005;
-                    particle.time = (particle.time || 0) + deltaTime;
                 }
             } catch (e) {
                 console.warn('Error updating bubble:', e);
@@ -153,12 +185,14 @@ export class BubbleSystem {
         
         // Calculate spawn position behind the ship
         const spawnPosLeft = this.ship.position.add(
-            shipForward.scale(-2) // Start slightly behind the ship
+            shipForward.scale(this.options.offsetZ || -2) // Use offsetZ or default to -2
             .add(shipRight.scale(-this.options.sideOffset))
+            .add(new BABYLON.Vector3(0, this.options.verticalOffset, 0))
         );
         const spawnPosRight = this.ship.position.add(
-            shipForward.scale(-2) // Start slightly behind the ship
+            shipForward.scale(this.options.offsetZ || -2) // Use offsetZ or default to -2
             .add(shipRight.scale(this.options.sideOffset))
+            .add(new BABYLON.Vector3(0, this.options.verticalOffset, 0))
         );
         
         // Random direction (mostly up with some spread)

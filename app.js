@@ -2,6 +2,9 @@ import { BubbleSystem } from './bubbleSystem.js';
 import { ModelLoader } from './modelLoader.js';
 import { ShipControls } from './inputControls.js';
 
+// Global variables
+let shadowGenerator; // Make shadowGenerator globally accessible
+
 // Get DOM elements
 const canvas = document.getElementById("renderCanvas");
 const fileInput = document.getElementById("fileInput");
@@ -16,7 +19,12 @@ let modelLoader;
 const createScene = function() {
     const scene = new BABYLON.Scene(engine);
     
-        // Create a simple free camera
+    // Enable physics engine first thing
+    const gravityVector = new BABYLON.Vector3(0, -9.81, 0);
+    const physicsPlugin = new BABYLON.CannonJSPlugin();
+    scene.enablePhysics(gravityVector, physicsPlugin);
+    
+    // Create a simple free camera
     const camera = new BABYLON.FreeCamera("shipCamera", new BABYLON.Vector3(0, 5, -10), scene);
     camera.minZ = 0.1;
     camera.speed = 0; // Disable camera movement
@@ -29,28 +37,104 @@ const createScene = function() {
     camera.attachControl(canvas, false);
     
     // Set a wider field of view
-    camera.fov = 1.2;
+    camera.fov = 1.5;
     
-    // Add lights
-    const light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
-    light1.intensity = 0.7;
+    // Create directional light for shadows - positioned high and at an angle
+    const sunLight = new BABYLON.DirectionalLight("sunLight", new BABYLON.Vector3(-1, -2, 0.5), scene);
+    sunLight.intensity = 1.0;
+    sunLight.position = new BABYLON.Vector3(250, 250, 250);
     
-    const light2 = new BABYLON.DirectionalLight("light2", new BABYLON.Vector3(0, -1, 1), scene);
-    light2.intensity = 0.5;
+    // Enable shadows on the light
+    sunLight.shadowEnabled = true;
+    sunLight.shadowMinZ = 1;
+    sunLight.shadowMaxZ = 1000;
     
-    // Enable scene shadows
-    const shadowGenerator = new BABYLON.ShadowGenerator(1024, light2);
+    // Configure shadow generator with higher resolution and better settings
+    shadowGenerator = new BABYLON.ShadowGenerator(2048, sunLight);
     shadowGenerator.useBlurExponentialShadowMap = true;
-    shadowGenerator.blurKernel = 32;
+    shadowGenerator.blurKernel = 64;
+    shadowGenerator.darkness = 0.5;
+    shadowGenerator.normalBias = 0.05;
+    shadowGenerator.bias = 0.0001;
     
-    // Create much larger water ground
-    const ground = BABYLON.MeshBuilder.CreateGround("ground", {
-        width: 1000,  // Increased from 200 to 1000
-        height: 1000, // Increased from 200 to 1000
+    // Store the shadow generator on the light for easy access
+    sunLight.shadowGenerator = shadowGenerator;
+    
+    console.log('Shadow generator created and attached to light');
+    
+    // Create rocks with physics in a smaller area (200x200 units)
+    createRocks(scene, 50, 50);
+    
+    // Create the ocean floor (brown ground)
+    const oceanFloor = BABYLON.MeshBuilder.CreateGround("oceanFloor", {
+        width: 1000,
+        height: 1000,
+        subdivisions: 2 // Less subdivisions for better performance
+    }, scene);
+    oceanFloor.receiveShadows = true;
+    oceanFloor.castShadow = false; // Don't cast shadows from the ocean floor
+    oceanFloor.position.y = -2; // Position below the water surface
+    
+    // Add physics impostor to the ocean floor
+    oceanFloor.physicsImpostor = new BABYLON.PhysicsImpostor(
+        oceanFloor,
+        BABYLON.PhysicsImpostor.BoxImpostor,
+        { 
+            mass: 0, // Mass of 0 makes it static
+            friction: 0.5,
+            restitution: 0.3,
+            nativeOptions: {
+                material: {
+                    friction: 0.5,
+                    restitution: 0.3
+                }
+            }
+        },
+        scene
+    );
+    
+    // Make sure collisions are enabled
+    oceanFloor.checkCollisions = true;
+    
+    // Create material for ocean floor - pure white
+    const floorMaterial = new BABYLON.StandardMaterial("floorMaterial", scene);
+    floorMaterial.diffuseColor = new BABYLON.Color3(1, 1, 1); // Pure white color
+    floorMaterial.specularColor = new BABYLON.Color3(0.1, 0.1, 0.1); // Minimal specular
+    floorMaterial.alpha = 1.0; // Fully opaque
+    floorMaterial.backFaceCulling = false; // Show both sides
+    floorMaterial.specularPower = 10; // Soft highlights
+    floorMaterial.ambientColor = new BABYLON.Color3(1, 1, 1); // White ambient light
+    oceanFloor.material = floorMaterial;
+    
+    // Enable physics for ocean floor
+    oceanFloor.physicsImpostor = new BABYLON.PhysicsImpostor(
+        oceanFloor,
+        BABYLON.PhysicsImpostor.BoxImpostor,
+        { 
+            mass: 0, 
+            restitution: 0.3, 
+            friction: 0.8,
+            nativeOptions: {
+                material: {
+                    friction: 0.8,
+                    restitution: 0.3,
+                    contactEquationStiffness: 1e8,
+                    contactEquationRelaxation: 3
+                }
+            }
+        },
+        scene
+    );
+    
+    // Create water surface (semi-transparent)
+    const ground = BABYLON.MeshBuilder.CreateGround("waterSurface", {
+        width: 1000,
+        height: 1000,
         subdivisions: 50 // More subdivisions for smoother waves over larger area
     }, scene);
     ground.receiveShadows = true;
-    ground.position.y = -0.5;
+    ground.castShadow = false; // Don't cast shadows from the water
+    ground.position.y = 0; // Raise water surface to y=0
     
 
     // Create simple water material
@@ -80,8 +164,8 @@ const createScene = function() {
                 const z = vertices[i + 2];
                 // Adjusted wave formula for larger ground
                 const waveScale = 0.1; // Scale down wave frequency for larger area
-                vertices[i + 1] = (Math.sin((x * waveScale) + (time * 2)) * 0.05) + 
-                                 (Math.cos((z * waveScale) + (time * 1.5)) * 0.05);
+                vertices[i + 1] = (Math.sin((x * waveScale) + (time * 2)) * 0.25) + 
+                                 (Math.cos((z * waveScale) + (time * 1.5)) * 0.25);
             }
             ground.updateVerticesData(BABYLON.VertexBuffer.PositionKind, vertices);
         }
@@ -101,7 +185,10 @@ fileInput.addEventListener('change', async (event) => {
     try {
         const jsonData = await readJsonFile(file);
         if (modelLoader) {
-            await modelLoader.loadModelsFromJson(jsonData);
+            await modelLoader.loadModelsFromJson(jsonData, shadowGenerator);
+        }
+        else {
+            console.error('ModelLoader not initialized');
         }
     } catch (error) {
         console.error('Error loading file:', error);
@@ -155,11 +242,12 @@ async function checkFileExists(url) {
 // Initialize the scene and model loader
 const initializeApp = async () => {
     scene = createScene();
-    modelLoader = new ModelLoader(scene, statusElement);
+    // Make sure shadowGenerator is available before creating ModelLoader
+    const sunLight = scene.getLightByName("sunLight");
+    const shadowGen = sunLight ? sunLight.shadowGenerator : null;
+    modelLoader = new ModelLoader(scene, statusElement, shadowGen);
     
-    // Add random objects to the scene (rocks/obstacles)
-    createRandomObjects(scene, 30, 100); // 30 objects in a 100x100 area
-    
+
     // Load the default ship model
     try {
         const modelPath = 'Assets/3D/' + defaultShipConfig.models[0].path;
@@ -170,7 +258,7 @@ const initializeApp = async () => {
         }
         
         statusElement.textContent = 'Loading pirate ship...';
-        await modelLoader.loadModelsFromJson(defaultShipConfig);
+        await modelLoader.loadModelsFromJson(defaultShipConfig, shadowGenerator);
         
         // Get the camera and attach it to the main model
         const camera = scene.activeCamera;
@@ -186,12 +274,149 @@ const initializeApp = async () => {
         
         console.log('Main model loaded:', mainModel);
         
-        // Initialize ship controls first
+
+        // Enable shadows for the main model
+        if (mainModel.getChildMeshes) {
+            mainModel.getChildMeshes().forEach(mesh => {
+                mesh.receiveShadows = true;
+                mesh.castShadow = true;
+                // Add each mesh to the shadow generator if it exists
+                if (shadowGenerator) {
+                    shadowGenerator.addShadowCaster(mesh);
+                }
+            });
+        } else {
+            // If getChildMeshes is not available, apply to the main model directly
+            mainModel.receiveShadows = true;
+            mainModel.castShadow = true;
+            if (shadowGenerator) {
+                shadowGenerator.addShadowCaster(mainModel);
+            }
+        }
+        
+        // Remove the separate collider and use the main model for physics
+        mainModel.checkCollisions = true;
+        
+        // Make sure all child meshes have proper collision settings
+        if (mainModel.getChildMeshes) {
+            mainModel.getChildMeshes().forEach(mesh => {
+                mesh.checkCollisions = true;
+                mesh.receiveShadows = true;
+                mesh.castShadow = true;
+            });
+        }
+        
+        // Compute world matrix to ensure bounding box is calculated
+        mainModel.computeWorldMatrix(true);
+        
+        // Create a box mesh for the physics collider that matches the ship size
+        const shipExtents = mainModel.getBoundingInfo().boundingBox.extendSize;
+        const shipCollider = new BABYLON.MeshBuilder.CreateBox('shipCollider', {
+            width: 5 * 1.2,  // 20% larger than the model
+            height: 5 * 0.8,  // Slightly shorter than the model
+            depth: 5 * 1.2,   // 20% longer than the model
+        }, scene);
+        shipCollider.isVisible = false;  // Make it visible for debugging
+        shipCollider.checkCollisions = true;
+        
+        // Position collider at the same position as the ship
+        shipCollider.position.copyFrom(mainModel.absolutePosition);
+        shipCollider.rotationQuaternion = mainModel.rotationQuaternion ? 
+            mainModel.rotationQuaternion.clone() : 
+            BABYLON.Quaternion.RotationYawPitchRoll(mainModel.rotation.y, 0, 0);
+        
+        // Add physics to the collider
+        shipCollider.physicsImpostor = new BABYLON.PhysicsImpostor(
+            shipCollider,
+            BABYLON.PhysicsImpostor.BoxImpostor,
+            { 
+                mass: 500,  // Heavier mass for more momentum
+                restitution: 0.1,  // Low bounce
+                friction: 0.05,  // Very low friction for water
+                nativeOptions: {
+                    collisionFilterGroup: 1,
+                    collisionFilterMask: 1,
+                    linearDamping: 0.01,  // Very low linear damping for water
+                    angularDamping: 0.05,  // Slightly higher angular damping
+                    fixedRotation: false,
+                    // Lock X and Z rotation
+                    fixedRotationX: true,
+                    fixedRotationZ: true
+                }
+            },
+            scene
+        );
+        
+        // Ensure we can read the rotation
+        shipCollider.rotationQuaternion = shipCollider.rotationQuaternion || new BABYLON.Quaternion();
+        
+        // Make sure the ship model has a rotation quaternion
+        mainModel.rotationQuaternion = mainModel.rotationQuaternion || BABYLON.Quaternion.FromEulerAngles(
+            mainModel.rotation.x,
+            mainModel.rotation.y,
+            mainModel.rotation.z
+        );
+        
+        // Store references
+        mainModel._collider = shipCollider;
+        shipCollider._mainModel = mainModel;
+        
+        // Make sure the ship has a rotation quaternion
+        mainModel.rotationQuaternion = mainModel.rotationQuaternion || new BABYLON.Quaternion();
+        
+        // Initialize the collider's rotation to match the model
+        if (shipCollider) {
+            shipCollider.rotationQuaternion = shipCollider.rotationQuaternion || new BABYLON.Quaternion();
+            shipCollider.rotationQuaternion.copyFrom(mainModel.rotationQuaternion);
+        }
+        
+        // Simple sync in the render loop - let the collider drive the model
+        scene.registerBeforeRender(() => {
+            if (shipCollider && mainModel) {
+                // Update model position to match collider
+                mainModel.position.copyFrom(shipCollider.position);
+                
+                // Update model rotation to match collider (yaw only)
+                mainModel.rotation.y = shipCollider.rotation.y;
+                
+                // Keep ship at water level
+                if (shipCollider.position.y < 0) {
+                    shipCollider.position.y = 0;
+                    mainModel.position.y = 0;
+                }
+            }
+        });
+        
+        // Initialize ship controls with the main model
         const shipControls = new ShipControls(scene, mainModel, {
-            speed: 0.05,
-            rotationSpeed: 0.02,
-            maxSpeed: 0.3,
-            friction: 0.98
+            speed: 0.2,          // Base movement speed
+            rotationSpeed: 0.06,  // Rotation speed
+            maxSpeed: 1.0        // Maximum speed
+        });
+        
+        // Add ship controls update to the render loop
+        scene.registerBeforeRender(() => {
+            shipControls.update();
+            
+            // Sync ship model with collider
+            if (shipCollider && mainModel) {
+                // Update model position to match collider
+                mainModel.position.copyFrom(shipCollider.position);
+                
+                // Update model rotation to match collider (yaw only)
+                mainModel.rotation.y = shipCollider.rotation.y;
+                
+                // Update quaternion if it exists
+                if (mainModel.rotationQuaternion) {
+                    mainModel.rotationQuaternion.copyFrom(
+                        BABYLON.Quaternion.RotationYawPitchRoll(
+                            shipCollider.rotation.y,
+                            mainModel.rotation.x,
+                            mainModel.rotation.z
+                        )
+                    );
+                }
+            }
         });
         
         // Store ship controls on the model for later access
@@ -205,14 +430,51 @@ const initializeApp = async () => {
             configurable: true
         });
         
-        // Make camera a child of the ship
+        // Set up camera to follow the ship
         try {
             // Camera setup - higher position with steeper angle
-            camera.parent = mainModel;
-            // Position camera higher (4x original height) and slightly closer for steeper angle
-            camera.position = new BABYLON.Vector3(0, 40, -25);
-            // Look at a point in front of the ship to create a steeper downward angle
-            camera.setTarget(new BABYLON.Vector3(0, 0, 5));
+            const cameraHeight = 50;
+            const cameraDistance = 20;
+            const lookAhead = 5;
+            
+            // Store the camera's current position relative to the ship
+            const cameraOffset = new BABYLON.Vector3(0, cameraHeight, -cameraDistance);
+            
+            // Function to update camera position to follow the ship
+            const updateCameraPosition = () => {
+                if (!mainModel) return;
+                
+                // Get the ship's rotation around Y axis
+                const shipRotation = mainModel.rotation.y;
+                
+                // Calculate the rotated offset based on ship's rotation
+                const rotatedOffset = new BABYLON.Vector3(
+                    cameraOffset.x * Math.cos(shipRotation) - cameraOffset.z ,
+                    cameraOffset.y,
+                    cameraOffset.x * Math.sin(shipRotation) + cameraOffset.z 
+                );
+                
+                // Update camera position (maintaining world Y position)
+                camera.position.x = mainModel.position.x + rotatedOffset.x;
+                camera.position.y = cameraOffset.y; // Maintain fixed height
+                camera.position.z = mainModel.position.z + rotatedOffset.z;
+                
+                // Calculate look-at point (slightly in front of the ship)
+                const lookAtPoint = new BABYLON.Vector3(
+                    mainModel.position.x + Math.sin(shipRotation) * lookAhead,
+                    mainModel.position.y,
+                    mainModel.position.z + Math.cos(shipRotation) * lookAhead
+                );
+                
+                // Update camera target
+                camera.setTarget(lookAtPoint);
+            };
+            
+            // Set initial camera position
+            updateCameraPosition();
+            
+            // Update camera position in the render loop
+            scene.registerBeforeRender(updateCameraPosition);
             
             // Debug: Add axis helper
             const axisSize = 5;
@@ -282,7 +544,7 @@ const initializeApp = async () => {
             console.error('Error setting up camera:', error);
         }
         
-        // Create bubble effect with dual trails
+        // Create bubble effect with dual trails positioned behind the ship
         const bubbleSystem = new BubbleSystem(scene, mainModel, {
             emitRate: 60,           // Bubbles per second (per side)
             maxBubbles: 80,        // Maximum number of bubbles (per side)
@@ -293,8 +555,9 @@ const initializeApp = async () => {
             maxLifetime: 2.0,      // Slightly longer maximum lifetime
             minSpeed: 0.3,         // Slightly faster minimum speed
             maxSpeed: 1.2,         // Slightly faster maximum speed
-            sideOffset: 1.5,       // Distance from center to each side
+            sideOffset: -1.5,       // Distance from center to each side
             verticalOffset: -0.8,  // Slightly below the ship
+            offsetZ: 1.5,         // Positioned further behind the ship
             color1: new BABYLON.Color4(0.8, 0.9, 1.0, 0.7),  // Light blue with more transparency
             color2: new BABYLON.Color4(0.95, 0.98, 1.0, 0.3)  // More transparent white
         });
@@ -324,6 +587,7 @@ const initializeApp = async () => {
         
         // Add a simple box as fallback
         const box = BABYLON.MeshBuilder.CreateBox('fallbackShip', { size: 2 }, scene);
+        box.isVisible = true;
         box.position.y = 1;
         
         // Setup camera to follow the box
@@ -345,66 +609,87 @@ const initializeApp = async () => {
     });
 };
 
-// Create random square objects on the ground
-function createRandomObjects(scene, count = 20, areaSize = 100) {
-    const objects = [];
-    const material = new BABYLON.StandardMaterial("rockMaterial", scene);
-    material.diffuseColor = new BABYLON.Color3(0.5, 0.5, 0.5);
-    material.specularColor = new BABYLON.Color3(0.1, 0.1, 0.1);
-    material.alpha = 0.9;
+function createRocks(scene, count = 50, areaSize = 500) {
+    const rocks = [];
+    
+    // Create a material for the rocks
+    const rockMaterial = new BABYLON.StandardMaterial("rockMaterial", scene);
+    rockMaterial.diffuseColor = new BABYLON.Color3(0.3, 0.3, 0.3);
+    rockMaterial.specularColor = new BABYLON.Color3(0.1, 0.1, 0.1);
+    rockMaterial.alpha = 0.9;
     
     for (let i = 0; i < count; i++) {
         // Random position within the area
         const x = (Math.random() - 0.5) * areaSize;
         const z = (Math.random() - 0.5) * areaSize;
+        const startHeight = 5 + Math.random() * 20; // Start between 5 and 25 units high
         
         // Random size variation
-        const width = 1 + Math.random() * 3;
-        const height = 0.5 + Math.random() * 2;
-        const depth = 1 + Math.random() * 3;
+        const size = 1 + Math.random() * 4; // Between 1 and 5 units in size
         
-        // Create box
-        const box = BABYLON.MeshBuilder.CreateBox("rock_" + i, {
-            width: width,
-            height: height,
-            depth: depth
+        // Create a box for the rock (you can replace with a more complex mesh if desired)
+        const rock = BABYLON.MeshBuilder.CreateBox(`rock_${i}`, {
+            width: size,
+            height: size * (0.5 + Math.random() * 0.5), // Make height between 0.5x and 1x of width
+            depth: size * (0.5 + Math.random() * 0.5)  // Make depth between 0.5x and 1x of width
         }, scene);
         
         // Position and rotate randomly
-        box.position = new BABYLON.Vector3(x, height / 2, z);
-        box.rotation = new BABYLON.Vector3(
-            Math.random() * Math.PI * 0.2,
+        rock.position = new BABYLON.Vector3(x, startHeight, z);
+        rock.rotation = new BABYLON.Vector3(
             Math.random() * Math.PI * 2,
-            Math.random() * Math.PI * 0.2
+            Math.random() * Math.PI * 2,
+            Math.random() * Math.PI * 2
         );
         
-        // Apply material with slight color variation
-        const boxMaterial = material.clone("rockMaterial_" + i);
-        const colorVariation = 0.7 + Math.random() * 0.3; // 0.7 to 1.0
-        boxMaterial.diffuseColor = new BABYLON.Color3(
-            0.5 * colorVariation,
-            0.5 * colorVariation,
-            0.5 * colorVariation
+        // Apply material
+        rock.material = rockMaterial.clone(`rockMaterial_${i}`);
+
+        rock.receiveShadows = true;
+        rock.castShadows = true;
+        rock.isVisible = true; // Make it invisible in the final game
+
+        shadowGenerator.addShadowCaster(rock);
+        
+        
+        // Add physics with mass (gravity will affect it)
+        rock.physicsImpostor = new BABYLON.PhysicsImpostor(
+            rock,
+            BABYLON.PhysicsImpostor.BoxImpostor,
+            { 
+                mass: size * 2,
+                friction: 0.5,
+                restitution: 0.2,
+                nativeOptions: {
+                    collisionFilterGroup: 1,  // Same group as ship
+                    collisionFilterMask: 1,   // Collide with same group
+                    material: {
+                        friction: 0.5,
+                        restitution: 0.2,
+                        contactEquationStiffness: 1e8,
+                        contactEquationRelaxation: 3
+                    }
+                }
+            },
+            scene
         );
         
-        // Slight random roughness
-        boxMaterial.roughness = 0.8 + Math.random() * 0.2;
+        // Make sure rocks collide with everything
+        rock.checkCollisions = true;
         
-        box.material = boxMaterial;
-        box.receiveShadows = true;
+        // Add a small delay before enabling collisions to prevent initial jitter
+        setTimeout(() => {
+            if (rock.physicsImpostor) {
+                rock.physicsImpostor.forceUpdate();
+            }
+        }, 100);
         
-        // Add physics if needed (uncomment if you want physics)
-        // box.physicsImpostor = new BABYLON.PhysicsImpostor(
-        //     box, 
-        //     BABYLON.PhysicsImpostor.BoxImpostor, 
-        //     { mass: 0, restitution: 0.1 }, 
-        //     scene
-        // );
-        
-        objects.push(box);
+        // Add to array
+        rocks.push(rock);
     }
     
-    return objects;
+    console.log(`Created ${rocks.length} rocks`);
+    return rocks;
 }
 
 // Start the application
