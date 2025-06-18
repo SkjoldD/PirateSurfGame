@@ -63,7 +63,7 @@ const createScene = function() {
     console.log('Shadow generator created and attached to light');
     
     // Create rocks with physics in a smaller area (200x200 units)
-    createRocks(scene, 50, 50);
+    createRocks(scene, 2, 50);
     
     // Create the ocean floor (brown ground)
     const oceanFloor = BABYLON.MeshBuilder.CreateGround("oceanFloor", {
@@ -216,7 +216,7 @@ function readJsonFile(file) {
 const defaultShipConfig = {
     models: [{
         path: "Pirate/ship-small.glb",  // Make sure to include the .glb extension
-        position: [0, 0, 0],
+        position: [10, 1, 10],
         rotation: [0, 0, 0],
         scaling: [1, 1, 1]
     }],
@@ -331,8 +331,8 @@ const initializeApp = async () => {
             BABYLON.PhysicsImpostor.BoxImpostor,
             { 
                 mass: 500,  // Heavier mass for more momentum
-                restitution: 0.1,  // Low bounce
-                friction: 0.05,  // Very low friction for water
+                restitution: 0.2,  // Low bounce
+                friction: 0.1,  // Very low friction for water
                 nativeOptions: {
                     collisionFilterGroup: 1,
                     collisionFilterMask: 1,
@@ -389,9 +389,9 @@ const initializeApp = async () => {
         
         // Initialize ship controls with the main model
         const shipControls = new ShipControls(scene, mainModel, {
-            speed: 0.2,          // Base movement speed
+            speed: 0.5,          // Base movement speed
             rotationSpeed: 0.06,  // Rotation speed
-            maxSpeed: 1.0        // Maximum speed
+            maxSpeed: 3.0        // Maximum speed
         });
         
         // Add ship controls update to the render loop
@@ -692,5 +692,43 @@ function createRocks(scene, count = 50, areaSize = 500) {
     return rocks;
 }
 
+// Function to load the test scene
+async function loadTestScene(scene, modelLoader) {
+    try {
+        const response = await fetch('Assets/Worlds/scenetest.json');
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const sceneData = await response.json();
+        
+        console.log('Loading test scene with data:', sceneData);
+        
+        if (sceneData.models && Array.isArray(sceneData.models)) {
+            for (const modelConfig of sceneData.models) {
+                try {
+                    // Ensure the model data has all required fields with defaults
+                    const modelData = {
+                        path: modelConfig.path || '',
+                        position: modelConfig.position || [0, 0, 0],
+                        rotation: modelConfig.rotation || [0, 0, 0],
+                        scaling: modelConfig.scaling || [1, 1, 1]
+                    };
+                    
+                    await modelLoader.loadModel(modelData, 'Assets/3D/');
+                } catch (error) {
+                    console.error(`Error loading model ${modelConfig.path}:`, error);
+                }
+            }
+        }
+        
+        console.log('Test scene loaded successfully');
+    } catch (error) {
+        console.error('Error loading test scene:', error);
+    }
+}
+
 // Start the application
-window.addEventListener('DOMContentLoaded', initializeApp);
+window.addEventListener('DOMContentLoaded', () => {
+    initializeApp().then(() => {
+        // Load test scene after main initialization
+        loadTestScene(scene, modelLoader);
+    });
+});

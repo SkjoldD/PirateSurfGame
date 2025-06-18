@@ -207,8 +207,10 @@ export class ModelLoader {
             );
             
             // Position the collider at the model's position
-            collider.position = root.position.add(center);
-            collider.rotation = root.rotation;
+            // The collider is already created relative to the model's origin
+            // Just make it a child of the model and it will inherit the position/rotation
+            collider.position = center;  // Local position relative to parent
+            collider.rotation = BABYLON.Vector3.Zero();  // No additional rotation needed as it will inherit from parent
             collider.isVisible = true;  // Keep visible for debugging
             collider.isPickable = false;
             collider.checkCollisions = true;

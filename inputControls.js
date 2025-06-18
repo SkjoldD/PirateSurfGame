@@ -7,7 +7,7 @@ export class ShipControls {
         // Movement settings
         this.acceleration = 0.5;     // How quickly the ship speeds up
         this.deceleration = 0.98;    // How quickly the ship slows down (higher = slower deceleration)
-        this.maxSpeed = 5.0;         // Maximum speed
+        this.maxSpeed = 15.0;         // Maximum speed
         
         // Rotation settings
         this.rotationAcceleration = 0.1;  // How quickly rotation speeds up

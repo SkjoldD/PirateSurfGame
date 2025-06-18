@@ -1,0 +1,2691 @@
+{
+  "models": [
+    {
+      "path": "Survival/barrel-open.glb",
+      "position": [
+        -1,
+        0,
+        1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/barrel-open.glb",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/barrel-open.glb",
+      "position": [
+        1,
+        0,
+        1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/bottle.glb",
+      "position": [
+        -1,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/bottle.glb",
+      "position": [
+        0,
+        0,
+        1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/box.glb",
+      "position": [
+        -1,
+        0,
+        1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/box.glb",
+      "position": [
+        -1,
+        0,
+        2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/box.glb",
+      "position": [
+        0,
+        0,
+        2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/box.glb",
+      "position": [
+        0,
+        0,
+        1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/box.glb",
+      "position": [
+        1,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/box.glb",
+      "position": [
+        4,
+        0,
+        1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/box.glb",
+      "position": [
+        1,
+        0,
+        -1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/box.glb",
+      "position": [
+        3,
+        0,
+        -1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/campfire-stand.glb",
+      "position": [
+        -10,
+        0,
+        3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/campfire-stand.glb",
+      "position": [
+        -5,
+        0,
+        4
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/campfire-pit.glb",
+      "position": [
+        -3,
+        0,
+        5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/campfire-pit.glb",
+      "position": [
+        0,
+        0,
+        4
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/campfire-fishing-stand.glb",
+      "position": [
+        3,
+        0,
+        5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/campfire-fishing-stand.glb",
+      "position": [
+        2,
+        0,
+        3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/campfire-stand.glb",
+      "position": [
+        -4,
+        0,
+        1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/chest.glb",
+      "position": [
+        -3,
+        0,
+        1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/fence-doorway.glb",
+      "position": [
+        -1,
+        0,
+        4
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/fence-fortified.glb",
+      "position": [
+        -1,
+        0,
+        4
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/fish-large.glb",
+      "position": [
+        -2,
+        0,
+        3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/floor-hole.glb",
+      "position": [
+        -1,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/floor-hole.glb",
+      "position": [
+        -3,
+        0,
+        -1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/patch-grass.glb",
+      "position": [
+        0,
+        0,
+        -2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/patch-grass.glb",
+      "position": [
+        -1,
+        0,
+        -2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/resource-stone-large.glb",
+      "position": [
+        -2,
+        0,
+        3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/resource-wood.glb",
+      "position": [
+        -2,
+        0,
+        2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/resource-wood.glb",
+      "position": [
+        1,
+        0,
+        -3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-flat-grass.glb",
+      "position": [
+        0,
+        0,
+        4
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-flat-grass.glb",
+      "position": [
+        1,
+        0,
+        3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-flat-grass.glb",
+      "position": [
+        5,
+        0,
+        2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-flat-grass.glb",
+      "position": [
+        9,
+        0,
+        -1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-flat-grass.glb",
+      "position": [
+        7,
+        0,
+        -3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-flat-grass.glb",
+      "position": [
+        1,
+        0,
+        -4
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-flat-grass.glb",
+      "position": [
+        -3,
+        0,
+        -2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-flat-grass.glb",
+      "position": [
+        -5,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-sand-b.glb",
+      "position": [
+        3,
+        0,
+        -4
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-sand-b.glb",
+      "position": [
+        3,
+        0,
+        -3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-sand-b.glb",
+      "position": [
+        2,
+        0,
+        -2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-sand-b.glb",
+      "position": [
+        6,
+        0,
+        -3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-sand-b.glb",
+      "position": [
+        6,
+        0,
+        -1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-sand-b.glb",
+      "position": [
+        6,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-sand-b.glb",
+      "position": [
+        4,
+        0,
+        3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-sand-c.glb",
+      "position": [
+        -2,
+        0,
+        -4
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-sand-c.glb",
+      "position": [
+        -3,
+        0,
+        -2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-sand-c.glb",
+      "position": [
+        -5,
+        0,
+        -1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-sand-c.glb",
+      "position": [
+        -5,
+        0,
+        1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Survival/rock-sand-c.glb",
+      "position": [
+        -5,
+        0,
+        -2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/flag-high.glb",
+      "position": [
+        5,
+        0,
+        -2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/flag-high.glb",
+      "position": [
+        5,
+        0,
+        -7
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/flag-high.glb",
+      "position": [
+        -2,
+        0,
+        -8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/flag-pennant.glb",
+      "position": [
+        7,
+        0,
+        6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/flag-pennant.glb",
+      "position": [
+        9,
+        0,
+        4
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/flag-pennant.glb",
+      "position": [
+        10,
+        0,
+        2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/crate.glb",
+      "position": [
+        6,
+        0,
+        5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/crate.glb",
+      "position": [
+        7,
+        0,
+        3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/cannon.glb",
+      "position": [
+        5,
+        0,
+        6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/barrel.glb",
+      "position": [
+        3,
+        0,
+        -7
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/barrel.glb",
+      "position": [
+        10,
+        0,
+        -8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/barrel.glb",
+      "position": [
+        10,
+        0,
+        -4
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/grass-plant.glb",
+      "position": [
+        11,
+        0,
+        -3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/grass-plant.glb",
+      "position": [
+        2,
+        0,
+        -7
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/grass-plant.glb",
+      "position": [
+        -2,
+        0,
+        -6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/grass-plant.glb",
+      "position": [
+        -5,
+        0,
+        -5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/grass-plant.glb",
+      "position": [
+        -8,
+        0,
+        -1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/grass-plant.glb",
+      "position": [
+        -7,
+        0,
+        2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/grass-plant.glb",
+      "position": [
+        -6,
+        0,
+        6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Pirate/grass-plant.glb",
+      "position": [
+        -1,
+        0,
+        7
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/flag-banner-short.glb",
+      "position": [
+        -5,
+        0,
+        10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/gate.glb",
+      "position": [
+        3,
+        0,
+        11
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/rocks-small.glb",
+      "position": [
+        9,
+        0,
+        8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/rocks-small.glb",
+      "position": [
+        9,
+        0,
+        10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/rocks-large.glb",
+      "position": [
+        10,
+        0,
+        3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/rocks-large.glb",
+      "position": [
+        11,
+        0,
+        4
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/rocks-large.glb",
+      "position": [
+        8,
+        0,
+        7
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/rocks-large.glb",
+      "position": [
+        7,
+        0,
+        10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/siege-catapult.glb",
+      "position": [
+        9,
+        0,
+        4
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/siege-catapult.glb",
+      "position": [
+        -14,
+        0,
+        -6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-square-mid.glb",
+      "position": [
+        -8,
+        0,
+        -12
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-square-mid.glb",
+      "position": [
+        -13,
+        0,
+        -16
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-square-mid.glb",
+      "position": [
+        -13,
+        0,
+        -10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-square-mid.glb",
+      "position": [
+        -11,
+        0,
+        -4
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-square-mid.glb",
+      "position": [
+        -13,
+        0,
+        1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/bridge-straight-pillar.glb",
+      "position": [
+        0,
+        0,
+        -14
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/bridge-straight-pillar.glb",
+      "position": [
+        -1,
+        0,
+        -14
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/bridge-straight-pillar.glb",
+      "position": [
+        1,
+        0,
+        -14
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/bridge-straight-pillar.glb",
+      "position": [
+        2,
+        0,
+        -14
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/bridge-straight-pillar.glb",
+      "position": [
+        3,
+        0,
+        -14
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/bridge-straight-pillar.glb",
+      "position": [
+        4,
+        0,
+        -14
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/bridge-straight-pillar.glb",
+      "position": [
+        5,
+        0,
+        -14
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/bridge-straight-pillar.glb",
+      "position": [
+        6,
+        0,
+        -14
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/bridge-straight-pillar.glb",
+      "position": [
+        7,
+        0,
+        -14
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/bridge-straight-pillar.glb",
+      "position": [
+        8,
+        0,
+        -14
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/bridge-straight-pillar.glb",
+      "position": [
+        9,
+        0,
+        -14
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/bridge-straight-pillar.glb",
+      "position": [
+        10,
+        0,
+        -14
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/flag-banner-long.glb",
+      "position": [
+        -1,
+        1,
+        -14
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/flag-banner-long.glb",
+      "position": [
+        0,
+        1,
+        -14
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/gate.glb",
+      "position": [
+        -2,
+        0,
+        -14
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/siege-tower.glb",
+      "position": [
+        -2,
+        0,
+        -12
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/siege-tower.glb",
+      "position": [
+        7,
+        0,
+        -12
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/siege-trebuchet.glb",
+      "position": [
+        2,
+        0,
+        -10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/stairs-stone.glb",
+      "position": [
+        -5,
+        0,
+        -10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/stairs-stone.glb",
+      "position": [
+        -1,
+        0,
+        -15
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/stairs-stone.glb",
+      "position": [
+        0,
+        0,
+        -15
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/stairs-stone.glb",
+      "position": [
+        1,
+        0,
+        -15
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/stairs-stone.glb",
+      "position": [
+        2,
+        0,
+        -15
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/stairs-stone.glb",
+      "position": [
+        3,
+        0,
+        -15
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/stairs-stone.glb",
+      "position": [
+        4,
+        0,
+        -15
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/stairs-stone.glb",
+      "position": [
+        5,
+        0,
+        -15
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/stairs-stone-square.glb",
+      "position": [
+        -17,
+        0,
+        -11
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/stairs-stone-square.glb",
+      "position": [
+        -13,
+        0,
+        -11
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -16,
+        0,
+        -10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -16,
+        1,
+        -10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -16,
+        2,
+        -10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -16,
+        3,
+        -10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -16,
+        4,
+        -10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -16,
+        5,
+        -10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -16,
+        6,
+        -10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/siege-tower.glb",
+      "position": [
+        -16,
+        7,
+        -10
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -17,
+        6,
+        -9
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -18,
+        6,
+        -8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -16,
+        6,
+        -8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -17,
+        6,
+        -7
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -18,
+        6,
+        -6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -15,
+        6,
+        -7
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -17,
+        6,
+        -7
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -17,
+        6,
+        -7
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -17,
+        6,
+        -7
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -17,
+        6,
+        -7
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -15,
+        6,
+        -9
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -17,
+        6,
+        -6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -16,
+        6,
+        -6
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -20,
+        0,
+        -24
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -16,
+        6,
+        -5
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -16,
+        6,
+        -4
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -16,
+        6,
+        -3
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -16,
+        6,
+        -2
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -16,
+        6,
+        -1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -15,
+        6,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -15,
+        6,
+        -1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -14,
+        6,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -13,
+        6,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -12,
+        6,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -11,
+        6,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -10,
+        6,
+        1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "path": "Castle/tower-hexagon-base.glb",
+      "position": [
+        -10,
+        6,
+        -1
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scaling": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "metadata": {
+    "savedAt": "2025-06-11T12:17:03.511Z",
+    "modelCount": 149,
+    "format": "1.0"
+  }
+}
