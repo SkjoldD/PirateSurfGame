@@ -75,12 +75,19 @@ export class BubbleSystem {
             shipSpeed = this.ship.getSpeed();
         }
         
+        // Store speed for use in emitBubble
+        this.currentSpeed = shipSpeed;
+        
         const shouldEmit = shipSpeed > 0.1; // Only emit when moving
         
-        // Emit new bubbles
+        // Emit new bubbles - scale emission rate with speed (capped at 2x base rate)
         if (shouldEmit) {
+            // Calculate speed factor (1.0 at base speed, up to 2.0 at higher speeds)
+            const speedFactor = 1.0 + Math.min(1.0, shipSpeed / 10); // Cap at 2x emission rate
+            const effectiveEmitRate = this.options.emitRate * speedFactor;
+            
             this.timeSinceLastEmit += deltaTime;
-            const emitInterval = 1 / this.options.emitRate;
+            const emitInterval = 1 / effectiveEmitRate;
             
             while (this.timeSinceLastEmit >= emitInterval) {
                 this.emitBubble();
@@ -96,78 +103,86 @@ export class BubbleSystem {
     }
     
     updateBubbleArray(bubbles, deltaTime) {
-        if (!bubbles) return;
+        if (!bubbles || bubbles.length === 0) return;
+        
+        // Cap deltaTime to prevent large jumps when tab is inactive
+        const cappedDeltaTime = Math.min(deltaTime, 0.1);
         
         for (let i = bubbles.length - 1; i >= 0; i--) {
             const particle = bubbles[i];
-            if (!particle) continue;
-            
-            particle.lifetime -= deltaTime;
-            
-            if (particle.lifetime <= 0 || !particle.sphere) {
-                // Return sphere to pool if it exists
-                if (particle.sphere) {
-                    particle.sphere.isVisible = false;
-                    this.spherePool.push(particle.sphere);
-                }
+            if (!particle) {
                 bubbles.splice(i, 1);
                 continue;
             }
             
             try {
-                // Skip if we don't have a valid sphere
-                if (!particle.sphere || !particle.sphere.scaling) {
+                // Update lifetime
+                particle.lifetime = (particle.lifetime || 0) - cappedDeltaTime;
+                
+                // Check if bubble should be removed
+                if (particle.lifetime <= 0 || !particle.sphere) {
+                    if (particle.sphere) {
+                        particle.sphere.isVisible = false;
+                        this.spherePool.push(particle.sphere);
+                        particle.sphere = null;
+                    }
+                    bubbles.splice(i, 1);
+                    continue;
+                }
+                
+                // Skip if we don't have a valid sphere or position data
+                if (!particle.sphere || !particle.position || !particle.velocity) {
+                    if (particle.sphere) {
+                        particle.sphere.isVisible = false;
+                        this.spherePool.push(particle.sphere);
+                        particle.sphere = null;
+                    }
                     bubbles.splice(i, 1);
                     continue;
                 }
 
-                // Update position with some randomness
-                if (particle.position && particle.velocity) {
-                    particle.position.addInPlace(particle.velocity.scale(deltaTime));
-                    
-                    // Add some horizontal drift based on ship movement
-                    if (this.ship._shipControls && this.ship._shipControls.velocity) {
-                        const drift = this.ship._shipControls.velocity.scale(0.5 * deltaTime);
-                        particle.position.addInPlace(drift);
-                    }
-                    
-                    try {
-                        particle.sphere.position.copyFrom(particle.position);
-                        
-                        // Scale based on lifetime with some random variation
-                        const lifeRatio = Math.max(0, Math.min(1, particle.lifetime / (particle.maxLifetime || 1)));
-                        const baseScale = 0.5 + lifeRatio * 0.5; // Scale up slightly over lifetime
-                        const randomScale = 0.9 + Math.random() * 0.2; // Add some random jitter
-                        const scale = (particle.size || 1) * baseScale * randomScale;
-                        
-                        // Ensure scaling is valid
-                        if (!isNaN(scale) && isFinite(scale) && scale > 0) {
-                            particle.sphere.scaling.set(scale, scale, scale);
-                        }
-                        
-                        // Fade out
-                        if (particle.sphere.material) {
-                            particle.sphere.material.alpha = 0.2 + 0.8 * lifeRatio;
-                        }
-                        
-                        // Add some bobbing motion
-                        particle.sphere.position.y += Math.sin((particle.time || 0) * 3) * 0.005;
-                        particle.time = (particle.time || 0) + deltaTime;
-                    } catch (e) {
-                        console.warn('Error updating bubble properties:', e);
-                        // Remove problematic bubble
-                        if (particle.sphere) {
-                            particle.sphere.dispose();
-                        }
-                        bubbles.splice(i, 1);
-                        continue;
-                    }
+                // Update position with velocity
+                particle.position.addInPlace(particle.velocity.scale(cappedDeltaTime));
+                
+                // Apply gentle drift from ship movement if available
+                if (this.ship._shipControls && this.ship._shipControls.velocity) {
+                    const drift = this.ship._shipControls.velocity.scale(0.2 * cappedDeltaTime);
+                    particle.position.addInPlace(drift);
                 }
+                
+                // Update sphere position
+                particle.sphere.position.copyFrom(particle.position);
+                
+                // Calculate lifetime ratio (1 at start, 0 at end)
+                const lifeRatio = Math.max(0, Math.min(1, particle.lifetime / (particle.maxLifetime || 1)));
+                
+                // Scale based on lifetime with some variation
+                const baseScale = 0.7 + lifeRatio * 0.3; // Slightly larger at birth
+                const randomScale = 0.9 + Math.random() * 0.2;
+                const scale = (particle.size || 1) * baseScale * randomScale;
+                
+                // Apply scale if valid
+                if (scale > 0.01 && isFinite(scale)) {
+                    particle.sphere.scaling.set(scale, scale, scale);
+                }
+                
+                // Update alpha (fade out)
+                if (particle.sphere.material) {
+                    particle.sphere.material.alpha = 0.3 + 0.7 * lifeRatio;
+                }
+                
+                // Add gentle bobbing motion
+                if (particle.time === undefined) particle.time = Math.random() * 10;
+                particle.time += cappedDeltaTime;
+                particle.sphere.position.y += Math.sin(particle.time * 2) * 0.003;
+                
             } catch (e) {
                 console.warn('Error updating bubble:', e);
                 // Remove problematic bubble
-                if (particle.sphere) {
-                    particle.sphere.dispose();
+                if (particle && particle.sphere) {
+                    particle.sphere.isVisible = false;
+                    this.spherePool.push(particle.sphere);
+                    particle.sphere = null;
                 }
                 bubbles.splice(i, 1);
             }
@@ -178,6 +193,9 @@ export class BubbleSystem {
         if (this.leftBubbles.length >= this.options.maxBubbles || this.rightBubbles.length >= this.options.maxBubbles || this.spherePool.length < 2) {
             return;
         }
+        
+        // Calculate speed factor for size scaling (1.0 at base speed, up to 2.0 at higher speeds)
+        const speedFactor = 1.0 + Math.min(1.0, (this.currentSpeed || 0) / 10);
         
         // Get ship direction
         const shipForward = this.ship.forward.scale(-1); // Invert because ship points backward
@@ -214,8 +232,9 @@ export class BubbleSystem {
         // Create new particles with varied sizes
         const lifetime = this.options.minLifetime + Math.random() * (this.options.maxLifetime - this.options.minLifetime);
         
-        // Base size with some random variation
-        const baseSize = this.options.minSize + Math.random() * (this.options.maxSize - this.options.minSize);
+        // Base size with some random variation, scaled by ship speed
+        const speedSizeFactor = 0.8 + (this.currentSpeed || 0) * 0.1; // 0.8x to 1.8x size based on speed
+        const baseSize = (this.options.minSize + Math.random() * (this.options.maxSize - this.options.minSize)) * speedSizeFactor;
         
         // Apply additional size variation to each bubble independently
         const sizeLeft = Math.max(0.05, baseSize * (1 + (Math.random() * 2 - 1) * this.options.sizeVariation));
