@@ -37,17 +37,17 @@ export class ModelLoader {
         // Clear existing models
         //this.clearExistingModels();
         
-        const basePath = "Assets/3D/";
+        const basePath = ""; // Path is now included in the model data
         
         try {
-            const { models } = jsonData;
-            console.log(`Loading ${models.length} models...`);
+            const { objects } = jsonData;
+            console.log(`Loading ${objects.length} models...`);
             
-            for (const [index, modelData] of models.entries()) {
-                await this.loadModel(modelData, basePath, index, models.length, this.shadowGenerator);
+            for (const [index, modelData] of objects.entries()) {
+                await this.loadModel(modelData, basePath, index, objects.length, this.shadowGenerator);
             }
             
-            console.log(`Successfully loaded ${models.length} models`);
+            console.log(`Successfully loaded ${objects.length} models`);
         } catch (error) {
             console.error('Error parsing JSON:', error);
             console.error('Error loading scene: Invalid JSON format');
@@ -140,23 +140,48 @@ export class ModelLoader {
     }
 
     configureModel(root, modelData, isMainModel = false) {
-
         if (isMainModel) {
             root.name = 'mainModel';
         } else {
             root.name = `model_${Date.now()}`;
         }
         
-        const position = new BABYLON.Vector3(...modelData.position);
+        // Set position from the new structure
+        const position = new BABYLON.Vector3(
+            modelData.position.x || 0,
+            modelData.position.y || 0,
+            modelData.position.z || 0
+        );
+        root.position = position;
         
-        root.position = position ;
+        // Set rotation from the new structure
+        if (modelData.rotationQuaternion) {
+            // Use quaternion if available
+            root.rotationQuaternion = new BABYLON.Quaternion(
+                modelData.rotationQuaternion.x || 0,
+                modelData.rotationQuaternion.y || 0,
+                modelData.rotationQuaternion.z || 0,
+                modelData.rotationQuaternion.w !== undefined ? modelData.rotationQuaternion.w : 1
+            );
+        } else {
+            // Fall back to euler angles if quaternion not available
+            const rotation = new BABYLON.Vector3(
+                modelData.rotation ? (modelData.rotation.x || 0) : 0,
+                modelData.rotation ? ((modelData.rotation.y || 0) + Math.PI) : Math.PI, // Add 180 degrees to Y rotation
+                modelData.rotation ? (modelData.rotation.z || 0) : 0
+            );
+            root.rotation = rotation;
+        }
         
-        // Apply 180 degree rotation on Y axis (π radians) to the model's rotation
-        const rotation = [...modelData.rotation];
-        rotation[1] += Math.PI; // Add π radians (180 degrees) to Y rotation
-        root.rotation = new BABYLON.Vector3(...rotation);
-        
-        const scaling = new BABYLON.Vector3(...modelData.scaling);
+        // Apply default scaling if not specified in the model data
+        const scaling = new BABYLON.Vector3(1, 1, 1);
+        if (modelData.scaling) {
+            scaling.set(
+                modelData.scaling.x || 1, 
+                modelData.scaling.y || 1, 
+                modelData.scaling.z || 1
+            );
+        }
         root.scaling = scaling;
         
         if (isMainModel) {
@@ -166,7 +191,7 @@ export class ModelLoader {
             this.scene.registerBeforeRender(() => {
                 if (this.mainModel) {
                     time += 0.01;
-                    this.mainModel.position.y = modelData.position[1] + Math.sin(time) * 0.1;
+                    this.mainModel.position.y = position.y + Math.sin(time) * 0.1;
                 }
             });
         } else {
@@ -211,7 +236,7 @@ export class ModelLoader {
             // Just make it a child of the model and it will inherit the position/rotation
             collider.position = center;  // Local position relative to parent
             collider.rotation = BABYLON.Vector3.Zero();  // No additional rotation needed as it will inherit from parent
-            collider.isVisible = true;  // Keep visible for debugging
+            collider.isVisible = false;  // Hide physics collider
             collider.isPickable = false;
             collider.checkCollisions = true;
             

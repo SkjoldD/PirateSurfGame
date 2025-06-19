@@ -214,16 +214,33 @@ function readJsonFile(file) {
 
 // Create a default ship configuration
 const defaultShipConfig = {
-    models: [{
-        path: "Pirate/ship-small.glb",  // Make sure to include the .glb extension
-        position: [10, 1, 10],
-        rotation: [0, 0, 0],
-        scaling: [1, 1, 1]
-    }],
-    metadata: {
-        modelCount: 1,
-        format: "1.0"
-    }
+    version: "1.0",
+    objects: [{
+        name: "ship-small.glb",
+        path: "Assets/3D/Pirate/ship-small.glb",
+        folder: "Pirate",
+        position: {
+            x: 10,
+            y: 3,  // Raised from 1 to 3
+            z: 10
+        },
+        rotation: {
+            x: 0,
+            y: 0,
+            z: 0
+        },
+        rotationQuaternion: {
+            x: 0,
+            y: 0,
+            z: 0,
+            w: 1
+        },
+        scaling: {
+            x: 1,
+            y: 1,
+            z: 1
+        }
+    }]
 };
 
 // Camera setup is now handled directly in the initializeApp function
@@ -250,7 +267,7 @@ const initializeApp = async () => {
 
     // Load the default ship model
     try {
-        const modelPath = 'Assets/3D/' + defaultShipConfig.models[0].path;
+        const modelPath = defaultShipConfig.objects[0].path;
         const modelExists = await checkFileExists(modelPath);
         
         if (!modelExists) {
@@ -294,17 +311,28 @@ const initializeApp = async () => {
             }
         }
         
-        // Remove the separate collider and use the main model for physics
-        mainModel.checkCollisions = true;
+        // Initially disable collisions for the first second
+        mainModel.checkCollisions = false;
         
-        // Make sure all child meshes have proper collision settings
+        // Make sure all child meshes have proper shadow settings but no collisions initially
         if (mainModel.getChildMeshes) {
             mainModel.getChildMeshes().forEach(mesh => {
-                mesh.checkCollisions = true;
+                mesh.checkCollisions = false;
                 mesh.receiveShadows = true;
                 mesh.castShadow = true;
             });
         }
+        
+        // Enable collisions after 1 second
+        setTimeout(() => {
+            mainModel.checkCollisions = true;
+            if (mainModel.getChildMeshes) {
+                mainModel.getChildMeshes().forEach(mesh => {
+                    mesh.checkCollisions = true;
+                });
+            }
+            console.log('Ship collisions enabled');
+        }, 1000);
         
         // Compute world matrix to ensure bounding box is calculated
         mainModel.computeWorldMatrix(true);
@@ -316,8 +344,14 @@ const initializeApp = async () => {
             height: 5 * 0.8,  // Slightly shorter than the model
             depth: 5 * 1.2,   // 20% longer than the model
         }, scene);
-        shipCollider.isVisible = false;  // Make it visible for debugging
-        shipCollider.checkCollisions = true;
+        shipCollider.isVisible = false;  // Hide ship collider
+        shipCollider.checkCollisions = false;  // Initially disable collider
+        
+        // Enable collider after 1 second
+        setTimeout(() => {
+            shipCollider.checkCollisions = true;
+            console.log('Ship collider enabled');
+        }, 1000);
         
         // Position collider at the same position as the ship
         shipCollider.position.copyFrom(mainModel.absolutePosition);
@@ -587,7 +621,7 @@ const initializeApp = async () => {
         
         // Add a simple box as fallback
         const box = BABYLON.MeshBuilder.CreateBox('fallbackShip', { size: 2 }, scene);
-        box.isVisible = true;
+        box.isVisible = false;  // Hide fallback ship
         box.position.y = 1;
         
         // Setup camera to follow the box
@@ -647,7 +681,7 @@ function createRocks(scene, count = 50, areaSize = 500) {
 
         rock.receiveShadows = true;
         rock.castShadows = true;
-        rock.isVisible = true; // Make it invisible in the final game
+        rock.isVisible = false; // Hide rock colliders
 
         shadowGenerator.addShadowCaster(rock);
         
@@ -701,22 +735,61 @@ async function loadTestScene(scene, modelLoader) {
         
         console.log('Loading test scene with data:', sceneData);
         
-        if (sceneData.models && Array.isArray(sceneData.models)) {
-            for (const modelConfig of sceneData.models) {
-                try {
-                    // Ensure the model data has all required fields with defaults
-                    const modelData = {
-                        path: modelConfig.path || '',
-                        position: modelConfig.position || [0, 0, 0],
-                        rotation: modelConfig.rotation || [0, 0, 0],
-                        scaling: modelConfig.scaling || [1, 1, 1]
-                    };
-                    
-                    await modelLoader.loadModel(modelData, 'Assets/3D/');
-                } catch (error) {
-                    console.error(`Error loading model ${modelConfig.path}:`, error);
-                }
+        // First, load all models
+        if (sceneData.objects && Array.isArray(sceneData.objects)) {
+            // Create a clean config with proper physics settings
+            const physicsConfig = {
+                version: sceneData.version || "1.0",
+                objects: []
+            };
+            
+            // Prepare all models with physics settings and apply 5x scaling
+            for (const modelConfig of sceneData.objects) {
+                // Scale the position by 5x
+                const scaledPosition = modelConfig.position ? {
+                    x: (modelConfig.position.x || 0) * 5,
+                    y: (modelConfig.position.y || 0) * 5,
+                    z: (modelConfig.position.z || 0) * 5
+                } : { x: 0, y: 0, z: 0 };
+                
+                // Scale the size by 5x
+                const scaledScaling = modelConfig.scaling ? {
+                    x: (modelConfig.scaling.x || 1) * 5,
+                    y: (modelConfig.scaling.y || 1) * 5,
+                    z: (modelConfig.scaling.z || 1) * 5
+                } : { x: 5, y: 5, z: 5 };
+                
+                const modelData = {
+                    name: modelConfig.name || '',
+                    path: modelConfig.path || '',
+                    folder: modelConfig.folder || '',
+                    position: scaledPosition,
+                    rotation: modelConfig.rotation || { x: 0, y: 0, z: 0 },
+                    rotationQuaternion: modelConfig.rotationQuaternion || { x: 0, y: 0, z: 0, w: 1 },
+                    scaling: scaledScaling,
+                    physics: modelConfig.physics || {
+                        mass: 0,  // Default to static objects
+                        friction: 1.0,
+                        restitution: 0.2
+                    }
+                };
+                physicsConfig.objects.push(modelData);
             }
+            
+            // Load all models with physics
+            await modelLoader.loadModelsFromJson(physicsConfig, shadowGenerator);
+            
+            // Additional physics setup if needed
+            scene.executeWhenReady(() => {
+                // Force update all physics impostors after a short delay
+                setTimeout(() => {
+                    scene.meshes.forEach(mesh => {
+                        if (mesh.physicsImpostor) {
+                            mesh.physicsImpostor.forceUpdate();
+                        }
+                    });
+                }, 500);
+            });
         }
         
         console.log('Test scene loaded successfully');
