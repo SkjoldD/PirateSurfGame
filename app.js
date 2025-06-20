@@ -137,13 +137,15 @@ const createScene = function() {
     ground.position.y = 0; // Raise water surface to y=0
     
 
-    // Create simple water material
     const waterMaterial = new BABYLON.StandardMaterial("waterMaterial", scene);
-    waterMaterial.diffuseColor = new BABYLON.Color3(0.2, 0.5, 0.8); // Lighter blue color
-    waterMaterial.alpha = 0.4; // More transparent
-    waterMaterial.specularPower = 64; // More pronounced highlights
-    waterMaterial.specularColor = new BABYLON.Color3(1, 1, 1); // White highlights
-    waterMaterial.alphaMode = BABYLON.Engine.ALPHA_COMBINE; // For transparency
+    waterMaterial.diffuseColor = new BABYLON.Color3(0.2, 0.4, 1);  // Deeper blue
+    waterMaterial.specularColor = new BABYLON.Color3(0.6, 0.8, 1.0);  // Brighter blue highlights
+    waterMaterial.alpha = 0.7;  // Slightly more opaque
+    waterMaterial.specularPower = 32;
+    waterMaterial.emissiveColor = new BABYLON.Color3(0.1, 0.2, 0.3);  // Subtle blue tint
+    waterMaterial.alphaMode = BABYLON.Engine.ALPHA_COMBINE;
+    waterMaterial.backFaceCulling = false;
+    waterMaterial.zOffset = -0.1;
     
     // Disable backface culling and enable transparency
     waterMaterial.backFaceCulling = false;
@@ -220,9 +222,9 @@ const defaultShipConfig = {
         path: "Assets/3D/Pirate/ship-small.glb",
         folder: "Pirate",
         position: {
-            x: 10,
-            y: 3,  // Raised from 1 to 3
-            z: 10
+            x: 100,
+            y: 1,
+            z: 0
         },
         rotation: {
             x: 0,
@@ -257,6 +259,30 @@ async function checkFileExists(url) {
 }
 
 // Initialize the scene and model loader
+// Global flag to track if ship is ready for control
+let isShipReady = false;
+let shipControls = null; // Will hold the ship controls instance
+
+// Global function to enable ship controls
+window.enableShipControls = () => {
+    if (shipControls) {
+        shipControls.speed = 0.5;          // Base movement speed
+        shipControls.rotationSpeed = 0.06;  // Rotation speed
+        shipControls.enabled = true;
+        isShipReady = true;
+        
+        const statusElement = document.getElementById('status');
+        if (statusElement) {
+            statusElement.textContent = 'Ready to sail!';
+            setTimeout(() => statusElement.textContent = '', 2000); // Clear status after 2 seconds
+        }
+        
+        console.log('Ship controls enabled');
+    } else {
+        console.warn('Cannot enable ship controls: shipControls not initialized');
+    }
+};
+
 const initializeApp = async () => {
     scene = createScene();
     // Make sure shadowGenerator is available before creating ModelLoader
@@ -264,8 +290,23 @@ const initializeApp = async () => {
     const shadowGen = sunLight ? sunLight.shadowGenerator : null;
     modelLoader = new ModelLoader(scene, statusElement, shadowGen);
     
+    // First load the map/level
+    try {
+        statusElement.textContent = 'Loading map...';
+        // Load your map/level here if needed
+        // await loadMapOrLevel();
+        
+        // Then load the ship
+        statusElement.textContent = 'Loading pirate ship...';
+        await loadShip();
+        
+    } catch (error) {
+        console.error('Error initializing game:', error);
+        statusElement.textContent = `Error: ${error.message}`;
+    }
+};
 
-    // Load the default ship model
+async function loadShip() {
     try {
         const modelPath = defaultShipConfig.objects[0].path;
         const modelExists = await checkFileExists(modelPath);
@@ -274,24 +315,20 @@ const initializeApp = async () => {
             throw new Error(`Model file not found at: ${modelPath}`);
         }
         
-        statusElement.textContent = 'Loading pirate ship...';
-        await modelLoader.loadModelsFromJson(defaultShipConfig, shadowGenerator);
-        
-        // Get the camera and attach it to the main model
-        const camera = scene.activeCamera;
-        const mainModel = modelLoader.getMainModel();
+        // Load the ship model
+        const mainModel = await modelLoader.loadModelsFromJson(defaultShipConfig, shadowGenerator);
         
         if (!mainModel) {
             throw new Error('Main model not found after loading');
         }
         
+        const camera = scene.activeCamera;
         if (!camera) {
             throw new Error('Camera not found in scene');
         }
         
         console.log('Main model loaded:', mainModel);
-        
-
+            
         // Enable shadows for the main model
         if (mainModel.getChildMeshes) {
             mainModel.getChildMeshes().forEach(mesh => {
@@ -408,6 +445,7 @@ const initializeApp = async () => {
         scene.registerBeforeRender(() => {
             if (shipCollider && mainModel) {
                 // Update model position to match collider
+                //shipCollider.position.copyFrom(mainModel.position);
                 mainModel.position.copyFrom(shipCollider.position);
                 
                 // Update model rotation to match collider (yaw only)
@@ -421,16 +459,25 @@ const initializeApp = async () => {
             }
         });
         
-        // Initialize ship controls with the main model
-        const shipControls = new ShipControls(scene, mainModel, {
-            speed: 0.5,          // Base movement speed
-            rotationSpeed: 0.06,  // Rotation speed
-            maxSpeed: 3.0        // Maximum speed
+        // Create ship controls (initially disabled)
+        shipControls = new ShipControls(scene, mainModel, {
+            speed: 1,              // Start with 0 speed (disabled)
+            rotationSpeed: 1,       // Start with 0 rotation speed (disabled)
+            maxSpeed: 30.0,        // Increased from 3.0 to 30.0 for faster movement
+            acceleration: 0.7,     // Faster acceleration
+            deceleration: 0.95,    // Slower deceleration for more drift
+            rotationAcceleration: 0.1,  // Faster rotation acceleration
+            rotationDeceleration: 0.9,  // Slower rotation deceleration
+            baseRotationSpeed: 0.8,     // Faster base rotation
+            enabled: false         // Controls start disabled
         });
         
         // Add ship controls update to the render loop
         scene.registerBeforeRender(() => {
-            shipControls.update();
+            // Only update controls if ship is ready
+            if (isShipReady) {
+                shipControls.update();
+            }
             
             // Sync ship model with collider
             if (shipCollider && mainModel) {
@@ -615,6 +662,18 @@ const initializeApp = async () => {
             writable: true,
             configurable: true
         });
+        
+        // Run the render loop
+        engine.runRenderLoop(() => {
+            scene.render();
+        });
+        
+        // Handle browser resize
+        window.addEventListener('resize', () => {
+            engine.resize();
+        });
+        
+        return mainModel;
     } catch (error) {
         console.error('Error loading default model:', error);
         statusElement.textContent = `Error: ${error.message || 'Failed to load pirate ship'}`;
@@ -630,17 +689,18 @@ const initializeApp = async () => {
             scene.activeCamera.position = new BABYLON.Vector3(0, 10, -15);
             scene.activeCamera.setTarget(BABYLON.Vector3.Zero());
         }
+        
+        // Still need to run the render loop even in error case
+        engine.runRenderLoop(() => {
+            scene.render();
+        });
+        
+        window.addEventListener('resize', () => {
+            engine.resize();
+        });
+        
+        return box; // Return the fallback box
     }
-    
-    // Run the render loop
-    engine.runRenderLoop(() => {
-        scene.render();
-    });
-    
-    // Handle browser resize
-    window.addEventListener('resize', () => {
-        engine.resize();
-    });
 };
 
 function createRocks(scene, count = 50, areaSize = 500) {
@@ -779,17 +839,14 @@ async function loadTestScene(scene, modelLoader) {
             // Load all models with physics
             await modelLoader.loadModelsFromJson(physicsConfig, shadowGenerator);
             
-            // Additional physics setup if needed
-            scene.executeWhenReady(() => {
-                // Force update all physics impostors after a short delay
-                setTimeout(() => {
-                    scene.meshes.forEach(mesh => {
-                        if (mesh.physicsImpostor) {
-                            mesh.physicsImpostor.forceUpdate();
-                        }
-                    });
-                }, 500);
-            });
+            // Force update all physics impostors after a short delay
+            setTimeout(() => {
+                scene.meshes.forEach(mesh => {
+                    if (mesh.physicsImpostor) {
+                        mesh.physicsImpostor.forceUpdate();
+                    }
+                });
+            }, 1000);
         }
         
         console.log('Test scene loaded successfully');

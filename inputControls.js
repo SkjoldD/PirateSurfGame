@@ -4,25 +4,27 @@ export class ShipControls {
         this.ship = shipMesh;
         this.collider = shipMesh._collider;
         
+        // Control state
+        this.enabled = options.enabled !== false; // Enabled by default unless specified
+        
         // Movement settings
-        this.acceleration = 0.5;     // How quickly the ship speeds up
-        this.deceleration = 0.98;    // How quickly the ship slows down (higher = slower deceleration)
-        this.maxSpeed = 15.0;         // Maximum speed
+        this.acceleration = options.acceleration || 0.5;     // How quickly the ship speeds up
+        this.deceleration = options.deceleration || 0.98;   // How quickly the ship slows down (higher = slower deceleration)
+        this.maxSpeed = options.maxSpeed || 15.0;            // Maximum speed
+        this.speed = options.speed || 0.5;                  // Base movement speed
         
         // Rotation settings
-        this.rotationAcceleration = 0.1;  // How quickly rotation speeds up
-        this.rotationDeceleration = 0.95; // How quickly rotation slows down
-        this.maxRotationSpeed = 2.0;      // Maximum rotation speed (radians/second)
-        this.baseRotationSpeed = 1.0;     // Base rotation speed multiplier
+        this.rotationAcceleration = options.rotationAcceleration || 0.1;  // How quickly rotation speeds up
+        this.rotationDeceleration = options.rotationDeceleration || 0.95; // How quickly rotation slows down
+        this.maxRotationSpeed = options.maxRotationSpeed || 2.0;          // Maximum rotation speed (radians/second)
+        this.baseRotationSpeed = options.baseRotationSpeed || 1.0;        // Base rotation speed multiplier
+        this.rotationSpeed = options.rotationSpeed || 0.06;                // Base rotation speed
         
         // Current state
         this.velocity = new BABYLON.Vector3();  // Current velocity
         this.currentSpeed = 0;     // Current speed in the forward direction
         this.targetSpeed = 0;      // Speed we're trying to reach
-        
-        // Movement state
-        this.velocity = new BABYLON.Vector3();
-        this.angularVelocity = 0;
+        this.angularVelocity = 0;   // Current rotation speed
         
         // Input state
         this.keys = {
@@ -44,6 +46,13 @@ export class ShipControls {
                 this.keys[key] = true;
             } else if (key === 'shift') {
                 this.keys.shift = true;
+            }
+            // Handle rotation
+            if (this.keys.a) {
+                this.angularVelocity += this.rotationSpeed * 0.8; // Slightly slower rotation
+            }
+            if (this.keys.d) {
+                this.angularVelocity -= this.rotationSpeed * 0.8; // Slightly slower rotation
             }
         };
         
@@ -67,7 +76,7 @@ export class ShipControls {
     }
     
     update() {
-        if (!this.ship) return;
+        if (!this.enabled || !this.ship || !this.scene) return;
         
         const deltaTime = this.scene.getEngine().getDeltaTime() / 1000;
         
@@ -114,13 +123,27 @@ export class ShipControls {
             }
         }
         
-        // Calculate target speed based on input
+        // Calculate movement direction based on ship's rotation
+        const rotation = this.ship.rotation.y;
+        const moveX = Math.sin(rotation);
+        const moveZ = Math.cos(rotation);
+        
+        // Update target speed based on input
         if (this.keys.w) {
-            this.targetSpeed = this.maxSpeed * (this.keys.shift ? 1.5 : 1.0);
+            if (!(this.targetSpeed >= this.maxSpeed)){
+                this.targetSpeed += this.speed;
+            }
         } else if (this.keys.s) {
-            this.targetSpeed = -this.maxSpeed * (this.keys.shift ? 1.5 : 0.7);
+            if (!(this.targetSpeed <= -this.maxSpeed)){
+                this.targetSpeed -= this.speed * 0.5; // Slower in reverse
+            }
         } else {
-            this.targetSpeed = 0;
+            if (this.targetSpeed > 0){
+                this.targetSpeed -= this.targetSpeed * 0.01;
+            }
+            else if (this.targetSpeed < 0){
+                this.targetSpeed += this.targetSpeed * 0.01;
+            }
         }
         
         // Apply acceleration/deceleration
@@ -129,11 +152,15 @@ export class ShipControls {
             this.currentSpeed = BABYLON.Scalar.Lerp(
                 this.currentSpeed,
                 this.targetSpeed,
-                this.acceleration * deltaTime * 60
+                this.acceleration * deltaTime * 30 // Reduced acceleration for smoother movement
             );
         } else {
             // Apply deceleration when no input
-            this.currentSpeed *= this.deceleration;
+            this.currentSpeed = BABYLON.Scalar.Lerp(
+                this.currentSpeed,
+                0,
+                1 - Math.pow(this.deceleration, deltaTime * 60) // Frame-rate independent deceleration
+            );
             if (Math.abs(this.currentSpeed) < 0.01) this.currentSpeed = 0;
         }
         
@@ -145,8 +172,14 @@ export class ShipControls {
             const forwardDirection = BABYLON.Vector3.TransformNormal(forward, rotationMatrix);
             
             // Apply movement with current speed
-            this.velocity = forwardDirection.scale(this.currentSpeed * deltaTime);
-            this.ship.position.addInPlace(this.velocity);
+            const movement = forwardDirection.scale(this.currentSpeed * deltaTime);
+            this.ship.position.addInPlace(movement);
+            
+            // Update velocity for physics
+            this.velocity.copyFrom(movement).scale(1/deltaTime);
+            
+            // Add some water resistance
+            this.velocity.scaleInPlace(0.98);
         }
         
         // Update collider position to match ship
@@ -164,17 +197,17 @@ export class ShipControls {
                     )
                 );
             }
-        }
-        
-        // Update collider if it exists
-        if (this.collider) {
-            this.collider.position.copyFrom(this.ship.position);
-            this.collider.rotation.y = this.ship.rotation.y;
             
             // Keep at water level
             if (this.collider.position.y < 0) {
                 this.collider.position.y = 0;
                 this.ship.position.y = 0;
+            }
+            
+            // Update physics body if it exists
+            if (this.collider.physicsImpostor) {
+                this.collider.physicsImpostor.setLinearVelocity(this.velocity);
+                this.collider.physicsImpostor.setAngularVelocity(new BABYLON.Vector3(0, this.angularVelocity, 0));
             }
         }
 

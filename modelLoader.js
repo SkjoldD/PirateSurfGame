@@ -41,16 +41,23 @@ export class ModelLoader {
         
         try {
             const { objects } = jsonData;
-            console.log(`Loading ${objects.length} models...`);
+            console.log(`Loading ${objects.length} models in parallel...`);
             
-            for (const [index, modelData] of objects.entries()) {
-                await this.loadModel(modelData, basePath, index, objects.length, this.shadowGenerator);
-            }
+            // Create an array of promises for all model loads
+            const loadPromises = objects.map((modelData, index) => 
+                this.loadModel(modelData, basePath, index, objects.length, this.shadowGenerator)
+            );
+            
+            // Wait for all models to load in parallel
+            await Promise.all(loadPromises);
             
             console.log(`Successfully loaded ${objects.length} models`);
+            
+            // Return the main model (first model) if needed
+            return this.mainModel;
         } catch (error) {
-            console.error('Error parsing JSON:', error);
-            console.error('Error loading scene: Invalid JSON format');
+            console.error('Error loading models:', error);
+            throw error; // Re-throw to allow handling by the caller
         }
     }
 
@@ -125,12 +132,17 @@ export class ModelLoader {
             
             // The first model is considered the main model
             const isMainModel = index === 0;
+        
+            // Configure the model with the isMainModel flag
             this.configureModel(result.meshes[0], modelData, isMainModel);
+        
+            // Set up shadows for all meshes
             this.setupModelShadows(shadowGenerator, result.meshes, result.meshes[0]);
-            
+        
             // If this is the main model, store a reference
             if (isMainModel) {
                 this.mainModel = result.meshes[0];
+                console.log('Main model set:', this.mainModel.name);
             }
             
         } catch (error) {
@@ -182,22 +194,87 @@ export class ModelLoader {
                 modelData.scaling.z || 1
             );
         }
-        root.scaling = scaling;
+        // Store the original scale for animation
+        const originalScaling = scaling.clone();
         
-        if (isMainModel) {
-            this.mainModel = root;
-            // Add a small animation to make the ship bob up and down slightly
-            let time = 0;
-            this.scene.registerBeforeRender(() => {
-                if (this.mainModel) {
-                    time += 0.01;
-                    this.mainModel.position.y = position.y + Math.sin(time) * 0.1;
+        // Set initial scale to 0 and position slightly below
+        root.scaling = BABYLON.Vector3.Zero();
+        const startY = position.y - 1; // Start 1 unit below
+        root.position.y = startY;
+        
+        // Create animation for the pop effect
+        const popDuration = 0.8; // seconds
+        const popStartTime = Date.now();
+        
+        // Store the original position for the main model's bobbing animation
+        // Note: We set this.mainModel in loadModel instead to avoid race conditions
+        
+        // Animation function
+        const animatePop = () => {
+            const elapsed = (Date.now() - popStartTime) / 1000; // Convert to seconds
+            const progress = Math.min(elapsed / popDuration, 1); // Clamp to 0-1
+            
+            // Ease-out function for smooth deceleration
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            
+            // Scale animation: grow to 120%, then settle back to 100%
+            let scaleFactor = 1.0;
+            if (progress < 0.6) {
+                // First 60% of animation: grow to 120%
+                scaleFactor = 1.0 + (0.2 * (progress / 0.6));
+            } else {
+                // Last 40%: shrink back to 100%
+                scaleFactor = 1.2 - (0.2 * ((progress - 0.6) / 0.4));
+            }
+            
+            // Apply scaling
+            root.scaling = new BABYLON.Vector3(
+                originalScaling.x * scaleFactor,
+                originalScaling.y * scaleFactor,
+                originalScaling.z * scaleFactor
+            );
+            
+            // Move up animation
+            root.position.y = startY + (position.y - startY) * easeOut;
+            
+            // If animation is complete, clean up or set final values
+            if (progress < 1) {
+                requestAnimationFrame(animatePop);
+            } else {
+                // Animation complete
+                root.scaling = originalScaling;
+                root.position.y = position.y;
+                
+                // For main model, start bobbing animation and enable controls
+                if (isMainModel) {
+                    let time = 0;
+                    this.scene.registerBeforeRender(() => {
+                        if (this.mainModel) {
+                            time += 0.01;
+                            this.mainModel.position.y = position.y + Math.sin(time) * 0.1;
+                        }
+                    });
+                    
+                    console.log('Main model pop-in animation complete, enabling ship controls...');
+                    
+                    // Enable ship controls after pop-in animation
+                    if (typeof window.enableShipControls === 'function') {
+                        setTimeout(() => {
+                            window.enableShipControls();
+                            console.log('Ship controls enabled');
+                        }, 100); // Small delay to ensure everything is ready
+                    } else {
+                        console.warn('enableShipControls function not found on window');
+                    }
+                } else {
+                    // For non-main models, add physics collision after pop-in
+                    this.setupModelCollision(root, position, originalScaling);
                 }
-            });
-        } else {
-            // For non-main models, add physics collision
-            this.setupModelCollision(root, position, scaling);
-        }
+            }
+        };
+        
+        // Start the animation
+        animatePop();
     }
     
     // Get the main model for camera attachment
