@@ -1,5 +1,8 @@
 class SimpleClouds {
-    constructor(scene) {
+    constructor(scene, options = {}) {
+        this.scene = scene;
+        this.clouds = [];
+        this.reflectionProbe = options.reflectionProbe; // Store reference to reflection probe
         this.scene = scene;
         this.clouds = [];
         
@@ -78,43 +81,22 @@ class SimpleClouds {
         // Apply material
         cloud.material = cloudMaterial;
         
-        // Configure cloud to only cast shadows, not receive them
-        cloud.receiveShadows = false;
-        cloud.castShadows = true;
-        
-        // Add to shadow generator if available
-        if (window.shadowGenerator) {
-            // Ensure the cloud is in the shadow generator's render list
-            const shadowMap = window.shadowGenerator.getShadowMap();
-            if (shadowMap && shadowMap.renderList) {
-                // Check if not already in the render list to avoid duplicates
-                if (!shadowMap.renderList.includes(cloud)) {
-                    shadowMap.renderList.push(cloud);
-                }
-            }
-            
-            // Add to the shadow caster list
-            window.shadowGenerator.addShadowCaster(cloud);
-            
-            // Make sure cloud doesn't receive shadows
-            if (window.shadowGenerator.getShadowMapForRendering) {
-                const shadowMapForRendering = window.shadowGenerator.getShadowMapForRendering();
-                if (shadowMapForRendering && shadowMapForRendering.renderList) {
-                    const index = shadowMapForRendering.renderList.indexOf(cloud);
-                    if (index !== -1) {
-                        shadowMapForRendering.renderList.splice(index, 1);
-                    }
-                }
-            }
-        }
+        // Shadows disabled for better performance
         
         // Store cloud data
-        this.clouds.push({
+        const cloudData = {
             mesh: cloud,
             speed: this.options.speed * (0.8 + Math.random() * 0.4), // Random speed variation
             spawnTime: Date.now(),
             targetX: this.options.maxX + size // Target X position to reach before removal
-        });
+        };
+        
+        // Add cloud to reflection probe if available
+        if (this.reflectionProbe && this.reflectionProbe.renderList) {
+            this.reflectionProbe.renderList.push(cloud);
+        }
+        
+        this.clouds.push(cloudData);
     }
     
     update() {
@@ -147,6 +129,16 @@ class SimpleClouds {
             
             // Remove if out of bounds or lifetime expired
             if (cloud.mesh.position.x > cloud.targetX || aliveTime > this.options.lifeTime) {
+                // Remove from reflection probe if it exists
+                if (this.reflectionProbe && this.reflectionProbe.renderList) {
+                    const renderList = this.reflectionProbe.renderList;
+                    const indexInRenderList = renderList.indexOf(cloud.mesh);
+                    if (indexInRenderList !== -1) {
+                        renderList.splice(indexInRenderList, 1);
+                    }
+                }
+                
+                // Dispose the mesh
                 cloud.mesh.dispose();
                 cloudsToRemove.unshift(index); // Add to beginning to avoid index shifting
             }

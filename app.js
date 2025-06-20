@@ -44,30 +44,13 @@ const createScene = function() {
     camera.upperBetaLimit = Math.PI / 2.2; // Prevent looking straight down
     camera.lowerRadiusLimit = 10; // Prevent zooming too close
     
-    // Create directional light for shadows - positioned high and at an angle
+    // Create directional light - positioned high and at an angle
     const sunLight = new BABYLON.DirectionalLight("sunLight", new BABYLON.Vector3(-1, -2, 0.5), scene);
     sunLight.intensity = 1.0;
     sunLight.position = new BABYLON.Vector3(250, 250, 250);
     
-    // Enable shadows on the light
-    sunLight.shadowEnabled = true;
-    sunLight.shadowMinZ = 1;
-    sunLight.shadowMaxZ = 500; // Reduced to cover the scene better
-    
-    // Configure shadow generator for better cloud shadows
-    shadowGenerator = new BABYLON.ShadowGenerator(4096, sunLight); // Higher resolution for better quality
-    shadowGenerator.useCloseExponentialShadowMap = true; // Better for large scenes
-    shadowGenerator.useBlurExponentialShadowMap = true; // Enable blur for softer shadows
-    shadowGenerator.useKernelBlur = true; // Use kernel blur for better performance
-    shadowGenerator.blurKernel = 32; // Higher value for smoother edges
-    shadowGenerator.darkness = 0.4; // Lighter shadows
-    shadowGenerator.normalBias = 0.1; // Increased to prevent shadow acne
-    shadowGenerator.bias = 0.0001; // Reduced to prevent peter-panning
-    shadowGenerator.forceBackFacesOnly = false; // Important for transparent objects
-    shadowGenerator.setDarkness(0.4); // Set darkness again for consistency
-    
-    // Store the shadow generator on the light for easy access
-    sunLight.shadowGenerator = shadowGenerator;
+    // Disable shadows for better performance
+    sunLight.shadowEnabled = false;
     
     console.log('Shadow generator created and attached to light');
     
@@ -146,22 +129,46 @@ const createScene = function() {
     ground.position.y = 0; // Raise water surface to y=0
     
 
+    // Create a reflection probe for the water
+    const reflectionProbe = new BABYLON.ReflectionProbe("waterReflection", 512, scene);
+    reflectionProbe.refreshRate = 1; // Update every frame
+    
+    // Create water material with reflection
     const waterMaterial = new BABYLON.StandardMaterial("waterMaterial", scene);
     waterMaterial.diffuseColor = new BABYLON.Color3(0.2, 0.4, 1);  // Deeper blue
-    waterMaterial.specularColor = new BABYLON.Color3(0.6, 0.8, 1.0);  // Brighter blue highlights
+    waterMaterial.specularColor = new BABYLON.Color3(0.8, 0.9, 1.0);  // Brighter highlights for better reflection
     waterMaterial.alpha = 0.7;  // Slightly more opaque
-    waterMaterial.specularPower = 32;
+    waterMaterial.specularPower = 64;  // Sharper highlights
     waterMaterial.emissiveColor = new BABYLON.Color3(0.1, 0.2, 0.3);  // Subtle blue tint
     waterMaterial.alphaMode = BABYLON.Engine.ALPHA_COMBINE;
     waterMaterial.backFaceCulling = false;
     waterMaterial.zOffset = -0.1;
     
-    // Disable backface culling and enable transparency
-    waterMaterial.backFaceCulling = false;
-    waterMaterial.zOffset = -0.1; // Helps prevent z-fighting
+    // Enable reflections
+    waterMaterial.reflectionTexture = reflectionProbe.cubeTexture;
+    waterMaterial.reflectionFresnelParameters = new BABYLON.FresnelParameters();
+    waterMaterial.reflectionFresnelParameters.bias = 0.1;
+    waterMaterial.reflectionFresnelParameters.power = 8;
+    
+    // Enable specular highlights
+    waterMaterial.useReflectionFresnelFromSpecular = true;
+    waterMaterial.specularPower = 128;
+    
+    // Add fresnel effect for better water appearance
+    waterMaterial.indexOfRefraction = 0.8;
     
     // Apply material to ground
     ground.material = waterMaterial;
+    
+    // Add the ground to the reflection probe's render list
+    reflectionProbe.renderList = [ground];
+    
+    // Add all meshes to reflection probe
+    scene.meshes.forEach(mesh => {
+        if (mesh !== ground && mesh !== oceanFloor) {
+            reflectionProbe.renderList.push(mesh);
+        }
+    });
     
     // Add simple wave animation
     let time = 0;
@@ -187,6 +194,7 @@ const createScene = function() {
     
     // Add simple clouds
     const clouds = new SimpleClouds(scene, {
+        reflectionProbe: reflectionProbe,
         minX: -150,           // Start from left side of the scene
         maxX: 150,            // Move to right side
         minZ: -100,           // Depth range
@@ -314,10 +322,8 @@ window.enableShipControls = () => {
 
 const initializeApp = async () => {
     scene = createScene();
-    // Make sure shadowGenerator is available before creating ModelLoader
-    const sunLight = scene.getLightByName("sunLight");
-    const shadowGen = sunLight ? sunLight.shadowGenerator : null;
-    modelLoader = new ModelLoader(scene, statusElement, shadowGen);
+    // Create the model loader
+    modelLoader = new ModelLoader(scene, statusElement);
     
     // First load the map/level
     try {
@@ -359,28 +365,10 @@ async function loadShip() {
         console.log('Main model loaded:', mainModel);
             
         // Enable shadows for the main model
-        if (mainModel.getChildMeshes) {
-            mainModel.getChildMeshes().forEach(mesh => {
-                mesh.receiveShadows = true;
-                mesh.castShadow = true;
-                // Add each mesh to the shadow generator if it exists
-                if (shadowGenerator) {
-                    shadowGenerator.addShadowCaster(mesh);
-                }
-            });
-        } else {
-            // If getChildMeshes is not available, apply to the main model directly
-            mainModel.receiveShadows = true;
-            mainModel.castShadow = true;
-            if (shadowGenerator) {
-                shadowGenerator.addShadowCaster(mainModel);
-            }
-        }
-        
         // Initially disable collisions for the first second
         mainModel.checkCollisions = false;
         
-        // Make sure all child meshes have proper shadow settings but no collisions initially
+        // Make sure all child meshes have proper settings but no collisions initially
         if (mainModel.getChildMeshes) {
             mainModel.getChildMeshes().forEach(mesh => {
                 mesh.checkCollisions = false;
@@ -803,14 +791,9 @@ function createRocks(scene, count = 50, areaSize = 500) {
             Math.random() * Math.PI * 2
         );
         
-        // Apply material
+        // Apply material and hide rock colliders
         rock.material = rockMaterial.clone(`rockMaterial_${i}`);
-
-        rock.receiveShadows = true;
-        rock.castShadows = true;
         rock.isVisible = false; // Hide rock colliders
-
-        shadowGenerator.addShadowCaster(rock);
         
         
         // Add physics with mass (gravity will affect it)
@@ -904,7 +887,7 @@ async function loadTestScene(scene, modelLoader) {
             }
             
             // Load all models with physics
-            await modelLoader.loadModelsFromJson(physicsConfig, shadowGenerator);
+            await modelLoader.loadModelsFromJson(physicsConfig);
             
             // Force update all physics impostors after a short delay
             setTimeout(() => {

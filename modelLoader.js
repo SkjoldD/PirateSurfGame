@@ -1,39 +1,13 @@
 export class ModelLoader {
-    constructor(scene, statusElement, shadowGenerator = null) {
+    constructor(scene, statusElement) {
         this.scene = scene;
         this.statusElement = statusElement;
         this.mainModel = null; // Reference to the main model (pirate ship)
-        this.shadowGenerator = shadowGenerator;
-        
-        // If no shadow generator provided, try to find one in the scene
-        if (!this.shadowGenerator) {
-            const light = this.scene.getLightByName("sunLight");
-            if (light && light.shadowGenerator) {
-                this.shadowGenerator = light.shadowGenerator;
-                console.log('Found shadow generator on sunLight');
-            }
-        }
     }
 
-    GetShadowGenerator() {
-        // If we already have a shadow generator, return it
-        if (this.shadowGenerator) {
-            return this.shadowGenerator;
-        }
-        
-        // Otherwise try to get it from the light
-        const light = this.scene.getLightByName("sunLight");
-        if (light && light.shadowGenerator) {
-            console.log('Found shadow generator on sunLight');
-            this.shadowGenerator = light.shadowGenerator;
-            return this.shadowGenerator;
-        }
-        
-        console.warn('Could not find shadow generator on sunLight');
-        return null;
-    }
+    // Shadow functionality removed for better performance
 
-    async loadModelsFromJson(jsonData, shadowGenerator) {
+    async loadModelsFromJson(jsonData) {
         // Clear existing models
         //this.clearExistingModels();
         
@@ -45,7 +19,7 @@ export class ModelLoader {
             
             // Create an array of promises for all model loads
             const loadPromises = objects.map((modelData, index) => 
-                this.loadModel(modelData, basePath, index, objects.length, this.shadowGenerator)
+                this.loadModel(modelData, basePath, index, objects.length)
             );
             
             // Wait for all models to load in parallel
@@ -135,9 +109,6 @@ export class ModelLoader {
         
             // Configure the model with the isMainModel flag
             this.configureModel(result.meshes[0], modelData, isMainModel);
-        
-            // Set up shadows for all meshes
-            this.setupModelShadows(shadowGenerator, result.meshes, result.meshes[0]);
         
             // If this is the main model, store a reference
             if (isMainModel) {
@@ -344,10 +315,7 @@ export class ModelLoader {
             // Make the collider a child of the model
             collider.parent = root;
             
-            // Add shadow casting if shadow generator is available
-            if (this.shadowGenerator) {
-                this.shadowGenerator.addShadowCaster(collider);
-            }
+            // Shadow functionality removed for better performance
             
             // Force update the physics
             setTimeout(() => {
@@ -363,24 +331,7 @@ export class ModelLoader {
         
     }
     
-    setupModelShadows(shadowGenerator, meshes, root) {
-        if (!shadowGenerator) {
-            console.log(`Shadow generator not initialized`);
-            return;
-        }
-        
-        meshes.forEach(mesh => {
-            if (mesh !== root) {
-                try {
-                    shadowGenerator.addShadowCaster(mesh, true);
-                    mesh.receiveShadows = true;
-                    mesh.castShadow = true;
-                } catch (e) {
-                    console.warn(`Failed to set up shadows for ${mesh.name}:`, e);
-                }
-            }
-        });
-    }
+    // Shadow functionality removed for better performance
 
     // Status updates are now handled by console.log directly
 }
