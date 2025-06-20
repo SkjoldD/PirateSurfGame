@@ -49,13 +49,14 @@ const createScene = function() {
     sunLight.shadowMinZ = 1;
     sunLight.shadowMaxZ = 1000;
     
-    // Configure shadow generator with higher resolution and better settings
+    // Configure shadow generator for hard shadows
     shadowGenerator = new BABYLON.ShadowGenerator(2048, sunLight);
-    shadowGenerator.useBlurExponentialShadowMap = true;
-    shadowGenerator.blurKernel = 64;
+    shadowGenerator.useCloseExponentialShadowMap = false;
+    shadowGenerator.useBlurExponentialShadowMap = false;
+    shadowGenerator.useKernelBlur = false;
     shadowGenerator.darkness = 0.5;
     shadowGenerator.normalBias = 0.05;
-    shadowGenerator.bias = 0.0001;
+    shadowGenerator.bias = 0.001;
     
     // Store the shadow generator on the light for easy access
     sunLight.shadowGenerator = shadowGenerator;
@@ -390,8 +391,10 @@ async function loadShip() {
             console.log('Ship collider enabled');
         }, 1000);
         
-        // Position collider at the same position as the ship
-        shipCollider.position.copyFrom(mainModel.absolutePosition);
+        // Position collider at the same position as the ship with y-offset
+        const colliderPosition = mainModel.absolutePosition.clone();
+        colliderPosition.y += 0.5;  // Add y-offset
+        shipCollider.position.copyFrom(colliderPosition);
         shipCollider.rotationQuaternion = mainModel.rotationQuaternion ? 
             mainModel.rotationQuaternion.clone() : 
             BABYLON.Quaternion.RotationYawPitchRoll(mainModel.rotation.y, 0, 0);
@@ -401,21 +404,57 @@ async function loadShip() {
             shipCollider,
             BABYLON.PhysicsImpostor.BoxImpostor,
             { 
-                mass: 500,  // Heavier mass for more momentum
-                restitution: 0.2,  // Low bounce
-                friction: 0.1,  // Very low friction for water
+                mass: 1000,  // Increased mass for better bounce effect
+                restitution: 0.8,  // Higher bounce
+                friction: 0.5,  // Moderate friction
                 nativeOptions: {
                     collisionFilterGroup: 1,
                     collisionFilterMask: 1,
-                    linearDamping: 0.01,  // Very low linear damping for water
-                    angularDamping: 0.05,  // Slightly higher angular damping
+                    linearDamping: 0.05,  // Slightly higher damping for stability
+                    angularDamping: 0.1,  // Higher angular damping
                     fixedRotation: false,
-                    // Lock X and Z rotation
-                    fixedRotationX: true,
-                    fixedRotationZ: true
+                    // Allow some rotation on all axes for more dynamic bounces
+                    fixedRotationX: false,
+                    fixedRotationZ: false,
+                    // Better collision response
+                    collisionResponse: true,
+                    // Material properties for better bounce
+                    material: {
+                        friction: 0.5,
+                        restitution: 0.8,
+                        contactEquationStiffness: 1e8,
+                        contactEquationRelaxation: 3
+                    }
                 }
             },
             scene
+        );
+        
+        // Add collision callback for bounce effect
+        shipCollider.physicsImpostor.registerOnPhysicsCollide(
+            scene.meshes.filter(m => m !== shipCollider && m.physicsImpostor),
+            function(main, collided) {
+                // Calculate bounce force based on current velocity
+                const velocity = main.getLinearVelocity();
+                const speed = velocity.length();
+                
+                if (speed > 0.1) {  // Only apply bounce if moving fast enough
+                    // Calculate bounce direction (opposite of current velocity)
+                    const direction = velocity.normalize().scale(-1);
+                    
+                    // Apply bounce force (stronger with higher speed)
+                    const bounceForce = direction.scale(speed * 50);
+                    main.applyImpulse(bounceForce, shipCollider.getAbsolutePosition());
+                    
+                    // Add some angular velocity for visual effect
+                    const torque = new BABYLON.Vector3(
+                        (Math.random() - 0.5) * 10,
+                        (Math.random() - 0.5) * 10,
+                        (Math.random() - 0.5) * 10
+                    );
+                    main.applyImpulse(torque, shipCollider.getAbsolutePosition());
+                }
+            }
         );
         
         // Ensure we can read the rotation
@@ -728,8 +767,8 @@ function createRocks(scene, count = 50, areaSize = 500) {
             depth: size * (0.5 + Math.random() * 0.5)  // Make depth between 0.5x and 1x of width
         }, scene);
         
-        // Position and rotate randomly
-        rock.position = new BABYLON.Vector3(x, startHeight, z);
+        // Position and rotate randomly with y-offset
+        rock.position = new BABYLON.Vector3(x, startHeight + 0.5, z);  // Add y-offset
         rock.rotation = new BABYLON.Vector3(
             Math.random() * Math.PI * 2,
             Math.random() * Math.PI * 2,

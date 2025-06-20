@@ -8,17 +8,17 @@ export class ShipControls {
         this.enabled = options.enabled !== false; // Enabled by default unless specified
         
         // Movement settings
-        this.acceleration = options.acceleration || 0.5;     // How quickly the ship speeds up
-        this.deceleration = options.deceleration || 0.98;   // How quickly the ship slows down (higher = slower deceleration)
-        this.maxSpeed = options.maxSpeed || 15.0;            // Maximum speed
-        this.speed = options.speed || 0.5;                  // Base movement speed
+        this.acceleration =  0.5;     // How quickly the ship speeds up
+        this.deceleration =  0.98;   // How quickly the ship slows down (higher = slower deceleration)
+        this.maxSpeed = 10.0;            // Maximum speed
+        this.speed = 0.8;                  // Base movement speed
         
         // Rotation settings
-        this.rotationAcceleration = options.rotationAcceleration || 0.1;  // How quickly rotation speeds up
-        this.rotationDeceleration = options.rotationDeceleration || 0.95; // How quickly rotation slows down
-        this.maxRotationSpeed = options.maxRotationSpeed || 2.0;          // Maximum rotation speed (radians/second)
-        this.baseRotationSpeed = options.baseRotationSpeed || 1.0;        // Base rotation speed multiplier
-        this.rotationSpeed = options.rotationSpeed || 0.06;                // Base rotation speed
+        this.rotationAcceleration = 0.1;  // How quickly rotation speeds up
+        this.rotationDeceleration = 0.95; // How quickly rotation slows down
+        this.maxRotationSpeed = 2.0;          // Maximum rotation speed (radians/second)
+        this.baseRotationSpeed = 1.0;        // Base rotation speed multiplier
+        this.rotationSpeed = 0.06;                // Base rotation speed
         
         // Current state
         this.velocity = new BABYLON.Vector3();  // Current velocity
@@ -134,9 +134,9 @@ export class ShipControls {
                 this.targetSpeed += this.speed;
             }
         } else if (this.keys.s) {
-            if (!(this.targetSpeed <= -this.maxSpeed)){
+            if (!(this.targetSpeed <= -(this.maxSpeed/2))){
                 this.targetSpeed -= this.speed * 0.5; // Slower in reverse
-            }
+            }   
         } else {
             if (this.targetSpeed > 0){
                 this.targetSpeed -= this.targetSpeed * 0.01;

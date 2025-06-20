@@ -308,12 +308,14 @@ export class ModelLoader {
                 this.scene
             );
             
-            // Position the collider at the model's position
-            // The collider is already created relative to the model's origin
-            // Just make it a child of the model and it will inherit the position/rotation
-            collider.position = center;  // Local position relative to parent
+            // Position the collider at the model's position with y-offset
+            collider.position = new BABYLON.Vector3(
+                center.x,
+                center.y + 0.5,  // Add 0.5 to Y position
+                center.z
+            );
             collider.rotation = BABYLON.Vector3.Zero();  // No additional rotation needed as it will inherit from parent
-            collider.isVisible = false;  // Hide physics collider
+            collider.isVisible = false;  // Show physics collider for debugging
             collider.isPickable = false;
             collider.checkCollisions = true;
             
@@ -330,7 +332,9 @@ export class ModelLoader {
                         collisionFilterMask: 1,
                         material: {
                             friction: 1.0,
-                            restitution: 0.2
+                            restitution: 0.2,
+                            contactEquationStiffness: 1e8,
+                            contactEquationRelaxation: 3
                         }
                     }
                 },
