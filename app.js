@@ -1,6 +1,7 @@
 import { BubbleSystem } from './bubbleSystem.js';
 import { ModelLoader } from './modelLoader.js';
 import { ShipControls } from './inputControls.js';
+import { SimpleClouds } from './simpleClouds.js';
 
 // Global variables
 let shadowGenerator; // Make shadowGenerator globally accessible
@@ -36,8 +37,12 @@ const createScene = function() {
     camera.inputs.clear();
     camera.attachControl(canvas, false);
     
-    // Set a wider field of view
+    // Set a wider field of view and position camera higher
     camera.fov = 1.5;
+    camera.position.set(0, 50, -50); // Higher and back
+    camera.setTarget(new BABYLON.Vector3(0, 0, 0)); // Look at center
+    camera.upperBetaLimit = Math.PI / 2.2; // Prevent looking straight down
+    camera.lowerRadiusLimit = 10; // Prevent zooming too close
     
     // Create directional light for shadows - positioned high and at an angle
     const sunLight = new BABYLON.DirectionalLight("sunLight", new BABYLON.Vector3(-1, -2, 0.5), scene);
@@ -47,16 +52,19 @@ const createScene = function() {
     // Enable shadows on the light
     sunLight.shadowEnabled = true;
     sunLight.shadowMinZ = 1;
-    sunLight.shadowMaxZ = 1000;
+    sunLight.shadowMaxZ = 500; // Reduced to cover the scene better
     
-    // Configure shadow generator for hard shadows
-    shadowGenerator = new BABYLON.ShadowGenerator(2048, sunLight);
-    shadowGenerator.useCloseExponentialShadowMap = false;
-    shadowGenerator.useBlurExponentialShadowMap = false;
-    shadowGenerator.useKernelBlur = false;
-    shadowGenerator.darkness = 0.5;
-    shadowGenerator.normalBias = 0.05;
-    shadowGenerator.bias = 0.001;
+    // Configure shadow generator for better cloud shadows
+    shadowGenerator = new BABYLON.ShadowGenerator(4096, sunLight); // Higher resolution for better quality
+    shadowGenerator.useCloseExponentialShadowMap = true; // Better for large scenes
+    shadowGenerator.useBlurExponentialShadowMap = true; // Enable blur for softer shadows
+    shadowGenerator.useKernelBlur = true; // Use kernel blur for better performance
+    shadowGenerator.blurKernel = 32; // Higher value for smoother edges
+    shadowGenerator.darkness = 0.4; // Lighter shadows
+    shadowGenerator.normalBias = 0.1; // Increased to prevent shadow acne
+    shadowGenerator.bias = 0.0001; // Reduced to prevent peter-panning
+    shadowGenerator.forceBackFacesOnly = false; // Important for transparent objects
+    shadowGenerator.setDarkness(0.4); // Set darkness again for consistency
     
     // Store the shadow generator on the light for easy access
     sunLight.shadowGenerator = shadowGenerator;
@@ -176,6 +184,26 @@ const createScene = function() {
     
     // Fog disabled for better visibility
     scene.fogMode = BABYLON.Scene.FOGMODE_NONE;
+    
+    // Add simple clouds
+    const clouds = new SimpleClouds(scene, {
+        minX: -150,           // Start from left side of the scene
+        maxX: 150,            // Move to right side
+        minZ: -100,           // Depth range
+        maxZ: 100,
+        minY: 5.5,            // 5 units above the highest wave point
+        maxY: 5.5,            // No variation in height
+        minSize: 10,          // Cloud size range
+        maxSize: 30,
+        speed: 0.1,           // Movement speed
+        spawnInterval: 3000,   // New cloud every 3 seconds
+        lifeTime: 30000       // 30 seconds lifetime
+    });
+    
+    // Make clouds cast shadows
+    if (shadowGenerator) {
+        window.shadowGenerator = shadowGenerator; // Make it globally accessible
+    }
     
     return scene;
 };
