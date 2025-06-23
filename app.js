@@ -16,6 +16,32 @@ const engine = new BABYLON.Engine(canvas, true);
 let scene;
 let modelLoader;
 
+// Loading screen elements
+const loadingScreen = document.getElementById('loadingScreen');
+const loadingText = document.getElementById('loadingText');
+
+// Function to show loading screen
+function showLoadingScreen(text = 'Setting sail...') {
+    if (loadingScreen && loadingText) {
+        loadingText.textContent = text;
+        loadingScreen.classList.add('visible');
+    }
+}
+
+// Function to hide loading screen
+function hideLoadingScreen() {
+    if (loadingScreen) {
+        loadingScreen.classList.remove('visible');
+    }
+}
+
+// Make loading screen functions available globally
+window.showLoadingScreen = showLoadingScreen;
+window.hideLoadingScreen = hideLoadingScreen;
+
+// Disable controls by default
+let controlsEnabled = false;
+
 // Create a scene with camera and lights
 const createScene = function() {
     const scene = new BABYLON.Scene(engine);
@@ -296,27 +322,37 @@ async function checkFileExists(url) {
 }
 
 // Initialize the scene and model loader
-// Global flag to track if ship is ready for control
 let isShipReady = false;
+
+// Global ship controls reference
 let shipControls = null; // Will hold the ship controls instance
 
 // Global function to enable ship controls
 window.enableShipControls = () => {
-    if (shipControls) {
-        shipControls.speed = 0.5;          // Base movement speed
-        shipControls.rotationSpeed = 0.06;  // Rotation speed
-        shipControls.enabled = true;
+    if (!isShipReady && scene) {
+        console.log("Enabling ship controls");
         isShipReady = true;
         
-        const statusElement = document.getElementById('status');
-        if (statusElement) {
-            statusElement.textContent = 'Ready to sail!';
-            setTimeout(() => statusElement.textContent = '', 2000); // Clear status after 2 seconds
-        }
+        // Enable physics
+        scene.getPhysicsEngine().setTimeStep(1/60);
         
-        console.log('Ship controls enabled');
-    } else {
-        console.warn('Cannot enable ship controls: shipControls not initialized');
+        // Check if we have ship controls from the ship model
+        if (window.shipControls) {
+            shipControls = window.shipControls;
+            shipControls.enabled = true;
+            console.log("Ship controls enabled");
+        } else {
+            console.warn("Ship controls not yet initialized. Will be enabled when ship is loaded.");
+            // Try to find ship controls on the main model
+            scene.meshes.forEach(mesh => {
+                if (mesh._shipControls) {
+                    window.shipControls = mesh._shipControls;
+                    shipControls = window.shipControls;
+                    shipControls.enabled = true;
+                    console.log("Found and enabled ship controls on model");
+                }
+            });
+        }
     }
 };
 
@@ -515,7 +551,7 @@ async function loadShip() {
         });
         
         // Create ship controls (initially disabled)
-        shipControls = new ShipControls(scene, mainModel, {
+        window.shipControls = new ShipControls(scene, mainModel, {
             speed: 1,              // Start with 0 speed (disabled)
             rotationSpeed: 1,       // Start with 0 rotation speed (disabled)
             maxSpeed: 30.0,        // Increased from 3.0 to 30.0 for faster movement
@@ -526,6 +562,9 @@ async function loadShip() {
             baseRotationSpeed: 0.8,     // Faster base rotation
             enabled: false         // Controls start disabled
         });
+        
+        // Store reference in the global scope
+        shipControls = window.shipControls;
         
         // Add ship controls update to the render loop
         scene.registerBeforeRender(() => {
@@ -906,9 +945,21 @@ async function loadTestScene(scene, modelLoader) {
 }
 
 // Start the application
-window.addEventListener('DOMContentLoaded', () => {
-    initializeApp().then(() => {
-        // Load test scene after main initialization
-        loadTestScene(scene, modelLoader);
-    });
+window.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // Initialize the app
+        await initializeApp();
+        
+        // Show loading screen before loading models
+        showLoadingScreen('Loading world...');
+        
+        // Load test scene
+        await loadTestScene(scene, modelLoader);
+        
+        // Hide loading screen when done
+        hideLoadingScreen();
+    } catch (error) {
+        console.error('Error initializing application:', error);
+        showLoadingScreen('Error loading game. Please refresh.');
+    }
 });

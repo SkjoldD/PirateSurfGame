@@ -17,6 +17,11 @@ export class ModelLoader {
             const { objects } = jsonData;
             console.log(`Loading ${objects.length} models in parallel...`);
             
+            // Show loading screen if available
+            if (window.showLoadingScreen) {
+                window.showLoadingScreen(`Loading ${objects.length} models...`);
+            }
+            
             // Create an array of promises for all model loads
             const loadPromises = objects.map((modelData, index) => 
                 this.loadModel(modelData, basePath, index, objects.length)
@@ -27,10 +32,19 @@ export class ModelLoader {
             
             console.log(`Successfully loaded ${objects.length} models`);
             
+            // Hide loading screen when done
+            if (window.hideLoadingScreen) {
+                window.hideLoadingScreen();
+            }
+            
             // Return the main model (first model) if needed
             return this.mainModel;
         } catch (error) {
             console.error('Error loading models:', error);
+            // Update loading screen to show error
+            if (window.showLoadingScreen) {
+                window.showLoadingScreen('Error loading models. Please try again.');
+            }
             throw error; // Re-throw to allow handling by the caller
         }
     }
