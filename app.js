@@ -242,6 +242,30 @@ const createScene = function() {
     return scene;
 };
 
+// Function to apply 5x scaling to model configurations
+function applyModelScaling(config) {
+    if (!config.objects || !Array.isArray(config.objects)) return config;
+    
+    const scaledConfig = {
+        ...config,
+        objects: config.objects.map(modelConfig => ({
+            ...modelConfig,
+            position: modelConfig.position ? {
+                x: (modelConfig.position.x || 0) * 5,
+                y: (modelConfig.position.y || 0) * 5,
+                z: (modelConfig.position.z || 0) * 5
+            } : { x: 0, y: 0, z: 0 },
+            scaling: modelConfig.scaling ? {
+                x: (modelConfig.scaling.x || 1) * 5,
+                y: (modelConfig.scaling.y || 1) * 5,
+                z: (modelConfig.scaling.z || 1) * 5
+            } : { x: 5, y: 5, z: 5 }
+        }))
+    };
+    
+    return scaledConfig;
+}
+
 // Handle file selection
 fileInput.addEventListener('change', async (event) => {
     const file = event.target.files[0];
@@ -250,7 +274,9 @@ fileInput.addEventListener('change', async (event) => {
     try {
         const jsonData = await readJsonFile(file);
         if (modelLoader) {
-            await modelLoader.loadModelsFromJson(jsonData, shadowGenerator);
+            // Apply 5x scaling to the loaded JSON data
+            const scaledConfig = applyModelScaling(jsonData);
+            await modelLoader.loadModelsFromJson(scaledConfig, shadowGenerator);
         }
         else {
             console.error('ModelLoader not initialized');
