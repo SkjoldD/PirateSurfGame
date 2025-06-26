@@ -139,10 +139,10 @@ export class ShipControls {
             }   
         } else {
             if (this.targetSpeed > 0){
-                this.targetSpeed -= this.targetSpeed * 0.01;
+                this.targetSpeed -= this.speed * 0.01;
             }
             else if (this.targetSpeed < 0){
-                this.targetSpeed += this.targetSpeed * 0.01;
+                this.targetSpeed += this.speed * 0.01;
             }
         }
         

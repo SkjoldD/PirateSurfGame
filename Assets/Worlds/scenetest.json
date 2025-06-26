@@ -1,99 +1,157 @@
 {
-  "version": "2.0",
+  "version": "2.2",
   "metadata": {
-    "savedAt": "2025-06-23T23:01:40.375Z",
-    "objectCount": 114,
+    "format": "AssetEditorScene",
+    "generatedBy": "AssetLevelEditor",
+    "date": "2025-06-25T22:41:42.703Z",
+    "objectCount": 16,
     "engine": "Three.js",
     "editor": "AssetLevelEditor"
   },
   "objects": [
     {
-      "name": "block-grass.glb",
+      "name": "coin-gold.glb",
       "position": {
-        "x": -5,
+        "x": 3,
         "y": 0,
-        "z": 1
+        "z": 6
       },
-      "rotationQuaternion": {
+      "rotation": {
         "x": 0,
         "y": 0,
-        "z": 0,
-        "w": 1
+        "z": 0
       },
       "scale": {
         "x": 1,
         "y": 1,
         "z": 1
       },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 1
+      "path": "Assets/3D/Platformer/coin-gold.glb",
+      "filename": "coin-gold.glb",
+      "uuid": "9086B8CD-7EAA-4A20-97BF-D7068FACE861",
+      "originalUuid": "9086B8CD-7EAA-4A20-97BF-D7068FACE861",
+      "properties": {
+        "Gold": "10"
+      }
     },
     {
-      "name": "block-grass.glb",
+      "name": "coin-silver.glb",
       "position": {
-        "x": -5,
-        "y": 0,
-        "z": 2
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 2
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -5,
-        "y": 0,
-        "z": 3
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 3
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -5,
+        "x": 6,
         "y": 0,
         "z": 4
       },
-      "rotationQuaternion": {
+      "rotation": {
         "x": 0,
         "y": 0,
-        "z": 0,
-        "w": 1
+        "z": 0
       },
       "scale": {
         "x": 1,
         "y": 1,
         "z": 1
       },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 4
+      "path": "Assets/3D/Platformer/coin-silver.glb",
+      "filename": "coin-silver.glb",
+      "uuid": "86D24BCB-D0AE-405F-B453-302ECBA53997",
+      "originalUuid": "86D24BCB-D0AE-405F-B453-302ECBA53997",
+      "properties": {
+        "Gold": "3"
+      }
+    },
+    {
+      "name": "coin-silver.glb",
+      "position": {
+        "x": 7,
+        "y": 0,
+        "z": 7
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/coin-silver.glb",
+      "filename": "coin-silver.glb",
+      "uuid": "F7341E22-B2DD-4F13-ADFA-AD07946CD25E",
+      "originalUuid": "F7341E22-B2DD-4F13-ADFA-AD07946CD25E",
+      "properties": {}
+    },
+    {
+      "name": "coin-gold.glb",
+      "position": {
+        "x": 3,
+        "y": 0,
+        "z": 9
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/coin-gold.glb",
+      "filename": "coin-gold.glb",
+      "uuid": "99205FAA-0F89-4E90-8339-91B8A6AB99FB",
+      "originalUuid": "99205FAA-0F89-4E90-8339-91B8A6AB99FB",
+      "properties": {}
+    },
+    {
+      "name": "coin-bronze.glb",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 6
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/coin-bronze.glb",
+      "filename": "coin-bronze.glb",
+      "uuid": "17A7B494-E71D-4BCB-85EC-637C87D6DCF3",
+      "originalUuid": "17A7B494-E71D-4BCB-85EC-637C87D6DCF3",
+      "properties": {
+        "Gold": "1"
+      }
+    },
+    {
+      "name": "coin-bronze.glb",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 9
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/coin-bronze.glb",
+      "filename": "coin-bronze.glb",
+      "uuid": "F208B259-4484-45BA-A05D-32338055A849",
+      "originalUuid": "F208B259-4484-45BA-A05D-32338055A849",
+      "properties": {}
     },
     {
       "name": "block-grass.glb",
@@ -102,11 +160,10 @@
         "y": 0,
         "z": 5
       },
-      "rotationQuaternion": {
+      "rotation": {
         "x": 0,
         "y": 0,
-        "z": 0,
-        "w": 1
+        "z": 0
       },
       "scale": {
         "x": 1,
@@ -115,645 +172,9 @@
       },
       "path": "Assets/3D/Platformer/block-grass.glb",
       "filename": "block-grass.glb",
-      "id": 5
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -5,
-        "y": 0,
-        "z": 6
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 6
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -4,
-        "y": 0,
-        "z": 5
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 7
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -4,
-        "y": 0,
-        "z": 6
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 8
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -3,
-        "y": 0,
-        "z": 5
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 9
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -3,
-        "y": 0,
-        "z": 6
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 10
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -3,
-        "y": 0,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 11
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -2,
-        "y": 0,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 12
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -4,
-        "y": 0,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 13
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -4,
-        "y": 0,
-        "z": 8
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 14
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -3,
-        "y": 0,
-        "z": 8
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 15
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -5,
-        "y": 0,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 16
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -7,
-        "y": 0,
-        "z": 5
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 17
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -6,
-        "y": 0,
-        "z": 6
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 18
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -7,
-        "y": 0,
-        "z": 6
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 19
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -7,
-        "y": 0,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 20
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -6,
-        "y": 0,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 21
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -6,
-        "y": 0,
-        "z": 8
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 22
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -5,
-        "y": 0,
-        "z": 8
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 23
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -5,
-        "y": 1,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 24
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -5,
-        "y": 1,
-        "z": 6
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 25
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -4,
-        "y": 1,
-        "z": 6
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 26
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -4,
-        "y": 1,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 27
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -4,
-        "y": 2,
-        "z": 6
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 28
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -3,
-        "y": 1,
-        "z": 6
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 29
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -3,
-        "y": 1,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 30
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -2,
-        "y": 0,
-        "z": 6
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 31
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -3,
-        "y": 1,
-        "z": 8
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 32
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -3,
-        "y": 2,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 33
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -2,
-        "y": 0,
-        "z": 8
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 34
+      "uuid": "54F9928D-2BC7-4D8A-8A5F-25A24631D98B",
+      "originalUuid": "54F9928D-2BC7-4D8A-8A5F-25A24631D98B",
+      "properties": {}
     },
     {
       "name": "block-grass.glb",
@@ -762,11 +183,10 @@
         "y": 0,
         "z": 0
       },
-      "rotationQuaternion": {
+      "rotation": {
         "x": 0,
         "y": 0,
-        "z": 0,
-        "w": 1
+        "z": 0
       },
       "scale": {
         "x": 1,
@@ -775,20 +195,21 @@
       },
       "path": "Assets/3D/Platformer/block-grass.glb",
       "filename": "block-grass.glb",
-      "id": 35
+      "uuid": "006D52D3-6316-4196-8709-98C1E0223427",
+      "originalUuid": "006D52D3-6316-4196-8709-98C1E0223427",
+      "properties": {}
     },
     {
       "name": "block-grass.glb",
       "position": {
-        "x": -6,
+        "x": -1,
         "y": 0,
-        "z": 1
+        "z": -10
       },
-      "rotationQuaternion": {
+      "rotation": {
         "x": 0,
         "y": 0,
-        "z": 0,
-        "w": 1
+        "z": 0
       },
       "scale": {
         "x": 1,
@@ -797,20 +218,21 @@
       },
       "path": "Assets/3D/Platformer/block-grass.glb",
       "filename": "block-grass.glb",
-      "id": 36
+      "uuid": "FD90B1EE-F474-4686-BCDC-157685C34D32",
+      "originalUuid": "FD90B1EE-F474-4686-BCDC-157685C34D32",
+      "properties": {}
     },
     {
       "name": "block-grass.glb",
       "position": {
-        "x": -6,
+        "x": 3,
         "y": 0,
-        "z": 2
+        "z": -10
       },
-      "rotationQuaternion": {
+      "rotation": {
         "x": 0,
         "y": 0,
-        "z": 0,
-        "w": 1
+        "z": 0
       },
       "scale": {
         "x": 1,
@@ -819,20 +241,21 @@
       },
       "path": "Assets/3D/Platformer/block-grass.glb",
       "filename": "block-grass.glb",
-      "id": 37
+      "uuid": "1B10C8D3-F073-4E18-BBA1-CA364100850E",
+      "originalUuid": "1B10C8D3-F073-4E18-BBA1-CA364100850E",
+      "properties": {}
     },
     {
       "name": "block-grass.glb",
       "position": {
-        "x": -6,
+        "x": 8,
         "y": 0,
-        "z": 3
+        "z": -8
       },
-      "rotationQuaternion": {
+      "rotation": {
         "x": 0,
         "y": 0,
-        "z": 0,
-        "w": 1
+        "z": 0
       },
       "scale": {
         "x": 1,
@@ -841,20 +264,21 @@
       },
       "path": "Assets/3D/Platformer/block-grass.glb",
       "filename": "block-grass.glb",
-      "id": 38
+      "uuid": "5B352DA3-CE1E-4CCB-BE7D-42F73FD901A3",
+      "originalUuid": "5B352DA3-CE1E-4CCB-BE7D-42F73FD901A3",
+      "properties": {}
     },
     {
       "name": "block-grass.glb",
       "position": {
-        "x": -6,
+        "x": 13,
         "y": 0,
-        "z": 4
+        "z": -5
       },
-      "rotationQuaternion": {
+      "rotation": {
         "x": 0,
         "y": 0,
-        "z": 0,
-        "w": 1
+        "z": 0
       },
       "scale": {
         "x": 1,
@@ -863,20 +287,21 @@
       },
       "path": "Assets/3D/Platformer/block-grass.glb",
       "filename": "block-grass.glb",
-      "id": 39
+      "uuid": "E7026B0B-D3B4-4E0C-B729-FC9B55F5AE3D",
+      "originalUuid": "E7026B0B-D3B4-4E0C-B729-FC9B55F5AE3D",
+      "properties": {}
     },
     {
       "name": "block-grass.glb",
       "position": {
-        "x": -6,
+        "x": 14,
         "y": 0,
-        "z": 5
+        "z": 1
       },
-      "rotationQuaternion": {
+      "rotation": {
         "x": 0,
         "y": 0,
-        "z": 0,
-        "w": 1
+        "z": 0
       },
       "scale": {
         "x": 1,
@@ -885,218 +310,21 @@
       },
       "path": "Assets/3D/Platformer/block-grass.glb",
       "filename": "block-grass.glb",
-      "id": 40
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -6,
-        "y": 1,
-        "z": 6
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 41
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -6,
-        "y": 1,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 42
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -7,
-        "y": 1,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 43
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -8,
-        "y": 0,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 44
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -8,
-        "y": 0,
-        "z": 6
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 45
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -9,
-        "y": 0,
-        "z": 6
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 46
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -9,
-        "y": 0,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 47
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -10,
-        "y": 0,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 48
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -10,
-        "y": 0,
-        "z": 6
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 49
+      "uuid": "E2E37CE6-8367-473C-A002-5F8A1ABBC53B",
+      "originalUuid": "E2E37CE6-8367-473C-A002-5F8A1ABBC53B",
+      "properties": {}
     },
     {
       "name": "block-grass.glb",
       "position": {
         "x": -7,
         "y": 0,
-        "z": 8
+        "z": -7
       },
-      "rotationQuaternion": {
+      "rotation": {
         "x": 0,
         "y": 0,
-        "z": 0,
-        "w": 1
+        "z": 0
       },
       "scale": {
         "x": 1,
@@ -1105,1415 +333,55 @@
       },
       "path": "Assets/3D/Platformer/block-grass.glb",
       "filename": "block-grass.glb",
-      "id": 50
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -8,
-        "y": 0,
-        "z": 8
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 51
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -8,
-        "y": 1,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 52
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -9,
-        "y": 1,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 53
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -10,
-        "y": 1,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 54
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -7,
-        "y": 2,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 55
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -8,
-        "y": 2,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 56
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -9,
-        "y": 2,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 57
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -10,
-        "y": 2,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 58
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -9,
-        "y": 0,
-        "z": 8
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 59
+      "uuid": "4D30813D-C27B-4D4D-8205-73D11BCC1E92",
+      "originalUuid": "4D30813D-C27B-4D4D-8205-73D11BCC1E92",
+      "properties": {}
     },
     {
       "name": "block-grass.glb",
       "position": {
         "x": -11,
         "y": 0,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 60
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -10,
-        "y": 0,
-        "z": 8
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 61
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -6,
-        "y": 2,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 62
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -5,
-        "y": 2,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 63
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -4,
-        "y": 2,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 64
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -4,
-        "y": 3,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 65
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -4,
-        "y": 3,
-        "z": 6
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 66
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -3,
-        "y": 3,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 67
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -3,
-        "y": 2,
-        "z": 8
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 68
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -3,
-        "y": 3,
-        "z": 8
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 69
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -3,
-        "y": 0,
-        "z": 9
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 70
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -3,
-        "y": 1,
-        "z": 9
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 71
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -3,
-        "y": 2,
-        "z": 9
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 72
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -2,
-        "y": 0,
-        "z": 9
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 73
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -2,
-        "y": 0,
-        "z": 10
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 74
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -2,
-        "y": 0,
-        "z": 11
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 75
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -2,
-        "y": 0,
-        "z": 13
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 76
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -2,
-        "y": 0,
-        "z": 12
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 77
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -2,
-        "y": 0,
-        "z": 14
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 78
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -1,
-        "y": 0,
-        "z": 14
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 79
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 14
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 80
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 15
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 81
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -1,
-        "y": 0,
-        "z": 15
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 82
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": -1,
-        "y": 0,
-        "z": 16
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 83
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 16
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 84
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": 1,
-        "y": 0,
-        "z": 16
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 85
-    },
-    {
-      "name": "block-grass.glb",
-      "position": {
-        "x": 1,
-        "y": 0,
-        "z": 15
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Platformer/block-grass.glb",
-      "filename": "block-grass.glb",
-      "id": 86
-    },
-    {
-      "name": "ground-hills.glb",
-      "position": {
-        "x": 0,
-        "y": 1,
-        "z": 15
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/ground-hills.glb",
-      "filename": "ground-hills.glb",
-      "id": 87
-    },
-    {
-      "name": "ground-hills.glb",
-      "position": {
-        "x": -4,
-        "y": 4,
-        "z": 7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/ground-hills.glb",
-      "filename": "ground-hills.glb",
-      "id": 88
-    },
-    {
-      "name": "wall.glb",
-      "position": {
-        "x": 7,
-        "y": 0,
         "z": -4
       },
-      "rotationQuaternion": {
+      "rotation": {
         "x": 0,
         "y": 0,
-        "z": 0,
-        "w": 1
+        "z": 0
       },
       "scale": {
         "x": 1,
         "y": 1,
         "z": 1
       },
-      "path": "Assets/3D/Castle/wall.glb",
-      "filename": "wall.glb",
-      "id": 89
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "B6299E11-C952-45A9-B925-7C250D190A0A",
+      "originalUuid": "B6299E11-C952-45A9-B925-7C250D190A0A",
+      "properties": {}
     },
     {
-      "name": "wall.glb",
+      "name": "block-grass.glb",
       "position": {
-        "x": 7,
-        "y": 0,
-        "z": -5
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall.glb",
-      "filename": "wall.glb",
-      "id": 90
-    },
-    {
-      "name": "wall.glb",
-      "position": {
-        "x": 7,
-        "y": 0,
-        "z": -6
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall.glb",
-      "filename": "wall.glb",
-      "id": 91
-    },
-    {
-      "name": "wall.glb",
-      "position": {
-        "x": 7,
-        "y": 0,
-        "z": -3
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall.glb",
-      "filename": "wall.glb",
-      "id": 92
-    },
-    {
-      "name": "wall.glb",
-      "position": {
-        "x": 7,
+        "x": -3,
         "y": 0,
         "z": -8
       },
-      "rotationQuaternion": {
+      "rotation": {
         "x": 0,
         "y": 0,
-        "z": 0,
-        "w": 1
+        "z": 0
       },
       "scale": {
         "x": 1,
         "y": 1,
         "z": 1
       },
-      "path": "Assets/3D/Castle/wall.glb",
-      "filename": "wall.glb",
-      "id": 93
-    },
-    {
-      "name": "wall.glb",
-      "position": {
-        "x": 7,
-        "y": 0,
-        "z": -7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall.glb",
-      "filename": "wall.glb",
-      "id": 94
-    },
-    {
-      "name": "wall.glb",
-      "position": {
-        "x": 1,
-        "y": 0,
-        "z": -3
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall.glb",
-      "filename": "wall.glb",
-      "id": 95
-    },
-    {
-      "name": "wall.glb",
-      "position": {
-        "x": 1,
-        "y": 0,
-        "z": -4
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall.glb",
-      "filename": "wall.glb",
-      "id": 96
-    },
-    {
-      "name": "wall.glb",
-      "position": {
-        "x": 1,
-        "y": 0,
-        "z": -5
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall.glb",
-      "filename": "wall.glb",
-      "id": 97
-    },
-    {
-      "name": "wall.glb",
-      "position": {
-        "x": 1,
-        "y": 0,
-        "z": -6
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall.glb",
-      "filename": "wall.glb",
-      "id": 98
-    },
-    {
-      "name": "wall.glb",
-      "position": {
-        "x": 1,
-        "y": 0,
-        "z": -8
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall.glb",
-      "filename": "wall.glb",
-      "id": 99
-    },
-    {
-      "name": "wall.glb",
-      "position": {
-        "x": 1,
-        "y": 0,
-        "z": -7
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall.glb",
-      "filename": "wall.glb",
-      "id": 100
-    },
-    {
-      "name": "wall.glb",
-      "position": {
-        "x": 1,
-        "y": 0,
-        "z": -9
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall.glb",
-      "filename": "wall.glb",
-      "id": 101
-    },
-    {
-      "name": "wall.glb",
-      "position": {
-        "x": 1,
-        "y": 0,
-        "z": -10
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall.glb",
-      "filename": "wall.glb",
-      "id": 102
-    },
-    {
-      "name": "wall.glb",
-      "position": {
-        "x": 1,
-        "y": 0,
-        "z": -11
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall.glb",
-      "filename": "wall.glb",
-      "id": 103
-    },
-    {
-      "name": "wall.glb",
-      "position": {
-        "x": 7,
-        "y": 0,
-        "z": -9
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall.glb",
-      "filename": "wall.glb",
-      "id": 104
-    },
-    {
-      "name": "wall.glb",
-      "position": {
-        "x": 7,
-        "y": 0,
-        "z": -10
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall.glb",
-      "filename": "wall.glb",
-      "id": 105
-    },
-    {
-      "name": "wall.glb",
-      "position": {
-        "x": 7,
-        "y": 0,
-        "z": -11
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall.glb",
-      "filename": "wall.glb",
-      "id": 106
-    },
-    {
-      "name": "wall-corner-half-tower.glb",
-      "position": {
-        "x": 7,
-        "y": 0,
-        "z": -2
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall-corner-half-tower.glb",
-      "filename": "wall-corner-half-tower.glb",
-      "id": 107
-    },
-    {
-      "name": "wall-corner-half-tower.glb",
-      "position": {
-        "x": 1,
-        "y": 0,
-        "z": -2
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0.7044107657701806,
-        "z": 0,
-        "w": -0.7097925563621161
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall-corner-half-tower.glb",
-      "filename": "wall-corner-half-tower.glb",
-      "id": 108
-    },
-    {
-      "name": "wall-pillar.glb",
-      "position": {
-        "x": 1,
-        "y": 0,
-        "z": -12
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall-pillar.glb",
-      "filename": "wall-pillar.glb",
-      "id": 109
-    },
-    {
-      "name": "wall-pillar.glb",
-      "position": {
-        "x": 7,
-        "y": 0,
-        "z": -12
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/wall-pillar.glb",
-      "filename": "wall-pillar.glb",
-      "id": 110
-    },
-    {
-      "name": "tower-base.glb",
-      "position": {
-        "x": 1,
-        "y": 1,
-        "z": -12
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/tower-base.glb",
-      "filename": "tower-base.glb",
-      "id": 111
-    },
-    {
-      "name": "tower-base.glb",
-      "position": {
-        "x": 7,
-        "y": 1,
-        "z": -12
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/tower-base.glb",
-      "filename": "tower-base.glb",
-      "id": 112
-    },
-    {
-      "name": "tower-slant-roof.glb",
-      "position": {
-        "x": 7,
-        "y": 2,
-        "z": -12
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/tower-slant-roof.glb",
-      "filename": "tower-slant-roof.glb",
-      "id": 113
-    },
-    {
-      "name": "tower-slant-roof.glb",
-      "position": {
-        "x": 1,
-        "y": 2,
-        "z": -12
-      },
-      "rotationQuaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
-      },
-      "path": "Assets/3D/Castle/tower-slant-roof.glb",
-      "filename": "tower-slant-roof.glb",
-      "id": 114
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "B7719AE0-A7CC-4780-93A1-C5EA452B89C9",
+      "originalUuid": "B7719AE0-A7CC-4780-93A1-C5EA452B89C9",
+      "properties": {}
     }
   ]
 }

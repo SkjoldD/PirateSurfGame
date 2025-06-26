@@ -331,6 +331,48 @@ export class ModelLoader {
             
             // Shadow functionality removed for better performance
             
+            // Update material settings to prevent feedback loops
+            const processMaterial = (material) => {
+                if (!material) return;
+                
+                // Disable any post-processes that might cause feedback loops
+                material.disableDepthWrite = false;
+                material.disableColorWrite = false;
+                material.disableColorWrite = false;
+                
+                // Ensure the material isn't using itself as a texture
+                if (material.diffuseTexture && material.diffuseTexture === material.reflectionTexture) {
+                    material.reflectionTexture = null;
+                }
+                
+                // Disable any render targets that might cause feedback
+                if (material.getActiveTextures) {
+                    const textures = material.getActiveTextures();
+                    for (const texture of textures) {
+                        if (texture && texture.isRenderTarget) {
+                            texture.isRenderTarget = false;
+                        }
+                    }
+                }
+            };
+            
+            // Process all materials in the model
+            const processNode = (node) => {
+                if (node.material) {
+                    if (Array.isArray(node.material)) {
+                        node.material.forEach(processMaterial);
+                    } else {
+                        processMaterial(node.material);
+                    }
+                }
+                
+                if (node.getChildren) {
+                    node.getChildren().forEach(processNode);
+                }
+            };
+            
+            processNode(root);
+            
             // Force update the physics
             setTimeout(() => {
                 if (collider.physicsImpostor) {

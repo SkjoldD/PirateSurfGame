@@ -1,10 +1,11 @@
-import { BubbleSystem } from './bubbleSystem.js';
 import { ModelLoader } from './modelLoader.js';
 import { ShipControls } from './inputControls.js';
 import { SimpleClouds } from './simpleClouds.js';
+import { WaterTrail } from './waterTrail.js';
 
 // Global variables
 let shadowGenerator; // Make shadowGenerator globally accessible
+let waterTrail; // Water trail effect
 
 // Get DOM elements
 const canvas = document.getElementById("renderCanvas");
@@ -156,25 +157,73 @@ const createScene = function() {
     
 
     // Create a reflection probe for the water
-    const reflectionProbe = new BABYLON.ReflectionProbe("waterReflection", 512, scene);
-    reflectionProbe.refreshRate = 1; // Update every frame
+    const reflectionProbe = new BABYLON.ReflectionProbe("waterReflection", 256, scene);
+    
+    // Configure the probe to update at a reasonable rate
+    reflectionProbe.refreshRate = BABYLON.RenderTargetTexture.REFRESHRATE_RENDER_ONCE;
+    reflectionProbe.cubeTexture.refreshRate = BABYLON.RenderTargetTexture.REFRESHRATE_RENDER_ONCE;
+    
+    // Create a list of meshes to include in the reflection
+    const reflectionMeshes = [];
+    scene.meshes.forEach(mesh => {
+        if (mesh.name !== 'waterSurface') {
+            reflectionMeshes.push(mesh);
+        }
+    });
+    
+    // Add meshes to the probe's render list
+    reflectionProbe.renderList = reflectionMeshes;
+    
+    // Force an initial refresh of the reflection probe
+    reflectionProbe.cubeTexture.renderList = reflectionMeshes;
+    reflectionProbe.cubeTexture.refreshRate = BABYLON.RenderTargetTexture.REFRESHRATE_RENDER_ONCE;
+    
+    // Function to generate a nice blue water color
+    const getRandomWaterColor = () => {
+        // Define a nice blue color (RGB: 0, 105, 148 - deep blue)
+        const baseR = 0 / 255;
+        const baseG = 105 / 255;
+        const baseB = 148 / 255;
+        
+        return {
+            base: new BABYLON.Color3(baseR * 0.7, baseG * 0.7, baseB * 0.7),  // Slightly darker base
+            highlight: new BABYLON.Color3(
+                Math.min(baseR + 0.2, 1),  // Brighter highlight
+                Math.min(baseG + 0.15, 1),
+                Math.min(baseB + 0.1, 1)
+            ),
+            emissive: new BABYLON.Color3(baseR * 0.15, baseG * 0.15, baseB * 0.2)  // Subtle blue emissive
+        };
+    };
+    
+    // Generate random water colors
+    const waterColors = getRandomWaterColor();
     
     // Create water material with reflection
     const waterMaterial = new BABYLON.StandardMaterial("waterMaterial", scene);
-    waterMaterial.diffuseColor = new BABYLON.Color3(0.2, 0.4, 1);  // Deeper blue
-    waterMaterial.specularColor = new BABYLON.Color3(0.8, 0.9, 1.0);  // Brighter highlights for better reflection
-    waterMaterial.alpha = 0.7;  // Slightly more opaque
-    waterMaterial.specularPower = 64;  // Sharper highlights
-    waterMaterial.emissiveColor = new BABYLON.Color3(0.1, 0.2, 0.3);  // Subtle blue tint
+    waterMaterial.diffuseColor = waterColors.base;
+    waterMaterial.specularColor = waterColors.highlight;
+    waterMaterial.alpha = 0.7;
+    waterMaterial.specularPower = 64;
+    waterMaterial.emissiveColor = waterColors.emissive;
     waterMaterial.alphaMode = BABYLON.Engine.ALPHA_COMBINE;
     waterMaterial.backFaceCulling = false;
     waterMaterial.zOffset = -0.1;
     
-    // Enable reflections
+    // Configure reflections
     waterMaterial.reflectionTexture = reflectionProbe.cubeTexture;
+    waterMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+    waterMaterial.useReflectionOverAlpha = false;
+    waterMaterial.useReflectionFresnelFromSpecular = true;
     waterMaterial.reflectionFresnelParameters = new BABYLON.FresnelParameters();
     waterMaterial.reflectionFresnelParameters.bias = 0.1;
     waterMaterial.reflectionFresnelParameters.power = 8;
+    waterMaterial.reflectionFresnelParameters.leftColor = BABYLON.Color3.White();
+    waterMaterial.reflectionFresnelParameters.rightColor = BABYLON.Color3.Black();
+    
+    // Disable unnecessary features
+    waterMaterial.refractionTexture = null;
+    waterMaterial.disableLighting = false;
     
     // Enable specular highlights
     waterMaterial.useReflectionFresnelFromSpecular = true;
@@ -311,7 +360,7 @@ const defaultShipConfig = {
         path: "Assets/3D/Pirate/ship-small.glb",
         folder: "Pirate",
         position: {
-            x: 100,
+            x: 0,
             y: 1,
             z: 0
         },
@@ -351,7 +400,8 @@ async function checkFileExists(url) {
 let isShipReady = false;
 
 // Global ship controls reference
-let shipControls = null; // Will hold the ship controls instance
+let shipControls;
+let camera;
 
 // Global function to enable ship controls
 window.enableShipControls = () => {
@@ -648,24 +698,31 @@ async function loadShip() {
                 // Get the ship's rotation around Y axis
                 const shipRotation = mainModel.rotation.y;
                 
-                // Calculate the rotated offset based on ship's rotation
+                // Fixed camera angle (25 degrees) relative to world space
+                const fixedCameraAngle = 0.4363; // 25 degrees in radians
+                
+                // Calculate the offset based on the fixed camera angle
                 const rotatedOffset = new BABYLON.Vector3(
-                    cameraOffset.x * Math.cos(shipRotation) - cameraOffset.z ,
+                    cameraOffset.x * Math.cos(fixedCameraAngle) - cameraOffset.z * Math.sin(fixedCameraAngle),
                     cameraOffset.y,
-                    cameraOffset.x * Math.sin(shipRotation) + cameraOffset.z 
+                    cameraOffset.x * Math.sin(fixedCameraAngle) + cameraOffset.z * Math.cos(fixedCameraAngle)
                 );
+                
+                // Look at a point slightly in front of the ship in the camera's direction
+                const lookAheadOffset = new BABYLON.Vector3(
+                    Math.sin(fixedCameraAngle) * 5,
+                    0,
+                    Math.cos(fixedCameraAngle) * 5
+                );
+                lookAheadOffset.addInPlace(mainModel.position);
                 
                 // Update camera position (maintaining world Y position)
                 camera.position.x = mainModel.position.x + rotatedOffset.x;
                 camera.position.y = cameraOffset.y; // Maintain fixed height
                 camera.position.z = mainModel.position.z + rotatedOffset.z;
                 
-                // Calculate look-at point (slightly in front of the ship)
-                const lookAtPoint = new BABYLON.Vector3(
-                    mainModel.position.x + Math.sin(shipRotation) * lookAhead,
-                    mainModel.position.y,
-                    mainModel.position.z + Math.cos(shipRotation) * lookAhead
-                );
+                // Look at a point slightly in front of the ship in the camera's direction
+                const lookAtPoint = lookAheadOffset;
                 
                 // Update camera target
                 camera.setTarget(lookAtPoint);
@@ -740,42 +797,36 @@ async function loadShip() {
             // Set as active camera
             scene.activeCamera = camera;
             
+            // Initialize water trail after ship is loaded
+
+            waterTrail = new WaterTrail(scene, mainModel);
+            
+            console.log('Water trail initialized:', waterTrail);
+            
+            // Add water trail update to render loop
+            let lastTime = performance.now();
+            scene.registerBeforeRender(() => {
+                const currentTime = performance.now();
+                const deltaTime = (currentTime - lastTime) / 1000; // Convert to seconds
+                lastTime = currentTime;
+                
+                if (waterTrail) {
+                    try {
+                        waterTrail.update(deltaTime);
+                    } catch (e) {
+                        console.error('Error updating water trail:', e);
+                    }
+                }
+            });
+            
             console.log('Camera locked to ship');
         } catch (error) {
             console.error('Error setting up camera:', error);
         }
         
-        // Create bubble effect with dual trails positioned behind the ship
-        const bubbleSystem = new BubbleSystem(scene, mainModel, {
-            emitRate: 60,           // Bubbles per second (per side)
-            maxBubbles: 80,        // Maximum number of bubbles (per side)
-            minSize: 0.15,         // Larger minimum bubble size
-            maxSize: 0.6,          // Larger maximum bubble size
-            sizeVariation: 0.3,     // How much size can vary from base size
-            minLifetime: 0.8,      // Slightly longer minimum lifetime
-            maxLifetime: 2.0,      // Slightly longer maximum lifetime
-            minSpeed: 0.3,         // Slightly faster minimum speed
-            maxSpeed: 1.2,         // Slightly faster maximum speed
-            sideOffset: -1.5,       // Distance from center to each side
-            verticalOffset: -0.8,  // Slightly below the ship
-            offsetZ: 1.5,         // Positioned further behind the ship
-            color1: new BABYLON.Color4(0.8, 0.9, 1.0, 0.7),  // Light blue with more transparency
-            color2: new BABYLON.Color4(0.95, 0.98, 1.0, 0.3)  // More transparent white
-        });
-        
-        // Update bubbles in render loop
-        scene.registerBeforeRender(() => {
-            if (bubbleSystem) {
-                bubbleSystem.update(scene.getEngine().getDeltaTime() / 1000);
-            }
-            
-            // No need to set forward vector as it's already handled by Babylon.js
-            // The forward direction can be accessed via mainModel.forward
-        });
-        
         statusElement.textContent = 'Pirate ship loaded! Use WASD to move, SHIFT for boost';
         
-        // Add getSpeed method to mainModel for bubble system
+        // Add getSpeed method to mainModel
         Object.defineProperty(mainModel, 'getSpeed', {
             value: () => mainModel._shipControls ? 
                 mainModel._shipControls.velocity.length() : 0,
