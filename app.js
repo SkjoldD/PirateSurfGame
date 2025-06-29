@@ -47,6 +47,9 @@ let controlsEnabled = false;
 const createScene = function() {
     const scene = new BABYLON.Scene(engine);
     
+    // Hide the debug layer to remove X, Y, Z axes visualization
+    scene.debugLayer.hide();
+    
     // Enable physics engine first thing
     const gravityVector = new BABYLON.Vector3(0, -9.81, 0);
     const physicsPlugin = new BABYLON.CannonJSPlugin();
@@ -79,10 +82,10 @@ const createScene = function() {
     // Disable shadows for better performance
     sunLight.shadowEnabled = false;
     
-    console.log('Shadow generator created and attached to light');
+    
     
     // Create rocks with physics in a smaller area (200x200 units)
-    createRocks(scene, 2, 50);
+    //createRocks(scene, 2, 50);
     
     // Create the ocean floor (brown ground)
     const oceanFloor = BABYLON.MeshBuilder.CreateGround("oceanFloor", {
@@ -245,24 +248,6 @@ const createScene = function() {
         }
     });
     
-    // Add simple wave animation
-    let time = 0;
-    scene.registerBeforeRender(() => {
-        time += 0.01;
-        const vertices = ground.getVerticesData(BABYLON.VertexBuffer.PositionKind);
-        if (vertices) {
-            for (let i = 0; i < vertices.length; i += 3) {
-                // Skip Y coordinate (i+1) - we'll modify it for the wave effect
-                const x = vertices[i];
-                const z = vertices[i + 2];
-                // Adjusted wave formula for larger ground
-                const waveScale = 0.1; // Scale down wave frequency for larger area
-                vertices[i + 1] = (Math.sin((x * waveScale) + (time * 2)) * 0.25) + 
-                                 (Math.cos((z * waveScale) + (time * 1.5)) * 0.25);
-            }
-            ground.updateVerticesData(BABYLON.VertexBuffer.PositionKind, vertices);
-        }
-    });
     
     // Fog disabled for better visibility
     scene.fogMode = BABYLON.Scene.FOGMODE_NONE;
@@ -403,6 +388,61 @@ let isShipReady = false;
 let shipControls;
 let camera;
 
+// Global function to show a message to the player
+window.showMessage = function(text, duration = 3000) {
+    // Create message element if it doesn't exist
+    let messageElement = document.getElementById('gameMessage');
+    if (!messageElement) {
+        messageElement = document.createElement('div');
+        messageElement.id = 'gameMessage';
+        messageElement.style.position = 'fixed';
+        messageElement.style.top = '20px';
+        messageElement.style.left = '50%';
+        messageElement.style.transform = 'translateX(-50%)';
+        messageElement.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+        messageElement.style.color = 'white';
+        messageElement.style.padding = '10px 20px';
+        messageElement.style.borderRadius = '5px';
+        messageElement.style.zIndex = '1000';
+        messageElement.style.textAlign = 'center';
+        messageElement.style.fontFamily = 'Arial, sans-serif';
+        messageElement.style.fontSize = '18px';
+        messageElement.style.opacity = '0';
+        messageElement.style.transition = 'opacity 0.5s ease-in-out';
+        document.body.appendChild(messageElement);
+    }
+    
+    // Set message text and show
+    messageElement.textContent = text;
+    messageElement.style.opacity = '1';
+    
+    // Hide after duration
+    if (window.messageTimeout) {
+        clearTimeout(window.messageTimeout);
+    }
+    
+    window.messageTimeout = setTimeout(() => {
+        if (messageElement) {
+            messageElement.style.opacity = '0';
+        }
+    }, Math.max(0, duration - 500)); // Start fade out 500ms before hiding
+};
+
+// Global function to enable jump ability
+window.enableJumpAbility = function() {
+    if (shipControls) {
+        shipControls.jumpEnabled = true;
+        console.log('Jump ability enabled!');
+        
+        // Show a message to the player
+        if (window.showMessage) {
+            window.showMessage('Jump ability unlocked! Press SPACE to jump', 5000);
+        }
+    } else {
+        console.warn('Cannot enable jump: ship controls not initialized');
+    }
+};
+
 // Global function to enable ship controls
 window.enableShipControls = () => {
     if (!isShipReady && scene) {
@@ -433,24 +473,17 @@ window.enableShipControls = () => {
 };
 
 const initializeApp = async () => {
+    // Create the scene
     scene = createScene();
+    
     // Create the model loader
     modelLoader = new ModelLoader(scene, statusElement);
     
-    // First load the map/level
-    try {
-        statusElement.textContent = 'Loading map...';
-        // Load your map/level here if needed
-        // await loadMapOrLevel();
-        
-        // Then load the ship
-        statusElement.textContent = 'Loading pirate ship...';
-        await loadShip();
-        
-    } catch (error) {
-        console.error('Error initializing game:', error);
-        statusElement.textContent = `Error: ${error.message}`;
-    }
+    // Set up global references
+    window.scene = scene;
+    window.modelLoader = modelLoader;
+    
+    return { scene, modelLoader };
 };
 
 async function loadShip() {
@@ -476,6 +509,10 @@ async function loadShip() {
         
         console.log('Main model loaded:', mainModel);
             
+
+        if (scene._spawnPosition) {
+            mainModel.position = new BABYLON.Vector3(scene._spawnPosition.x, scene._spawnPosition.y + 1, scene._spawnPosition.z);
+        }
         // Enable shadows for the main model
         // Initially disable collisions for the first second
         mainModel.checkCollisions = false;
@@ -523,6 +560,8 @@ async function loadShip() {
         const colliderPosition = mainModel.absolutePosition.clone();
         colliderPosition.y += 0.5;  // Add y-offset
         shipCollider.position.copyFrom(colliderPosition);
+
+        
         shipCollider.rotationQuaternion = mainModel.rotationQuaternion ? 
             mainModel.rotationQuaternion.clone() : 
             BABYLON.Quaternion.RotationYawPitchRoll(mainModel.rotation.y, 0, 0);
@@ -613,8 +652,11 @@ async function loadShip() {
             if (shipCollider && mainModel) {
                 // Update model position to match collider
                 //shipCollider.position.copyFrom(mainModel.position);
+                //mainModel.position.copyFrom(shipCollider.position);
+                
                 mainModel.position.copyFrom(shipCollider.position);
                 
+
                 // Update model rotation to match collider (yaw only)
                 mainModel.rotation.y = shipCollider.rotation.y;
                 
@@ -653,7 +695,6 @@ async function loadShip() {
             if (shipCollider && mainModel) {
                 // Update model position to match collider
                 mainModel.position.copyFrom(shipCollider.position);
-                
                 // Update model rotation to match collider (yaw only)
                 mainModel.rotation.y = shipCollider.rotation.y;
                 
@@ -681,6 +722,9 @@ async function loadShip() {
             configurable: true
         });
         
+
+        
+
         // Set up camera to follow the ship
         try {
             // Camera setup - higher position with steeper angle
@@ -734,61 +778,6 @@ async function loadShip() {
             // Update camera position in the render loop
             scene.registerBeforeRender(updateCameraPosition);
             
-            // Debug: Add axis helper
-            const axisSize = 5;
-            const makeTextPlane = function(text, color, size) {
-                const dynamicTexture = new BABYLON.DynamicTexture("DynamicTexture", 50, scene, true);
-                dynamicTexture.hasAlpha = true;
-                dynamicTexture.drawText(text, 5, 40, "bold 36px Arial", color, "transparent", true);
-                const plane = BABYLON.MeshBuilder.CreatePlane("TextPlane", {size: size || 10}, scene);
-                plane.material = new BABYLON.StandardMaterial("TextPlaneMaterial", scene);
-                plane.material.backFaceCulling = false;
-                plane.material.specularColor = new BABYLON.Color3(0, 0, 0);
-                plane.material.diffuseTexture = dynamicTexture;
-                return plane;
-            };
-            
-            const axisX = BABYLON.MeshBuilder.CreateLines("axisX", { 
-                points: [ 
-                    BABYLON.Vector3.Zero(), 
-                    new BABYLON.Vector3(axisSize, 0, 0), 
-                    new BABYLON.Vector3(axisSize * 0.95, 0.05 * axisSize, 0), 
-                    new BABYLON.Vector3(axisSize, 0, 0), 
-                    new BABYLON.Vector3(axisSize * 0.95, -0.05 * axisSize, 0)
-                ] 
-            }, scene);
-            axisX.color = new BABYLON.Color3(1, 0, 0);
-            
-            const xChar = makeTextPlane("X", "red", axisSize / 10);
-            xChar.position = new BABYLON.Vector3(0.9 * axisSize, 0.05 * axisSize, 0);
-            
-            const axisY = BABYLON.MeshBuilder.CreateLines("axisY", { 
-                points: [ 
-                    BABYLON.Vector3.Zero(), 
-                    new BABYLON.Vector3(0, axisSize, 0), 
-                    new BABYLON.Vector3(-0.05 * axisSize, axisSize * 0.95, 0), 
-                    new BABYLON.Vector3(0, axisSize, 0), 
-                    new BABYLON.Vector3(0.05 * axisSize, axisSize * 0.95, 0)
-                ] 
-            }, scene);
-            axisY.color = new BABYLON.Color3(0, 1, 0);
-            
-            const yChar = makeTextPlane("Y", "green", axisSize / 10);
-            yChar.position = new BABYLON.Vector3(0, 0.9 * axisSize, 0);
-            
-            const axisZ = BABYLON.MeshBuilder.CreateLines("axisZ", { 
-                points: [ 
-                    BABYLON.Vector3.Zero(), 
-                    new BABYLON.Vector3(0, 0, axisSize), 
-                    new BABYLON.Vector3(0, -0.05 * axisSize, axisSize * 0.95),
-                    new BABYLON.Vector3(0, 0, axisSize),
-                    new BABYLON.Vector3(0, 0.05 * axisSize, axisSize * 0.95)
-                ] 
-            }, scene);
-            axisZ.color = new BABYLON.Color3(0, 0, 1);
-            
-            const zChar = makeTextPlane("Z", "blue", axisSize / 10);
-            zChar.position = new BABYLON.Vector3(0, 0.05 * axisSize, 0.9 * axisSize);
             
             // Add a simple light
             const light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
@@ -798,10 +787,7 @@ async function loadShip() {
             scene.activeCamera = camera;
             
             // Initialize water trail after ship is loaded
-
             waterTrail = new WaterTrail(scene, mainModel);
-            
-            console.log('Water trail initialized:', waterTrail);
             
             // Add water trail update to render loop
             let lastTime = performance.now();
@@ -955,7 +941,7 @@ function createRocks(scene, count = 50, areaSize = 500) {
 // Function to load the test scene
 async function loadTestScene(scene, modelLoader) {
     try {
-        const response = await fetch('Assets/Worlds/scenetest.json');
+        const response = await fetch('Assets/Worlds/testscene.json');
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const sceneData = await response.json();
         
@@ -985,6 +971,7 @@ async function loadTestScene(scene, modelLoader) {
                     z: (modelConfig.scaling.z || 1) * 5
                 } : { x: 5, y: 5, z: 5 };
                 
+                // Create model data with all original properties and scaled values
                 const modelData = {
                     name: modelConfig.name || '',
                     path: modelConfig.path || '',
@@ -997,7 +984,9 @@ async function loadTestScene(scene, modelLoader) {
                         mass: 0,  // Default to static objects
                         friction: 1.0,
                         restitution: 0.2
-                    }
+                    },
+                    // Include any additional properties from the original config
+                    ...(modelConfig.properties && { properties: modelConfig.properties })
                 };
                 physicsConfig.objects.push(modelData);
             }
@@ -1024,16 +1013,21 @@ async function loadTestScene(scene, modelLoader) {
 // Start the application
 window.addEventListener('DOMContentLoaded', async () => {
     try {
-        // Initialize the app
+        // Show initial loading screen
+        showLoadingScreen('Initializing game...');
+        
+        // Initialize the app (creates scene and model loader)
         await initializeApp();
         
-        // Show loading screen before loading models
+        // Load the world first
         showLoadingScreen('Loading world...');
-        
-        // Load test scene
         await loadTestScene(scene, modelLoader);
         
-        // Hide loading screen when done
+        // Then load the ship
+        showLoadingScreen('Preparing your ship...');
+        await loadShip();
+        
+        // Hide loading screen when everything is loaded
         hideLoadingScreen();
     } catch (error) {
         console.error('Error initializing application:', error);

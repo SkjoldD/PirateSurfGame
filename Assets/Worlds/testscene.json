@@ -1,0 +1,4273 @@
+{
+  "version": "2.2",
+  "metadata": {
+    "format": "AssetEditorScene",
+    "generatedBy": "AssetLevelEditor",
+    "date": "2025-06-29T17:20:29.541Z",
+    "objectCount": 185,
+    "engine": "Three.js",
+    "editor": "AssetLevelEditor"
+  },
+  "objects": [
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -20,
+        "y": 0,
+        "z": -13
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "8E46490C-0FDC-46FD-AE88-F6E6A7D184CF",
+      "originalUuid": "660185D7-4171-4A4B-B99C-48E161291D1A",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -20,
+        "y": 0,
+        "z": -12
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "959C4ED9-FC8B-4CD9-956F-C6AA213B86E2",
+      "originalUuid": "B5FBFCA8-E73F-4659-8FA6-75F994BE38EA",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -20,
+        "y": 0,
+        "z": -11
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "1B723437-4B61-4FA6-9F45-347EDEE9C837",
+      "originalUuid": "7B74D202-6558-4823-8ED3-6FE6134DB84C",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -19,
+        "y": 0,
+        "z": -13
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "8AA3667C-7D1B-44FB-B80E-B9BB319FE8D9",
+      "originalUuid": "F01AE33E-3200-4CEC-9C54-1A9CF7AE920C",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -22,
+        "y": 0,
+        "z": -10
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "F4C5918A-6F39-47E7-8D19-958BE201A89D",
+      "originalUuid": "E0CC49A7-25D5-4E7E-9FFC-36890062A9F7",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -21,
+        "y": 0,
+        "z": -11
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "E7F6AFA9-D8FB-4710-A1E6-CDC8367424C3",
+      "originalUuid": "441B598D-2C2A-4EC2-8712-1D6C1D5B7220",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -23,
+        "y": 0,
+        "z": -9
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "91B32051-926D-4E11-B970-9B5D8F9ECA0B",
+      "originalUuid": "438BE661-E66E-4453-8946-0C76AE4E3072",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -25,
+        "y": 0,
+        "z": -7
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "596B3BC2-1D08-40EA-817D-F7A97BE955FD",
+      "originalUuid": "667BC346-335D-4B2B-978C-C62640716AAD",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -25,
+        "y": 0,
+        "z": -6
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "C75AFF1D-11F8-4E57-BBA2-C8549AFF6FCE",
+      "originalUuid": "B6E212B9-86D9-496A-9FBB-4E3C61FBEAE7",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -26,
+        "y": 0,
+        "z": -4
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "35810D4D-1DBA-474A-A11D-DDB647C77C58",
+      "originalUuid": "D885E7C3-FA58-4357-AE27-D323B839F6A8",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -28,
+        "y": 0,
+        "z": -1
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "CC0151CC-99E3-42E6-82B2-C60B0C0D3B6B",
+      "originalUuid": "46332E1D-56FF-42F2-B791-9C34E8699032",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -28,
+        "y": 0,
+        "z": 1
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "370CCEA5-437E-4C6E-9F93-90244C73AEEC",
+      "originalUuid": "F90C0F1D-C13D-4684-A8D2-7B8D0A28A40C",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -29,
+        "y": 0,
+        "z": 3
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "F4204FED-0919-4466-9B3F-2F2659FF81ED",
+      "originalUuid": "95261D58-B000-47EF-9233-F07ECA4FE074",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -29,
+        "y": 0,
+        "z": 7
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "61F4002E-28BD-43E5-8CFA-15AD24281D5A",
+      "originalUuid": "5C4012CD-A56A-47D5-A6BE-D00BE0691D2E",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -29,
+        "y": 0,
+        "z": 10
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "B676E1B4-B1D0-4E43-85D4-66D4E350BDE5",
+      "originalUuid": "D80043CA-C408-4FA0-8A34-BE0FE480FBDD",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -28,
+        "y": 0,
+        "z": 12
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "C2CFA6F1-A4CE-481F-A75D-297A6DC187D2",
+      "originalUuid": "973B5495-F862-48DB-99CF-38A2565CE952",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -27,
+        "y": 0,
+        "z": 15
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "CB66B24A-B4C7-4B79-AEAF-9DE46B19E628",
+      "originalUuid": "432E00F9-4B69-4A73-896E-EBCFAE85276B",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -25,
+        "y": 0,
+        "z": 17
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "13680ED8-15C3-491A-8B90-F5C77127F864",
+      "originalUuid": "5C0DDDAF-2EEA-485B-A721-380720FA004C",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -23,
+        "y": 0,
+        "z": 19
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "7A602FA4-2A83-4B5E-858A-719892A5B00F",
+      "originalUuid": "EA16A9AE-1D99-4243-8B84-4AEB9A625EE5",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -20,
+        "y": 0,
+        "z": 21
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "681D045D-F270-45D7-94B0-FAA0424199D6",
+      "originalUuid": "0CC556BF-9027-48E7-9BF2-471592C221BB",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -17,
+        "y": 0,
+        "z": 21
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "3FB11574-A342-44B4-9FDC-6BB0DCB6A36A",
+      "originalUuid": "5861C573-3228-4070-919C-B42B54BB97F1",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -7,
+        "y": 0,
+        "z": 24
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "E1A22463-C372-4D55-BF8D-04F6FD91335C",
+      "originalUuid": "983CED01-C216-4ABB-A3C8-43E84CFD94F5",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -3,
+        "y": 0,
+        "z": 27
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "F0EEB64D-4B96-4049-A432-A1768928097A",
+      "originalUuid": "80B5FCCF-C254-4A7F-B8E1-A56C5A68ED3E",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 1,
+        "y": 0,
+        "z": 30
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "84AC47B7-9409-455C-9F65-4964399E1524",
+      "originalUuid": "17F9CA50-D7CE-476B-9935-FE960481BB7F",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 4,
+        "y": 0,
+        "z": 29
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "03F16FFF-F968-4FD1-AA68-D27BE7EB1A5E",
+      "originalUuid": "7ADA71D3-B4C0-4651-90AE-CBCAC2BC4EFA",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 6,
+        "y": 0,
+        "z": 28
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "035ACF54-A875-471C-BE2C-8F574A7130EE",
+      "originalUuid": "A2B4FF35-C349-467E-BA45-6EB6C70493AC",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 11,
+        "y": 0,
+        "z": 25
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "EE2A5B9F-06EB-4D15-8229-E90B5EF18FB1",
+      "originalUuid": "FAD32C0D-C925-4B78-9B17-63B86FB4E1F8",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 17,
+        "y": 0,
+        "z": 24
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "6F552F23-1DEB-489B-9E65-82777ACE7FD1",
+      "originalUuid": "019D18B2-F579-4D52-869B-7A430AD49214",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 23,
+        "y": 0,
+        "z": 22
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "7AFC19DC-C4C0-4F28-B3DF-C12D6056BD35",
+      "originalUuid": "32867668-80E0-4BC9-80AD-D361F9663FD5",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 31,
+        "y": 0,
+        "z": 16
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "6FD9CB46-18E1-4BC5-8829-D507344DE158",
+      "originalUuid": "50E55BB4-4183-4DAC-8E1F-8F9F6BCA1506",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 30,
+        "y": 0,
+        "z": 7
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "0AA3EEB8-E31C-433F-BC66-EDD99FB57236",
+      "originalUuid": "9748BA57-DDD7-48BF-AC5F-5D7E12A0FBC8",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 27,
+        "y": 0,
+        "z": -1
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "46C98FB2-298A-4842-9BC7-845D9DA48451",
+      "originalUuid": "17C1D1E1-48A6-4C3C-96A8-96D6F713E211",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 23,
+        "y": 0,
+        "z": -8
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "147A80F0-DA41-45BE-B7E6-D815C1423ECA",
+      "originalUuid": "6F7E4436-F886-4EA3-B7A5-2B0E82D269EC",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 16,
+        "y": 0,
+        "z": -16
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "FC305E70-4394-4B8C-AAB1-6F092F2DDA12",
+      "originalUuid": "F9D0CD53-1D36-4A4C-9192-0F7658636E96",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 12,
+        "y": 0,
+        "z": -19
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "4F00A436-FBF0-4A6C-972D-55D6DE0425D5",
+      "originalUuid": "A13ED3E4-12F1-4B13-93EB-583E739E9414",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 6,
+        "y": 0,
+        "z": -21
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "6B065ACF-98EC-4FB1-9055-0C9676BABC1C",
+      "originalUuid": "9ADFC1C9-03E6-4D81-A8A3-30BC2A835AA8",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -3,
+        "y": 0,
+        "z": -20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "E0069868-277E-4A50-A442-186A25000228",
+      "originalUuid": "595C1B24-3BBD-4CB4-B4F8-46EAB33EDB04",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -11,
+        "y": 0,
+        "z": -19
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "37330802-5199-4D7C-8488-F07C0B077F86",
+      "originalUuid": "A57EB4AC-12AB-433C-B898-898C7660868B",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -17,
+        "y": 0,
+        "z": -15
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "D248B30B-C5B2-40DA-AB6D-9504A0D7580E",
+      "originalUuid": "2D5AB1D2-DBF4-41D8-BB3F-EED446D984AF",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -18,
+        "y": 0,
+        "z": -14
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "F97D8019-AF77-4256-B828-CA33B8A970B9",
+      "originalUuid": "1628D4E8-8959-4438-9496-20FA55ED8168",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -16,
+        "y": 0,
+        "z": -16
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "DABE966F-8EFF-4E0B-A204-2D15FB16FE63",
+      "originalUuid": "DA782D3C-15A9-4E46-816A-8E1A3353ACC6",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -14,
+        "y": 0,
+        "z": -17
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "4556B9DA-2339-45FE-99F9-86A9D1D5A3BE",
+      "originalUuid": "2769711B-7252-463F-AF0F-ADDC935243A9",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -12,
+        "y": 0,
+        "z": -19
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "C6F01683-24C4-4B56-94E2-7BFF7CB6BA97",
+      "originalUuid": "2B0B7269-31B8-4012-BBD4-872684931FF6",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -13,
+        "y": 0,
+        "z": -18
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "7A766B02-553D-459B-80E9-ED59635FE570",
+      "originalUuid": "A8D28C22-AD36-4BE1-B127-AD3BBA221787",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -15,
+        "y": 0,
+        "z": -17
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "C8569F25-1DB9-4721-A9A1-2191457A6892",
+      "originalUuid": "EFE41318-75FB-4424-B409-418673384A9B",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -9,
+        "y": 0,
+        "z": -20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "BB5945D5-740E-4DE4-9396-1B38D5BAF7B7",
+      "originalUuid": "6212DEC2-BDB7-4F39-8A6B-D47EE10B45B7",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -10,
+        "y": 0,
+        "z": -19
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "1A8758E4-9095-4CC0-8007-EFC460AD55B4",
+      "originalUuid": "7CE2A339-24CD-4720-BE2C-A746EF646C11",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -8,
+        "y": 0,
+        "z": -20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "4B97D1FF-59B0-43B5-9B1C-2F0796493E79",
+      "originalUuid": "B9382BCE-8BB4-4AE9-92AC-0F6E068E4884",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -6,
+        "y": 0,
+        "z": -20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "ACBD96BB-D521-4E88-85C3-86D05B3ED876",
+      "originalUuid": "3D549B91-4002-47FB-842F-F3C8F8179ACF",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -5,
+        "y": 0,
+        "z": -20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "0851666F-192D-4FEE-98D1-2A0D6E712C54",
+      "originalUuid": "8440DAA3-2F84-41B5-B675-DDEDC8DFFDBC",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -3,
+        "y": 0,
+        "z": -20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "2F46BC86-9F8E-4DE3-BD80-711BDDDA9196",
+      "originalUuid": "99B5B862-8565-425D-8580-793C98E775AD",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -4,
+        "y": 0,
+        "z": -20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "F65A167A-EC37-405C-81F5-48C7B048F5C3",
+      "originalUuid": "6107E57C-68D4-46B3-9B69-4C42C345D510",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -7,
+        "y": 0,
+        "z": -20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "F72618F9-CAD3-4449-B112-91E9BCDF057E",
+      "originalUuid": "ADD53C71-736B-48CF-B838-42A2B98CA730",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -2,
+        "y": 0,
+        "z": -20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "6E628C40-7F8A-4B2E-B14D-1AF76C2A1FEF",
+      "originalUuid": "F74A6EB9-6AC3-4DAE-861E-1A343250BB83",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 4,
+        "y": 0,
+        "z": -21
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "D092B5F6-9ECA-4335-B111-7A1BCF1ACB49",
+      "originalUuid": "FF50101C-9427-4008-84F5-DEB6042A2DBC",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 3,
+        "y": 0,
+        "z": -21
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "7D45F3ED-F97B-4064-99C5-FB05868183A2",
+      "originalUuid": "A18C9ACA-EFA9-46E8-9BCB-0D8CB6B34ABF",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 2,
+        "y": 0,
+        "z": -21
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "B650F75C-A939-4578-84D8-7466ECCD8FE8",
+      "originalUuid": "B57502D5-CF14-449A-918C-03071F4AB28D",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 1,
+        "y": 0,
+        "z": -21
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "4B32BEF0-1F5D-4E6C-AD02-EAEBE743A673",
+      "originalUuid": "C751FB50-32EE-4C30-90AE-6808CE1A225F",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -21
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "DEBFDFB7-61CD-4884-81DB-6CF295AC363C",
+      "originalUuid": "F1E6CB49-259A-4D82-9B26-7CA5FC6724D9",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -1,
+        "y": 0,
+        "z": -20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "E5F1AD3B-A11B-46D1-9C88-1B84FA215EA8",
+      "originalUuid": "7066347C-11A1-4C37-AE77-D3BC86B8D2C8",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": -21
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "C1EA0AFB-BF60-41E7-8B8F-1AFA7F4EC022",
+      "originalUuid": "012167FE-461B-4AC4-A6D1-B7A94C62144B",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 8,
+        "y": 0,
+        "z": -20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "D35D41B8-31C1-4B54-9AF6-82A1A1CB6125",
+      "originalUuid": "B699D101-AB34-4321-B42A-1A3AB797A6C7",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 8,
+        "y": 1,
+        "z": -20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "3040DAF5-A13F-4FC0-8A7B-7290A4269602",
+      "originalUuid": "9A94B32A-54DB-4AF0-A181-C30A36F9AA61",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 7,
+        "y": 0,
+        "z": -20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "E3611030-393D-4509-9E95-B0F6D2A01796",
+      "originalUuid": "8C98D671-F884-4851-98E3-B1CCFAA8BBE0",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 11,
+        "y": 0,
+        "z": -20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "A2D72403-CB8B-4BC9-9E67-BA254092CBCC",
+      "originalUuid": "374D986A-1EE7-4BF2-8937-217D842C7DCD",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 10,
+        "y": 0,
+        "z": -20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "5FCB32CB-4D2A-4F08-95DB-6A282CF7E4B6",
+      "originalUuid": "7E251165-BCD8-46F1-B763-1F485D862696",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 9,
+        "y": 0,
+        "z": -20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "435FC9DE-F259-402E-91D3-3E3805A2D214",
+      "originalUuid": "6B56AD85-AC5B-43FA-828B-0DFE9F852ED4",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": -17
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "47B490F1-FE17-4D02-9812-329F7A32ECA0",
+      "originalUuid": "023BF2FA-6AA5-4284-8F6B-9796D7138EFE",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 15,
+        "y": 1,
+        "z": -17
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "E6B8870D-2C15-45CD-B7E0-249B322FD9CF",
+      "originalUuid": "BD11FC13-4C50-4012-AD77-DCD6F9C3F039",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 14,
+        "y": 0,
+        "z": -18
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "C8B2FCF0-89A0-4597-ADBA-8771F737D71D",
+      "originalUuid": "15CB21D0-A78D-496A-A384-938B9A23942C",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 13,
+        "y": 0,
+        "z": -18
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "AE51F7C1-F4C9-4044-A76A-BAF1C0EDC555",
+      "originalUuid": "2DBFDEBF-D1A6-4B08-986D-D81B2AF51386",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 20,
+        "y": 0,
+        "z": -12
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "1223862C-1F85-421D-91D9-17D86550F1F6",
+      "originalUuid": "13AF4743-F3A5-483B-BBDA-024527B314ED",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 19,
+        "y": 0,
+        "z": -13
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "35633048-36A4-4CEC-B431-9A3E8104AC92",
+      "originalUuid": "123F74A3-F649-4FE4-84FE-A5457F8DEB61",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 19,
+        "y": 0,
+        "z": -14
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "68B4771D-4B61-4D08-A382-0D04929913C5",
+      "originalUuid": "6AD689A9-89CB-43E4-ADCC-C33B277415CB",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 17,
+        "y": 0,
+        "z": -15
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "E16578CD-4524-437F-B57D-626947516DB2",
+      "originalUuid": "CE7D7269-D864-4B8B-AB5E-8694618ADC2F",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 18,
+        "y": 0,
+        "z": -15
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "3DFDBC2F-D8BA-4929-B3C3-92BCFCCC09EB",
+      "originalUuid": "56F75863-92DB-4024-844C-A425F796E37A",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 23,
+        "y": 0,
+        "z": -9
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "07566220-7604-48D3-AE35-FD64E76C95C3",
+      "originalUuid": "6D4FD275-459E-48ED-8EF9-D91F71B3084A",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 23,
+        "y": 0,
+        "z": -10
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "94728C7F-8B00-40AE-9AFF-227C4AC08BF7",
+      "originalUuid": "F7C7DDDD-4ECA-40F9-8B03-E582961960B0",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 23,
+        "y": 0,
+        "z": -11
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "681E072A-6B4E-4ED9-A501-3D612DED232E",
+      "originalUuid": "7637A009-C44C-4E63-91A6-A34336C4E83B",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 22,
+        "y": 0,
+        "z": -12
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "D017079D-E27C-4BB6-9AFC-0E0683B2D8F1",
+      "originalUuid": "2A1290F4-7FD4-429C-9FA0-4318394C4898",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 21,
+        "y": 0,
+        "z": -12
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "2F7BD068-0015-4E00-8FF0-430FD17CC967",
+      "originalUuid": "351F8AD6-6915-4826-B834-9AECB997DF16",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 23,
+        "y": 0,
+        "z": -7
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "667C17DF-2089-4623-9B14-A4B144E48DB0",
+      "originalUuid": "2E6F1973-B3C8-4A9F-8E9E-44CBA7900507",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 26,
+        "y": 0,
+        "z": -2
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "8BE1BE9B-2F90-4BF9-806B-25E2830D47D9",
+      "originalUuid": "867D700A-A38A-43A4-B65A-99F51920E75D",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": -6
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "D74AD49A-4F10-4A54-ABF8-0ED8593F5E20",
+      "originalUuid": "C73B057E-AC2A-427A-BA5D-78F902E0C182",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 24,
+        "y": 0,
+        "z": -6
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "CE06DE03-FFD7-4A5A-B69E-2D22A7ACA92B",
+      "originalUuid": "C257775F-F591-419F-AD2E-DCF7277917FC",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 30,
+        "y": 1,
+        "z": 7
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "05BA61CC-4F2A-4E55-A9CA-39CDAFCC8CC0",
+      "originalUuid": "4AFCB621-8700-4BB6-9379-D73D30041293",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 30,
+        "y": 0,
+        "z": 6
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "02EC9F7B-8C5E-46A7-9A6C-9BB141892FB7",
+      "originalUuid": "C743217A-9E3B-4C22-A134-6D6864546B78",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 30,
+        "y": 0,
+        "z": 4
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "310DAAEF-E76C-4C1E-B93A-57AC1B04D7BC",
+      "originalUuid": "25F3AA7E-6FEC-44AD-8B99-5C75A9D7250C",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 30,
+        "y": 0,
+        "z": 3
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "A8D51DFB-76B7-4ACF-B699-168FFF1EE73F",
+      "originalUuid": "D7E9131C-7592-4C3E-978A-BC29563379BC",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 29,
+        "y": 0,
+        "z": 2
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "14E11558-CC43-427A-A2EF-1BD3D6153D42",
+      "originalUuid": "06B825B5-B277-4A96-8502-1A013865FA0B",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 28,
+        "y": 0,
+        "z": 1
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "CE16757A-D1EE-402D-AE52-266098709401",
+      "originalUuid": "A55F3B6E-8259-4B29-9341-788DF233A45D",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 28,
+        "y": 0,
+        "z": 0
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "44C98784-BC7E-43AA-8EF6-976995C0DE89",
+      "originalUuid": "B9A6ADC4-C712-42B4-BEB8-6D4FCDA0289C",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 30,
+        "y": 0,
+        "z": 5
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "401C2B82-8994-4CE3-9CB8-A02F9A812C01",
+      "originalUuid": "9FD670C3-BB00-4A01-8F73-B0257296891D",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 31,
+        "y": 1,
+        "z": 16
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "127410D0-9295-4F6C-8EFC-EBDBE8CC2DC3",
+      "originalUuid": "2CF95139-9F82-4E34-91AF-2BA5EDE3BC66",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": -5
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "56C29CEF-AA40-480D-9CE0-F8EC8BA8E0A7",
+      "originalUuid": "02FD6DF1-78EB-46EC-931D-67F765E99EA9",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 26,
+        "y": 0,
+        "z": -3
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "A6190221-AE5E-41DB-B352-F3C3A524F64B",
+      "originalUuid": "76D4C198-43E1-45DC-AF88-6473E73B3E5B",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 26,
+        "y": 0,
+        "z": -4
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "834B6081-D744-4A60-842D-BE236AF1A0F6",
+      "originalUuid": "CB6E3E01-42C0-418B-BF23-8535D12DA257",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 31,
+        "y": 0,
+        "z": 10
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "99AB6C40-8856-4AC1-A445-50739CFE6DFC",
+      "originalUuid": "FD8375EC-4A69-4CAC-AAE0-2135AB7F504F",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 31,
+        "y": 0,
+        "z": 9
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "475427EA-8CC5-4A08-A5D5-8B30E29C8349",
+      "originalUuid": "DE817A7E-A879-4501-8734-B33B4B41819F",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 31,
+        "y": 0,
+        "z": 17
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "F1612033-A7E7-4543-8B46-FE55FD1C0868",
+      "originalUuid": "61165894-DDA9-4396-9987-38AFBBFD3FE7",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 30,
+        "y": 0,
+        "z": 18
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "09808F4B-B09C-4E81-BBC2-B69496EC215E",
+      "originalUuid": "E72B49CC-7C9C-4090-B5BA-8446376AB2CA",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 29,
+        "y": 0,
+        "z": 19
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "FC96399C-96DD-4220-A097-592CF869FDF0",
+      "originalUuid": "58DCA4F7-D6C8-4FC6-8989-39F454B2D218",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 27,
+        "y": 0,
+        "z": 20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "99A5BDD5-3431-467E-A7FB-277F85D5EAC2",
+      "originalUuid": "D06D7E35-A852-4C14-9FB9-0D916D0E37B2",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 26,
+        "y": 0,
+        "z": 21
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "E2FF7C2E-850E-4BEC-AD32-1A9544D8035B",
+      "originalUuid": "92821AC5-89B2-4058-8B77-D238B60DD5BB",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 23,
+        "y": 1,
+        "z": 22
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "1AB506D2-7C17-466F-A969-A56859A734AA",
+      "originalUuid": "0AB79337-DDF1-489F-ABE1-703D7920569F",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 25,
+        "y": 0,
+        "z": 22
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "23CC27FE-A532-4C38-BC56-D7D862EECDD1",
+      "originalUuid": "8AF11401-4559-4285-9B70-BCE977DA0457",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 24,
+        "y": 0,
+        "z": 21
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "2C8BBC52-FF3E-479E-A53B-471E66D30A33",
+      "originalUuid": "E88A6DCA-CF49-494E-AF1B-8833479385D9",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 31,
+        "y": 0,
+        "z": 8
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "CD801BB3-F4D4-4D4B-87B3-353BA586F523",
+      "originalUuid": "C7C67A5B-5325-461C-B012-735F4D9533E4",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 31,
+        "y": 0,
+        "z": 11
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "BEC402BF-2784-4A65-A288-20AB4DE9C069",
+      "originalUuid": "B385778A-A689-45C8-A7ED-2C911F6399C9",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 32,
+        "y": 0,
+        "z": 15
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "03C71CF9-F55A-47F9-878D-D5A47A0B9CE0",
+      "originalUuid": "4181FB10-27E3-40B1-AC4C-4BF75277D8EF",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 32,
+        "y": 0,
+        "z": 14
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "772A5623-FC75-4254-853E-2274E5034BD3",
+      "originalUuid": "D8F923E7-B969-4793-880C-61308DDD5365",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 32,
+        "y": 0,
+        "z": 13
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "0E8D55AF-69D5-4CFB-B569-C8EFC98E4B71",
+      "originalUuid": "40972A91-6D3E-40EB-95AE-9431F0A13822",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 32,
+        "y": 0,
+        "z": 12
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "15A17B19-1FA2-4619-8EEE-5667FF471581",
+      "originalUuid": "7ABD1942-55DB-4CF1-BC2E-DB8D87DDB2BF",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 22,
+        "y": 0,
+        "z": 22
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "57728ABF-AD2A-4C98-ABFC-6F519F90BC99",
+      "originalUuid": "E04C8B60-2A55-4D34-801C-97740117DDC1",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 28,
+        "y": 0,
+        "z": 20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "501BE54E-A461-47AF-B19C-2AB8F9FBC5EA",
+      "originalUuid": "DEAF816E-F7ED-40F1-B5EC-3CC450668B1D",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 21,
+        "y": 0,
+        "z": 23
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "A3694745-5444-4627-B8CC-D91E987FB3F5",
+      "originalUuid": "F1328798-445C-45D3-9A86-8D66C79CF1D1",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 20,
+        "y": 0,
+        "z": 23
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "89E091AD-59A2-47E8-A6B8-CA366564B0ED",
+      "originalUuid": "E59FCA61-AF7A-448D-8DD5-F44A9276598E",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 19,
+        "y": 0,
+        "z": 24
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "AB23FF19-67AB-4DBE-A99D-AE73B9520D90",
+      "originalUuid": "6B8E9A9C-DF30-4119-9592-10AEEFA489CF",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 18,
+        "y": 0,
+        "z": 24
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "A2BFEDDD-EE27-469E-A0D4-8853CED38E2A",
+      "originalUuid": "2E303D1B-7426-440C-9114-303E2B9F0BA4",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 16,
+        "y": 0,
+        "z": 25
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "752DC87D-1CB0-4120-9834-DB11F371A4CB",
+      "originalUuid": "5C79D20D-CBD2-44F7-BD43-70654C4D6534",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 15,
+        "y": 0,
+        "z": 25
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "88925010-DD83-44AA-BA26-9387AF6AE57A",
+      "originalUuid": "864BE907-4849-45B8-B4BA-E6851B6D4EB3",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 14,
+        "y": 0,
+        "z": 26
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "315C4A6E-BA45-40FA-BAEF-EF29843B1A11",
+      "originalUuid": "5A79DDEB-16AF-4146-8FB9-120AC14BF1AC",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 13,
+        "y": 0,
+        "z": 26
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "B8EDB470-D0EF-43EC-B5F3-272663F17978",
+      "originalUuid": "7AAA6713-38FD-434D-9836-123206CFE5FC",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 12,
+        "y": 0,
+        "z": 26
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "AE81BFB2-7495-414D-A8A1-E54BA8B41652",
+      "originalUuid": "EF0CEA5E-ABDF-42C5-A67D-586809DFB229",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 14,
+        "y": 0,
+        "z": 27
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "E4CF219A-0555-47AF-A65B-E086B48A2073",
+      "originalUuid": "D2CBD868-F7D7-4AD9-9CBE-6DFF510A080E",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 14,
+        "y": 0,
+        "z": 28
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "15472278-5FB4-4129-80ED-F9F19A160695",
+      "originalUuid": "9774A4FB-1CF6-40C6-B849-0A816B421671",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 13,
+        "y": 0,
+        "z": 29
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "0793CDE3-7D1E-4D85-9E0F-26C9D6CF09A7",
+      "originalUuid": "961B42B3-7274-4F76-AEA3-D7724E867D23",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 13,
+        "y": 0,
+        "z": 30
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "62A6ED95-09F1-446F-8D87-AE7DDAC73DFF",
+      "originalUuid": "D3BE71DB-5564-4967-A46F-590E6BEC865C",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 12,
+        "y": 0,
+        "z": 31
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "81BF2D34-521D-4C35-998D-5BEC3D460DC6",
+      "originalUuid": "3016921B-2BB4-4E1B-B428-D57A0CDD90E7",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 11,
+        "y": 0,
+        "z": 32
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "2482DE26-4FB7-4771-9A2A-A05A0D68492D",
+      "originalUuid": "941AD938-5465-4A05-9354-7514993C525C",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 10,
+        "y": 0,
+        "z": 33
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "CD982CCF-EB9A-442F-98CE-E08CC706ADC7",
+      "originalUuid": "419A350D-C466-40CE-8353-C3028FF95B0B",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 9,
+        "y": 0,
+        "z": 34
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "35F5CFEF-1DA0-4D6F-AA94-7ED5137450B0",
+      "originalUuid": "E8F5F715-0264-407F-A530-5D1809D934E2",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 8,
+        "y": 0,
+        "z": 34
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "3109AE55-9095-46CD-945A-7FF2CA1B8BDA",
+      "originalUuid": "D0407180-9550-4C66-8606-528514AEDDE9",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 7,
+        "y": 0,
+        "z": 35
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "989E74C8-E64F-4E58-96C5-447B10217CAB",
+      "originalUuid": "74196A51-E4C7-47AB-A80A-62CE6F36FF52",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 6,
+        "y": 0,
+        "z": 36
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "7052A7E4-F2CA-4D6C-AC83-B33EFE0748AD",
+      "originalUuid": "57FD0BE0-241B-4553-8EF1-191494DDED8D",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 5,
+        "y": 0,
+        "z": 36
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "24F4A69C-30FC-4640-A098-B7AC4400DBCE",
+      "originalUuid": "E585A0BE-732E-44FD-82B2-706265EFEB2D",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 4,
+        "y": 0,
+        "z": 36
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "0DC4F776-4AAB-451F-A96A-613DFC0B81DC",
+      "originalUuid": "C2FE7199-22E5-4A9C-9C34-DA2B724A8B8E",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 2,
+        "y": 0,
+        "z": 36
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "9058FAF7-75F7-41C1-96C1-789D1793CED0",
+      "originalUuid": "DD03BD90-795E-420A-8897-AC5E23542946",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 1,
+        "y": 0,
+        "z": 36
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "21597B8E-0062-4AFA-93C3-3BDD283AD733",
+      "originalUuid": "38F885AF-4853-426D-BE52-319D24688FE2",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 36
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "BA0F3E74-635F-40AE-8151-7D5AA90D3420",
+      "originalUuid": "98ABC5A9-47BD-4754-B4F6-C08740F69CF3",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": 3,
+        "y": 0,
+        "z": 36
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "AB7B45ED-1C89-4BCB-80AF-6DE6842157EF",
+      "originalUuid": "E241AE0C-ED98-4728-9F37-B5B4E94D6768",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -1,
+        "y": 0,
+        "z": 36
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "74DE3A91-4555-4A33-BF09-84A2FB1D176F",
+      "originalUuid": "ED4A0219-29A9-49F2-B42F-7511B327D43A",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -2,
+        "y": 0,
+        "z": 36
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "63D5F1F4-5161-4F77-9094-FFCB8B0206FA",
+      "originalUuid": "1DBB9ADE-B6C1-44CA-8F96-2F53C8E0BCFD",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -3,
+        "y": 0,
+        "z": 36
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "F6CEB8AE-DCC5-4F85-8BED-91AD44A2DD0A",
+      "originalUuid": "B4781041-E0DD-4549-A3B2-827AB86EA36F",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -4,
+        "y": 0,
+        "z": 35
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "28446DCD-1064-4DBB-9F23-6ED9C5F43F00",
+      "originalUuid": "69AC3FF3-9220-4ED0-8E04-BC047225EC6D",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -5,
+        "y": 0,
+        "z": 35
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "30FF0006-61F3-4E48-AB68-4B1B7994186F",
+      "originalUuid": "874D1B73-B823-4EC5-B993-7E2AD8D8AC83",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -6,
+        "y": 0,
+        "z": 34
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "6D0E6A9C-D6CE-4142-94D5-577465722E04",
+      "originalUuid": "032E8426-742F-4686-84C7-F5628D082AA2",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -7,
+        "y": 0,
+        "z": 33
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "4444D058-0943-445E-B183-BABF970AE8AD",
+      "originalUuid": "A21EA172-01E3-437A-8BFD-4FAEB46AC48E",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -8,
+        "y": 0,
+        "z": 32
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "707490EA-B77D-4F52-974E-D6F4AAB1D073",
+      "originalUuid": "28FD9994-B448-4244-9D4C-F99F1DA4ACD4",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -9,
+        "y": 0,
+        "z": 31
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "668EC555-3341-43F3-A6FD-1B55E1336A56",
+      "originalUuid": "F153AC22-CEC2-4E65-AE74-EF705B96303B",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -10,
+        "y": 0,
+        "z": 30
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "ADB25E30-F459-4DA6-BC39-D328397F1412",
+      "originalUuid": "08A43A28-414A-401C-91E2-AA7DC9831D84",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -11,
+        "y": 0,
+        "z": 29
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "6FB85C5F-5469-471B-B0FC-011CB6E6BD5C",
+      "originalUuid": "EC41C5D9-F6AA-4D60-8252-CEF89B5A06D6",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -12,
+        "y": 0,
+        "z": 28
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "94D1B451-90A8-4BEC-8450-8AFF4B07BFB6",
+      "originalUuid": "7EDF36B2-3093-4FA4-81E5-22F7113D74DA",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -13,
+        "y": 0,
+        "z": 27
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "3BF1FF8C-516A-4F10-B20B-D46559B7B2D8",
+      "originalUuid": "89404BF2-254F-40A4-B8A5-448A2B680C38",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -13,
+        "y": 0,
+        "z": 26
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "83ACB5E6-3DB9-4454-96B9-7039A7F41D3E",
+      "originalUuid": "902F8143-F3CF-41D1-84CF-4A507EDF423E",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -13,
+        "y": 0,
+        "z": 24
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "C9D5512C-5D13-499D-A6A0-9FC2680F90EB",
+      "originalUuid": "6C298C95-CA14-4CEF-970F-D796A15F5FA9",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -14,
+        "y": 0,
+        "z": 23
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "52106435-869C-4BA1-B2A9-1C4D68D880D8",
+      "originalUuid": "203C9FD8-42AE-4D3E-BE1A-D1B9BAA9755A",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -14,
+        "y": 1,
+        "z": 23
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "E929C52D-6F3B-4772-8ECC-0B78D5B146E1",
+      "originalUuid": "2C71DEAA-BE3F-432B-A0FF-59314317A2B8",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -15,
+        "y": 0,
+        "z": 22
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "87D72C3D-23CD-40AA-A811-AA0368693D1D",
+      "originalUuid": "B15A759D-C591-4A03-8525-7A3C830FCAFD",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -16,
+        "y": 0,
+        "z": 22
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "241DF0D2-5144-460B-977F-F632F837D1C5",
+      "originalUuid": "53A07883-AEFB-4BDF-9970-9910D0211227",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -13,
+        "y": 0,
+        "z": 25
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "CBBD8F11-9304-4A60-AAF7-4BA467B9EC70",
+      "originalUuid": "DF705881-6F1A-4900-85D7-0C23939980E9",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -18,
+        "y": 0,
+        "z": 21
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "1EB1BB59-9568-4BAA-954A-6EF813226E5B",
+      "originalUuid": "23D965F9-5AE2-40A3-AD39-ECEC3F56A86F",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -19,
+        "y": 0,
+        "z": 21
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "11689CDC-4CD1-41D9-9511-DB8F3D5335C9",
+      "originalUuid": "7EF83067-E297-4F25-92C3-11EB072D8C4D",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -22,
+        "y": 0,
+        "z": 20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "D81972CB-1DDA-4A0C-842A-A7E5B94A9FB4",
+      "originalUuid": "B41F7011-206E-457C-B591-1FD7A6A7C478",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -22,
+        "y": 0,
+        "z": 20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "5FFFE00B-250E-43FA-A9EF-B4255E4CD2F0",
+      "originalUuid": "9C352D7B-0FFE-466A-BDA1-94CEC057F844",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -21,
+        "y": 0,
+        "z": 20
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "CE8B6D02-4590-4F91-90C1-DF5B5CB18A64",
+      "originalUuid": "176766E6-8A2E-4F34-AB56-F4A705486691",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -24,
+        "y": 0,
+        "z": 18
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "D147B0D8-CA6B-4739-BBE4-18FF567C16ED",
+      "originalUuid": "8804B7A9-FA0E-4BD7-A6C6-1D6D5BCB6517",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -26,
+        "y": 0,
+        "z": 16
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "40F3AE66-3F7B-4CB6-AE66-11C7EF8CBA06",
+      "originalUuid": "C43B1DDF-3972-4495-93B4-8E039F374259",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -28,
+        "y": 0,
+        "z": 14
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "6A1A8548-20B1-4087-A7A5-043B112B8935",
+      "originalUuid": "1AFB2D2B-02D4-4C75-B327-32849E9CC3BE",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -28,
+        "y": 0,
+        "z": 13
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "0271A1C2-DBFF-46A4-85BB-1285D75CB84D",
+      "originalUuid": "AA00D8FC-9020-46E0-AC67-A6AAF43A9030",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -29,
+        "y": 0,
+        "z": 11
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "FC0C0AB9-F312-44F9-8798-4F43754B5400",
+      "originalUuid": "9CD7B7D8-3903-4A91-8D48-F44F98364492",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -29,
+        "y": 0,
+        "z": 9
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "E9ACE8FD-A503-4828-99BA-39B8F6DD9F6B",
+      "originalUuid": "11CEBC7C-EBCD-4A9F-8213-5D42C0FA50BD",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -29,
+        "y": 0,
+        "z": 8
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "C8A696DE-2700-46E9-AE72-B0606786DDBD",
+      "originalUuid": "66D67ECE-6ECE-4F07-B270-F1F04993CC52",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -29,
+        "y": 0,
+        "z": 4
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "680EAC36-72B3-4201-8068-077736E2426D",
+      "originalUuid": "B4C32584-7D54-43FB-ABF8-75095AECACDF",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -29,
+        "y": 0,
+        "z": 5
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "5969C260-A976-41C4-A915-6C1048F59070",
+      "originalUuid": "C6930639-6F55-48FB-8811-850647613359",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -29,
+        "y": 0,
+        "z": 6
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "AF8DBE53-2DEC-408E-8E2B-6E7A3CA23EEA",
+      "originalUuid": "7DB82755-ED4B-447B-B75E-3815438554CF",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -28,
+        "y": 0,
+        "z": 2
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "050B1939-707F-4C3B-B446-BE38817162C3",
+      "originalUuid": "973B8108-840C-40AF-9DCD-9209134FC12F",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -28,
+        "y": 1,
+        "z": -1
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "32B9FD6E-7A88-43CC-9C14-AA8C62BEC671",
+      "originalUuid": "F97881A9-E70A-4486-83E7-F6ED08CF2EEF",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -28,
+        "y": 0,
+        "z": 0
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "F44A4369-CB5D-4B58-AB06-74044DEB82FB",
+      "originalUuid": "B47AB7FC-E94B-4EB8-BC5F-ECFAF803E9BE",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -27,
+        "y": 0,
+        "z": -2
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "9F7CF0CC-1EB8-498B-A4A4-E5559F8D7711",
+      "originalUuid": "01A295E2-F2EF-433B-873C-5DBDB0A454DE",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -26,
+        "y": 0,
+        "z": -3
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "23E5A660-BFB0-4D8D-850D-786E419FA242",
+      "originalUuid": "42C85366-DD85-44B3-AE3D-BF6211882DD8",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -25,
+        "y": 0,
+        "z": -5
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "76E22313-2D53-4E9D-8A0B-2F6B6A6EDFC3",
+      "originalUuid": "EA04E5B5-AEDD-4A1C-A9BA-559C7E2FAC3F",
+      "properties": {}
+    },
+    {
+      "name": "block-grass.glb",
+      "position": {
+        "x": -24,
+        "y": 0,
+        "z": -8
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/block-grass.glb",
+      "filename": "block-grass.glb",
+      "uuid": "574EBD26-67EA-4AAF-A6A9-495A70A828CD",
+      "originalUuid": "67A95ED2-B98C-4BFD-AF3D-CDB8DFF9A7B5",
+      "properties": {}
+    },
+    {
+      "name": "coin-gold.glb",
+      "position": {
+        "x": -11,
+        "y": 0,
+        "z": 0
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Platformer/coin-gold.glb",
+      "filename": "coin-gold.glb",
+      "uuid": "1201840F-8E3D-4A92-97AA-67D1143512C9",
+      "originalUuid": "7BE34FCA-1388-4100-A1CB-EE5A444A1678",
+      "properties": {
+        "upgrade-jump": "100",
+        "is-trigger": "true"
+      }
+    },
+    {
+      "name": "box.glb",
+      "position": {
+        "x": 1,
+        "y": 0,
+        "z": 21
+      },
+      "rotation": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "path": "Assets/3D/Survival/box.glb",
+      "filename": "box.glb",
+      "uuid": "0B1ED8BE-0B7E-4E8D-B7C3-EFCF66C549F1",
+      "originalUuid": "0B1ED8BE-0B7E-4E8D-B7C3-EFCF66C549F1",
+      "properties": {
+        "spawn": "true"
+      }
+    }
+  ]
+}

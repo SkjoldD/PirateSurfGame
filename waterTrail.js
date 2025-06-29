@@ -19,7 +19,6 @@ export class WaterTrail {
     }
     
     initializeTrail() {
-        console.log('Initializing water trail with options:', this.options);
         
         // Create a material for the trail
         this.material = new BABYLON.StandardMaterial("trailMaterial", this.scene);
@@ -32,7 +31,7 @@ export class WaterTrail {
         this.material.zOffset = -2; // Increased z-offset to ensure it's behind the ship
         this.material.freeze(); // Optimize material
         
-        console.log('Created trail material:', this.material);
+        
         
         // Create a dummy mesh that will be the source of the trail
         this.dummy = BABYLON.MeshBuilder.CreateBox("trailDummy", { size: 0.1 }, this.scene);
@@ -40,7 +39,6 @@ export class WaterTrail {
         
         // Make the dummy a child of the ship so it follows it automatically
         this.dummy.parent = this.ship;
-        console.log('Attached trail dummy to ship');
         
         // Ensure the dummy is positioned at the ship's origin
         this.dummy.position = new BABYLON.Vector3(0, 0, 0);
@@ -50,7 +48,6 @@ export class WaterTrail {
         this.dummy.position.y = -0.5;  // Below the ship
         
         // Create the trail mesh with configurable width and length
-        console.log('Creating trail mesh with width:', this.options.width, 'length:', this.options.trailLength);
         this.trail = new BABYLON.TrailMesh(
             "waterTrail",
             this.dummy,
@@ -71,26 +68,24 @@ export class WaterTrail {
             return;
         }
         
-        console.log('Created trail mesh:', this.trail);
+        
         
         // Position the trail slightly behind and below the ship
         this.dummy.position.y = -0.5; // Lower the trail to be more visible in water
-        console.log('Dummy position set to:', this.dummy.position);
         
         // Configure trail appearance
         this.trail.material = this.material;
-        console.log('Assigned material to trail');
         
         // Position is now handled by the parent-child relationship
         // Reset any previous position updates that might interfere
         this.dummy.position = new BABYLON.Vector3(0, -0.5, -1.0);
         this.dummy.rotation = new BABYLON.Vector3(0, 0, 0);
         
-        console.log('Initial dummy position:', this.dummy.position);
+        
         
         // Start the trail
         this.trail.start();
-        console.log('Trail started');
+        
     }
     
     update(deltaTime) {
@@ -141,11 +136,6 @@ export class WaterTrail {
             }
         }
         
-        // Debug log trail length
-        if (performance.now() % 1000 < 16) { // Log once per second
-            console.log('Trail length:', this.trail.length.toFixed(2), 
-                       'Target max:', this.options.maxLength.toFixed(2));
-        }
     }
     
     dispose() {

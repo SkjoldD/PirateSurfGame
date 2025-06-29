@@ -3,7 +3,8 @@ export class ShipControls {
         this.scene = scene;
         this.ship = shipMesh;
         this.collider = shipMesh._collider;
-        
+        this.jumpPower = 100;
+
         // Control state
         this.enabled = options.enabled !== false; // Enabled by default unless specified
         
@@ -46,6 +47,9 @@ export class ShipControls {
                 this.keys[key] = true;
             } else if (key === 'shift') {
                 this.keys.shift = true;
+            } else if (key === ' ' || key === 'spacebar') {
+                this.keys.space = true;
+                this.handleJump();
             }
             // Handle rotation
             if (this.keys.a) {
@@ -62,6 +66,8 @@ export class ShipControls {
                 this.keys[key] = false;
             } else if (key === 'shift') {
                 this.keys.shift = false;
+            } else if (key === ' ' || key === 'spacebar') {
+                this.keys.space = false;
             }
         };
         
@@ -73,6 +79,43 @@ export class ShipControls {
             window.removeEventListener('keydown', onKeyDown);
             window.removeEventListener('keyup', onKeyUp);
         };
+    }
+    
+    handleJump() {
+        console.log("can jump: " + this.jumpEnabled);
+        if (!this.jumpEnabled || this.isJumping) return;
+        console.log("JUMPING");
+        
+        // Start jump
+        this.isJumping = true;
+        this.jumpForce = this.jumpPower;
+        
+        // Play jump sound if available
+        if (window.audioManager) {
+            window.audioManager.playSound('jump');
+        }
+    }
+    
+    updateJump(deltaTime) {
+        if (!this.isJumping) return;
+        
+        // Apply gravity
+        this.jumpForce += this.gravity * deltaTime;
+        
+        // Update position
+        this.ship.position.y += this.jumpForce * deltaTime;
+        
+        // Check for ground collision
+        if (this.ship.position.y <= this.groundY) {
+            this.ship.position.y = this.groundY;
+            this.isJumping = false;
+            this.jumpForce = 0;
+            
+            // Play landing sound if available
+            if (window.audioManager) {
+                window.audioManager.playSound('land');
+            }
+        }
     }
     
     update() {
@@ -182,9 +225,14 @@ export class ShipControls {
             this.velocity.scaleInPlace(0.98);
         }
         
-        // Update collider position to match ship
+        // Update jump physics
+        this.updateJump(deltaTime);
+        
+        // Update collider position to match ship (only x and z for now)
         if (this.collider) {
-            this.collider.position.copyFrom(this.ship.position);
+            // Only update x and z position, keep y position fixed
+            this.collider.position.x = this.ship.position.x;
+            this.collider.position.z = this.ship.position.z;
             this.collider.rotation.y = this.ship.rotation.y;
             
             // Update collider's quaternion if it exists
