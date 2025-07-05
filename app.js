@@ -528,74 +528,66 @@ async function loadShip() {
         
         // Enable collisions after 1 second
         setTimeout(() => {
-            mainModel.checkCollisions = true;
-            if (mainModel.getChildMeshes) {
-                mainModel.getChildMeshes().forEach(mesh => {
-                    mesh.checkCollisions = true;
-                });
+            try {
+                mainModel.checkCollisions = true;
+                if (mainModel.getChildMeshes) {
+                    mainModel.getChildMeshes().forEach(mesh => {
+                        mesh.checkCollisions = true;
+                    });
+                }
+                console.log('Ship collisions enabled');
+            } catch (error) {
+                console.error('Error enabling collisions:', error);
             }
-            console.log('Ship collisions enabled');
         }, 1000);
         
         // Compute world matrix to ensure bounding box is calculated
         mainModel.computeWorldMatrix(true);
         
-        // Create a box mesh for the physics collider that matches the ship size
-        const shipExtents = mainModel.getBoundingInfo().boundingBox.extendSize;
+        // Create ship collider with debug visualization
         const shipCollider = new BABYLON.MeshBuilder.CreateBox('shipCollider', {
-            width: 5 * 1.2,  // 20% larger than the model
-            height: 5 * 0.8,  // Slightly shorter than the model
-            depth: 5 * 1.2,   // 20% longer than the model
+            width: 2,
+            height: 1,
+            depth: 4
         }, scene);
-        shipCollider.isVisible = false;  // Hide ship collider
-        shipCollider.checkCollisions = false;  // Initially disable collider
         
-        // Enable collider after 1 second
-        setTimeout(() => {
-            shipCollider.checkCollisions = true;
-            console.log('Ship collider enabled');
-        }, 1000);
+        // Make collider semi-transparent red for debugging
+        const colliderMaterial = new BABYLON.StandardMaterial('colliderMat', scene);
+        colliderMaterial.alpha = 0.5;
+        colliderMaterial.diffuseColor = new BABYLON.Color3(1, 0, 0);
+        shipCollider.material = colliderMaterial;
+        shipCollider.isPickable = false;
+        shipCollider.checkCollisions = true;
         
         // Position collider at the same position as the ship with y-offset
         const colliderPosition = mainModel.absolutePosition.clone();
         colliderPosition.y += 0.5;  // Add y-offset
         shipCollider.position.copyFrom(colliderPosition);
 
-        
         shipCollider.rotationQuaternion = mainModel.rotationQuaternion ? 
             mainModel.rotationQuaternion.clone() : 
             BABYLON.Quaternion.RotationYawPitchRoll(mainModel.rotation.y, 0, 0);
         
         // Add physics to the collider
+        console.log('Creating ship collider with physics...');
         shipCollider.physicsImpostor = new BABYLON.PhysicsImpostor(
             shipCollider,
             BABYLON.PhysicsImpostor.BoxImpostor,
             { 
-                mass: 1000,  // Increased mass for better bounce effect
-                restitution: 0.8,  // Higher bounce
-                friction: 0.5,  // Moderate friction
-                nativeOptions: {
-                    collisionFilterGroup: 1,
-                    collisionFilterMask: 1,
-                    linearDamping: 0.05,  // Slightly higher damping for stability
-                    angularDamping: 0.1,  // Higher angular damping
-                    fixedRotation: false,
-                    // Allow some rotation on all axes for more dynamic bounces
-                    fixedRotationX: false,
-                    fixedRotationZ: false,
-                    // Better collision response
-                    collisionResponse: true,
-                    // Material properties for better bounce
-                    material: {
-                        friction: 0.5,
-                        restitution: 0.8,
-                        contactEquationStiffness: 1e8,
-                        contactEquationRelaxation: 3
-                    }
-                }
+                mass: 1000,
+                restitution: 0.8,
+                friction: 0.5
             },
             scene
         );
+        
+        console.log('Ship collider created');
+        
+        // Enable collider after 1 second
+        setTimeout(() => {
+            shipCollider.checkCollisions = true;
+            console.log('Ship collider enabled');
+        }, 1000);
         
         // Add collision callback for bounce effect
         shipCollider.physicsImpostor.registerOnPhysicsCollide(
@@ -1010,6 +1002,93 @@ async function loadTestScene(scene, modelLoader) {
     }
 }
 
+// Function to set up collision detection after all objects are loaded
+function setupCollisionDetection() {
+    console.log('Setting up collision detection...');
+    
+    // Find the ship collider in the scene
+    const shipCollider = scene.getMeshByName('shipCollider');
+    if (!shipCollider) {
+        console.error('Ship collider not found!');
+        return;
+    }
+    
+    // Store the last collision time to prevent spamming
+    let lastCollisionTime = 0;
+    const COLLISION_COOLDOWN = 100; // ms
+    
+    // Create a debug sphere to show collision points
+    const debugSphere = BABYLON.MeshBuilder.CreateSphere('debugSphere', {
+        diameter: 0.5
+    }, scene);
+    debugSphere.isPickable = false;
+    debugSphere.isVisible = false;
+    const debugMaterial = new BABYLON.StandardMaterial('debugMat', scene);
+    debugMaterial.diffuseColor = new BABYLON.Color3(1, 1, 0);
+    debugSphere.material = debugMaterial;
+    
+    // Add a scene-wide collision observer
+    scene.onBeforeRenderObservable.add(() => {
+        const now = Date.now();
+        if (now - lastCollisionTime < COLLISION_COOLDOWN) return;
+        
+        // Check collision with all meshes
+        for (const mesh of scene.meshes) {
+            // Skip self, the ship collider, and the main model
+            if (mesh === shipCollider || mesh.name === 'shipCollider' || mesh.name === 'mainModel') continue;
+            
+            // Skip if mesh doesn't have geometry or is not pickable
+            if (!mesh.isPickable || !mesh.getTotalVertices || mesh.getTotalVertices() === 0) {
+                continue;
+            }
+            
+            // Skip water surface
+            if (mesh.name === 'waterSurface' || mesh.name === 'ship-small' || mesh.name === 'trailDummy' || mesh.name === 'waterTrail') continue;
+            
+            // Use Babylon's built-in intersection check
+            if (shipCollider.intersectsMesh(mesh, false)) {
+                lastCollisionTime = now;
+                
+                // Get world positions for collision visualization
+                const meshPosition = mesh.getAbsolutePosition();
+                const shipPosition = shipCollider.getAbsolutePosition();
+                
+                // Calculate a point between the two objects for visualization
+                const collisionPoint = BABYLON.Vector3.Center(
+                    meshPosition,
+                    shipPosition,
+                    0.5
+                );
+                
+                // Move debug sphere to the collision point
+                debugSphere.position.copyFrom(collisionPoint);
+                debugSphere.isVisible = true;
+                
+                // Log the collision with more details
+                
+                console.log('SHIP COLLISION DETECTED WITH:', {
+                    name: mesh.name || 'unnamed',
+                    type: mesh.getClassName(),
+                    position: meshPosition.toString(),
+                    shipPosition: shipPosition.toString(),
+                    collisionPoint: collisionPoint.toString(),
+                    time: new Date().toISOString(),
+                    meshVertices: mesh.getTotalVertices()
+                });
+                
+                // Hide debug sphere after delay
+                setTimeout(() => {
+                    debugSphere.isVisible = false;
+                }, 500);
+                
+                break; // Only process one collision per frame
+            }
+        }
+    });
+    
+    console.log('Collision detection initialized');
+}
+
 // Start the application
 window.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -1026,6 +1105,9 @@ window.addEventListener('DOMContentLoaded', async () => {
         // Then load the ship
         showLoadingScreen('Preparing your ship...');
         await loadShip();
+        
+        // Now that everything is loaded, set up collision detection
+        setupCollisionDetection();
         
         // Hide loading screen when everything is loaded
         hideLoadingScreen();

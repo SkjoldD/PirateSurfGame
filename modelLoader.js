@@ -47,11 +47,7 @@ export class ModelLoader {
                     // Check if any property name contains 'upgrade'
                     Object.keys(modelData.properties).some(key => 
                         key.toLowerCase().includes('upgrade')
-                    ) ||
-                    // Or if any property value contains 'upgrade'
-                    Object.values(modelData.properties).some(value => 
-                        typeof value === 'string' && value.toLowerCase().includes('upgrade')
-                    )
+                    ) 
                 );
                 
                 if (isUpgrade) {
@@ -195,8 +191,7 @@ export class ModelLoader {
             return result.meshes[0];
             
         } catch (error) {
-            console.error(`Error loading model ${modelPath}:`, error);
-            console.error(`Error loading model: ${modelData.path}`);
+            console.error(`Error loading model: ${modelData.path}`, error);
             return null;
         }
     }
@@ -335,7 +330,12 @@ export class ModelLoader {
             console.log('Setting up trigger object immediately:', root.name);
             root.scaling = scaling;
             root.position = position;
-            this.setupTrigger(root, modelData);
+            
+            // Create a debug box for visualization
+            const debugBox = this.createDebugBox(root);
+            
+            // Set up the action manager for this trigger
+            this.setupActionManager(root, modelData, debugBox);
             return;
         }
         
@@ -631,6 +631,10 @@ createUpgradeParticles(emitter) {
         
     }
 
+    /**
+     * Handles collection of an upgrade
+     * @param {BABYLON.AbstractMesh} upgradeMesh - The upgrade mesh that was collected
+     */
     collectUpgrade(upgradeMesh) {
         console.log('=== COLLECT UPGRADE ===');
         console.log('Upgrade mesh:', upgradeMesh ? upgradeMesh.name : 'null');
@@ -652,6 +656,25 @@ createUpgradeParticles(emitter) {
         try {
             console.log('Collecting upgrade:', upgradeMesh.name);
             
+            // Handle different types of upgrades
+            if (upgradeMesh.metadata && upgradeMesh.metadata.properties) {
+                const props = upgradeMesh.metadata.properties;
+                
+                // Check for jump upgrade
+                if (props['upgrade-jump']) {
+                    const jumpValue = parseFloat(props['upgrade-jump']);
+                    console.log(`Collected jump upgrade with value: ${jumpValue}`);
+                    
+                    // Enable jump ability through the global function
+                    if (window.enableJumpAbility) {
+                        window.enableJumpAbility();
+                        console.log('Jump ability enabled!');
+                    } else {
+                        console.warn('enableJumpAbility function not found in global scope');
+                    }
+                }
+            }
+            
             // Store position before making any changes
             const position = upgradeMesh.getAbsolutePosition ? 
                 upgradeMesh.getAbsolutePosition() : 
@@ -670,383 +693,357 @@ createUpgradeParticles(emitter) {
             
             // Stop and dispose of particle system if it exists
             if (upgradeMesh.particleSystem) {
-                console.log('Stopping and disposing particle system');
-                try {
-                    upgradeMesh.particleSystem.stop();
-                    upgradeMesh.particleSystem.dispose();
-                } catch (e) {
-                    console.error('Error disposing particle system:', e);
-                }
+                upgradeMesh.particleSystem.stop();
+                upgradeMesh.particleSystem.dispose();
                 upgradeMesh.particleSystem = null;
             }
             
-            // Remove physics impostor if it exists
-            if (upgradeMesh.physicsImpostor) {
-                console.log('Disposing physics impostor');
-                try {
-                    upgradeMesh.physicsImpostor.dispose();
-                } catch (e) {
-                    console.error('Error disposing physics impostor:', e);
-                }
-                upgradeMesh.physicsImpostor = null;
-            }
+            // Remove the upgrade mesh from the scene
+            upgradeMesh.dispose();
             
-            // Remove action manager if it exists
-            if (upgradeMesh.actionManager) {
-                console.log('Disposing action manager');
-                try {
-                    upgradeMesh.actionManager.dispose();
-                } catch (e) {
-                    console.error('Error disposing action manager:', e);
-                }
-                upgradeMesh.actionManager = null;
-            }
-            
-            // Show message to player
-            if (window.showMessage) {
-                try {
-                    window.showMessage('Jump ability unlocked! Press SPACE to jump');
-                } catch (e) {
-                    console.error('Error showing message:', e);
-                }
-            } else {
-                console.warn('window.showMessage function not found');
-            }
-            
-            // Enable jump ability if available
-            if (window.enableJumpAbility) {
-                try {
-                    console.log('Enabling jump ability');
-                    window.enableJumpAbility();
-                } catch (e) {
-                    console.error('Error enabling jump ability:', e);
-                }
-            } else {
-                console.warn('window.enableJumpAbility function not found');
-            }
-            
-            console.log('Upgrade collection completed successfully');
-            
-            // Remove the mesh from the scene after a short delay
-            setTimeout(() => {
-                try {
-                    if (upgradeMesh && !upgradeMesh.isDisposed()) {
-                        console.log('Removing upgrade mesh from scene:', upgradeMesh.name);
-                        upgradeMesh.dispose(false, true);
-                    }
-                } catch (e) {
-                    console.error('Error removing upgrade mesh from scene:', e);
-                }
-            }, 1000);
-            
+            console.log('Upgrade collected and removed');
         } catch (error) {
-            console.error('Error during upgrade collection:', error);
-            if (upgradeMesh) {
-                console.error('Upgrade mesh state on error:', {
-                    name: upgradeMesh.name,
-                    isCollected: upgradeMesh.isCollected,
-                    isVisible: upgradeMesh.isVisible,
-                    isPickable: upgradeMesh.isPickable,
-                    checkCollisions: upgradeMesh.checkCollisions,
-                    hasParticles: !!upgradeMesh.particleSystem,
-                    hasPhysics: !!upgradeMesh.physicsImpostor,
-                    hasActionManager: !!upgradeMesh.actionManager,
-                    isDisposed: upgradeMesh.isDisposed ? upgradeMesh.isDisposed() : 'unknown'
-                });
-            }
+            console.error('Error collecting upgrade:', error);
         }
     }
-
-    // Create a trigger for when the player gets close to the upgrade
-    createUpgradeTrigger(upgradeMesh, playerMesh) {
-        if (!upgradeMesh || !playerMesh) return;
-        
-        const trigger = new BABYLON.ActionManager(this.scene);
-        
-        // Add an action to check for intersection with the player
-        trigger.registerAction(
-            new BABYLON.ExecuteCodeAction(
-                {
-                    trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger,
-                    parameter: playerMesh
-                },
-                () => {
-                    // Collect the upgrade when player touches it
-                    if (!upgradeMesh.isCollected) {
-                        this.collectUpgrade(upgradeMesh);
-                    }
-                }
-            )
-        );
-        
-        upgradeMesh.actionManager = trigger;
-        return trigger;
-    }
-
-    // Set up upgrade jump functionality for a mesh
+    /**
+     * Sets up a floating animation for upgrade objects
+     * @param {BABYLON.AbstractMesh} mesh - The upgrade mesh to animate
+     */
     setupUpgradeJump(mesh) {
-        console.log('Setting up upgrade jump for mesh:', mesh.name);
+        if (!mesh) return;
         
-        // Mark as an upgrade mesh
-        mesh.isUpgrade = true;
-        mesh.isCollected = false;
+        console.log(`Setting up jump animation for upgrade: ${mesh.name}`);
         
-        // Make sure the mesh is pickable for collisions
-        mesh.isPickable = true;
-        mesh.checkCollisions = true;
+        // Store the original position for reference
+        const originalPosition = mesh.position.clone();
+        let time = 0;
         
-        // Add a bounding box helper for debugging
-        const bbox = mesh.getBoundingInfo().boundingBox;
-        const size = bbox.maximum.subtract(bbox.minimum);
-        const center = bbox.minimum.add(size.scale(0.5));
+        // Add the mesh to the glow layer
+        if (this.glowLayer) {
+            this.glowLayer.addIncludedOnlyMesh(mesh);
+        }
         
-        // Create a collider for better collision detection
-        const collider = BABYLON.MeshBuilder.CreateBox(
-            `${mesh.name}_collider`,
+        // Register a before render observer to animate the mesh
+        this.scene.registerBeforeRender(() => {
+            if (mesh.isDisposed) return;
+            
+            // Increment time
+            time += 0.02;
+            
+            // Create a smooth up and down motion
+            const height = 0.2; // Height of the bounce
+            const speed = 1.5;  // Speed of the bounce
+            mesh.position.y = originalPosition.y + Math.sin(time * speed) * height;
+            
+            // Add a slight rotation
+            mesh.rotation.y += 0.01;
+        });
+    }
+    
+    /**
+     * Creates a debug visualization box for trigger volumes
+     * @param {BABYLON.AbstractMesh} mesh - The mesh to create a debug box for
+     * @returns {BABYLON.Mesh} The debug box mesh
+     */
+    createDebugBox(mesh) {
+        // Get the bounding box of the mesh
+        const boundingBox = mesh.getBoundingInfo().boundingBox;
+        const size = boundingBox.maximum.subtract(boundingBox.minimum);
+        
+        // Create a wireframe box for visualization
+        const debugBox = BABYLON.MeshBuilder.CreateBox(
+            `${mesh.name}_debug`,
             {
-                width: size.x * 1.2,
-                height: size.y * 1.2,
-                depth: size.z * 1.2,
+                width: size.x,
+                height: size.y,
+                depth: size.z,
+                updatable: true
             },
             this.scene
         );
         
-        // Position the collider at the mesh's position
-        collider.position = center.clone();
-        collider.isVisible = false;  // Make invisible
-        collider.isPickable = true;
-        collider.checkCollisions = true;
-        collider.parent = mesh;
+        // Position the debug box at the same position as the mesh
+        debugBox.position = mesh.position.clone();
         
-        // Add particle effect to make the upgrade more visible
-        mesh.particleSystem = this.createUpgradeParticles(mesh);
-        if (mesh.particleSystem) {
-            mesh.particleSystem.start();
+        // Make it semi-transparent red for visibility
+        const debugMat = new BABYLON.StandardMaterial("debugMat", this.scene);
+        debugMat.diffuseColor = new BABYLON.Color3(1, 0, 0);
+        debugMat.alpha = 0.3;
+        debugMat.wireframe = true;
+        debugBox.material = debugMat;
+        
+        // Make sure it doesn't interfere with physics
+        debugBox.checkCollisions = false;
+        debugBox.isPickable = false;
+        
+        // Make it a child of the trigger mesh
+        debugBox.parent = mesh;
+        
+        return debugBox;
+    }
+
+    /**
+     * Helper function to set up action manager based intersection
+     * @param {BABYLON.AbstractMesh} triggerMesh - The trigger mesh to set up
+     * @param {Object} modelData - The model data for the trigger
+     * @param {BABYLON.Mesh} debugBox - Optional debug visualization box
+     * @returns {BABYLON.AbstractMesh} The processed trigger mesh
+     */
+    setupActionManager(triggerMesh, modelData, debugBox) {
+        console.log('Setting up ActionManager intersection for trigger:', triggerMesh.name);
+
+        // Make sure both meshes have physics impostors for collision
+        if (this.mainModel) {
+            // Make sure both meshes are visible and enabled
+            triggerMesh.isVisible = false; // Make the original trigger mesh invisible
+            triggerMesh.isPickable = true;
+            triggerMesh.isEnabled(true);
+
+            // Make sure the main model is visible and enabled
+            this.mainModel.isVisible = true;
+            this.mainModel.isEnabled(true);
+
+            // Enable debug visualization
+            if (debugBox) {
+                debugBox.isVisible = true;
+            }
+
+            // Enable physics on the trigger mesh if not already done
+            if (!triggerMesh.physicsImpostor) {
+                // First, ensure the mesh is ready for physics
+                if (!triggerMesh.getVerticesData(BABYLON.VertexBuffer.PositionKind)) {
+                    console.warn('Mesh has no vertices, cannot create physics impostor:', triggerMesh.name);
+                    return triggerMesh;
+                }
+
+                // Create the physics impostor with appropriate options
+                const options = {
+                    mass: 0,                  // Static object
+                    friction: 0.1,           // Low friction
+                    restitution: 0.1,         // Low bounciness
+                    ignoreParent: true,       // Don't inherit parent's physics
+                    collisionResponse: false, // Don't respond to collisions physically
+                    isTrigger: true,         // Mark as trigger
+                    nativeOptions: {
+                        collisionResponse: false,
+                        isTrigger: true
+                    }
+                };
+
+                // Create the impostor
+                triggerMesh.physicsImpostor = new BABYLON.PhysicsImpostor(
+                    triggerMesh,
+                    BABYLON.PhysicsImpostor.MeshImpostor,
+                    options,
+                    this.scene
+                );
+            }
+            
+            const pos = triggerMesh.position;
+            console.log(`TRIGGER DEBUG: '${triggerMesh.name}' at (${pos.x.toFixed(2)}, ${pos.y.toFixed(2)}, ${pos.z.toFixed(2)}) with size x2`);
+            return triggerMesh;
+        }
+    }
+
+    /**
+     * Creates a trigger for an upgrade object
+     * @param {BABYLON.AbstractMesh} upgradeMesh - The upgrade mesh to create a trigger for
+     * @param {BABYLON.AbstractMesh} playerMesh - The player's mesh
+     */
+    createUpgradeTrigger(upgradeMesh, playerMesh) {
+        if (!upgradeMesh || !playerMesh) {
+            console.error('Cannot create upgrade trigger: missing mesh or player mesh');
+            return;
         }
         
-        // Add a rotation animation
+        console.log(`=== CREATE UPGRADE TRIGGER ===`);
+        console.log(`- Upgrade mesh: ${upgradeMesh.name}`);
+        console.log(`- Player mesh: ${playerMesh.name}`);
+        
+        // Log upgrade mesh info
+        const upgradeBoundingInfo = upgradeMesh.getBoundingInfo();
+        console.log('Upgrade mesh info:', {
+            position: upgradeMesh.position,
+            boundingBox: upgradeBoundingInfo.boundingBox,
+            boundingSphere: upgradeBoundingInfo.boundingSphere
+        });
+        
+        // Log player mesh info
+        console.log('Player mesh info:', {
+            position: playerMesh.position,
+            checkCollisions: playerMesh.checkCollisions,
+            hasBoundingInfo: !!playerMesh.getBoundingInfo
+        });
+        
+        // Store the original upgrade position for reference
+        const originalPosition = upgradeMesh.position.clone();
+        
+        // Create a visible box for debugging that's slightly larger than the upgrade
+        const size = upgradeBoundingInfo.boundingBox.extendSize.scale(1.5);
+        console.log(`Creating trigger box with size: ${JSON.stringify({
+            width: size.x * 2,
+            height: size.y * 2,
+            depth: size.z * 2
+        })} at position: ${JSON.stringify(originalPosition)}`);
+        
+        // Create the trigger box
+        const triggerBox = BABYLON.MeshBuilder.CreateBox(
+            `${upgradeMesh.name}_trigger`,
+            {
+                width: size.x * 2,
+                height: size.y * 2,
+                depth: size.z * 2,
+                updatable: true
+            },
+            this.scene
+        );
+        triggerBox.position.copyFrom(originalPosition);
+        triggerBox.isPickable = false;
+        
+        // Make sure the trigger box has a bounding info
+        triggerBox.refreshBoundingInfo(true);
+        
+        // Log trigger box info
+        console.log('Trigger box created at:', triggerBox.position);
+        
+        // Create a highly visible material for the trigger
+        const material = new BABYLON.StandardMaterial("triggerMaterial", this.scene);
+        material.diffuseColor = new BABYLON.Color3(1, 0, 0); // Bright red
+        material.emissiveColor = new BABYLON.Color3(1, 0.3, 0.3); // Glowing red
+        material.alpha = 0.7; // Mostly opaque
+        material.wireframe = false;
+        material.backFaceCulling = false; // Make it visible from all angles
+        material.specularPower = 100;
+        material.useEmissiveAsIllumination = true;
+        
+        // Add a second, larger wireframe box for better visibility
+        const outlineBox = BABYLON.MeshBuilder.CreateBox(
+            `${upgradeMesh.name}_outline`,
+            {
+                width: size.x * 2.2,
+                height: size.y * 2.2,
+                depth: size.z * 2.2,
+                updatable: true
+            },
+            this.scene
+        );
+        outlineBox.position.copyFrom(upgradeMesh.position);
+        const outlineMaterial = new BABYLON.StandardMaterial("outlineMaterial", this.scene);
+        outlineMaterial.wireframe = true;
+        outlineMaterial.emissiveColor = new BABYLON.Color3(1, 1, 0); // Bright yellow
+        outlineMaterial.diffuseColor = new BABYLON.Color3(1, 1, 0);
+        outlineMaterial.alpha = 0.9;
+        outlineBox.material = outlineMaterial;
+        
+        // Add pulsing animation to the outline
+        let pulseTime = 0;
         this.scene.registerBeforeRender(() => {
-            if (!mesh.isCollected) {
-                mesh.rotation.y += 0.02;
+            if (outlineBox.isDisposed) return;
+            pulseTime += 0.05;
+            const pulse = 1 + Math.sin(pulseTime) * 0.2; // Pulsing effect
+            outlineBox.scaling.set(pulse, pulse, pulse);
+            
+            // Make the main box flash
+            const flash = 0.7 + Math.sin(pulseTime * 2) * 0.3;
+            material.emissiveColor = new BABYLON.Color3(1, flash * 0.5, flash * 0.5);
+        });
+        
+        // Store reference to outline for cleanup
+        upgradeMesh._triggerOutline = outlineBox;
+        triggerBox.material = material;
+        
+        console.log(`Created trigger box at position: ${JSON.stringify(triggerBox.position)}`);
+        
+        // Set up physics for the trigger
+        console.log('Creating physics impostor for trigger box...');
+        triggerBox.physicsImpostor = new BABYLON.PhysicsImpostor(
+            triggerBox,
+            BABYLON.PhysicsImpostor.BoxImpostor,
+            { 
+                mass: 0, 
+                restitution: 0,
+                onCollide: () => console.log('Collision detected!'),
+                onCollideEvent: (e) => console.log('Collision event:', e)
+            },
+            this.scene
+        );
+        
+        console.log('Trigger box physics impostor created:', {
+            type: triggerBox.physicsImpostor.type,
+            mass: triggerBox.physicsImpostor.mass
+        });
+        
+        // Set up collision detection using scene's before render
+        console.log('Setting up collision detection...');
+        
+        // Flag to prevent multiple collision detections
+        let isProcessingCollision = false;
+        
+        // Add to scene's before render to check for collisions every frame
+        const collisionObserver = this.scene.onBeforeRenderObservable.add(() => {
+            if (isProcessingCollision || !playerMesh.getBoundingInfo) {
+                return;
+            }
+            
+            // Check if the player's bounding box intersects with the trigger box
+            if (triggerBox.intersectsMesh(playerMesh, false)) {
+                isProcessingCollision = true;
+                console.log('COLLISION DETECTED with upgrade:', upgradeMesh.name);
+                
+                if (!upgradeMesh.isCollected) {
+                    upgradeMesh.isCollected = true;
+                    console.log('Processing upgrade collection...');
+                    
+                    // Process the upgrade
+                    this.collectUpgrade(upgradeMesh);
+                    
+                    // Clean up the trigger after a short delay
+                    setTimeout(() => {
+                        console.log('Cleaning up trigger...');
+                        
+                        // Clean up the main trigger box
+                        if (triggerBox.physicsImpostor) {
+                            triggerBox.physicsImpostor.dispose();
+                        }
+                        triggerBox.dispose();
+                        
+                        // Clean up the outline box if it exists
+                        if (upgradeMesh._triggerOutline) {
+                            upgradeMesh._triggerOutline.dispose();
+                            upgradeMesh._triggerOutline = null;
+                        }
+                        
+                        // Remove this observer
+                        this.scene.onBeforeRenderObservable.remove(collisionObserver);
+                        
+                        console.log('Trigger cleanup complete');
+                    }, 100);
+                }
+                
+                // Reset the flag after a short delay
+                setTimeout(() => {
+                    isProcessingCollision = false;
+                }, 1000);
             }
         });
         
-        console.log('Upgrade jump setup complete for:', mesh.name);
+        console.log('Collision detection set up successfully using direct intersection check');
+        
+        // Store reference to the trigger on the upgrade mesh for cleanup
+        upgradeMesh._triggerBox = triggerBox;
+        
+        // Make the trigger a child of the upgrade so it moves with it
+        triggerBox.parent = upgradeMesh;
+        
+        return triggerBox;
     }
-    
-    // Set up a trigger object that will detect when the player enters its area
-    setupTrigger(triggerMesh, modelData) {
-        console.log('Setting up trigger:', triggerMesh.name);
-        
-        // Mark as a trigger for later reference
-        triggerMesh.isTrigger = true;
-        triggerMesh.isCollected = false;
-        
-        // Scale up the trigger mesh for better visibility
-        triggerMesh.scaling.scaleInPlace(2.0);
-        
-        // Make the trigger visible and pickable for debugging
-        triggerMesh.isVisible = true;
-        triggerMesh.isPickable = true;
-        triggerMesh.checkCollisions = true;
-        
-        // Add a debug material to visualize the trigger (semi-transparent red)
-        const debugMaterial = new BABYLON.StandardMaterial('trigger-debug', this.scene);
-        debugMaterial.diffuseColor = new BABYLON.Color3(1, 0, 0);
-        debugMaterial.alpha = 0.5; // More visible
-        debugMaterial.wireframe = true; // Add wireframe for better visibility
-        debugMaterial.emissiveColor = new BABYLON.Color3(1, 0.5, 0.5); // Glowing effect
-        debugMaterial.disableLighting = true; // Make sure it's always visible
-        triggerMesh.material = debugMaterial;
-        
-        // Create an action manager for the trigger if it doesn't have one
-        if (!triggerMesh.actionManager) {
-            triggerMesh.actionManager = new BABYLON.ActionManager(this.scene);
-        }
-        
-        // Function to handle trigger activation
-        const onTriggerActivated = () => {
-            // Prevent multiple triggers
-            if (triggerMesh.isCollected) return;
-            triggerMesh.isCollected = true;
-            
-            console.log(`Trigger activated: ${triggerMesh.name}`);
-            
-            // Hide and disable the trigger mesh
-            triggerMesh.isVisible = false;
-            triggerMesh.isPickable = false;
-            
-            // If there's a custom message in the properties, log it
-            if (modelData.properties && modelData.properties.message) {
-                console.log(`Trigger message: ${modelData.properties.message}`);
-                if (window.showMessage) {
-                    window.showMessage(modelData.properties.message);
-                }
-            }
-            
-            // If there's a custom function to call, execute it
-            if (modelData.properties && modelData.properties.onTrigger) {
-                try {
-                    const func = new Function('scene', 'player', modelData.properties.onTrigger);
-                    func(this.scene, this.mainModel);
-                } catch (e) {
-                    console.error('Error executing trigger function:', e);
-                }
-            }
-            
-            // Clean up the trigger after a short delay
-            const cleanupTrigger = () => {
-                try {
-                    console.log('Cleaning up trigger:', triggerMesh.name);
-                    
-                    // Clean up physics impostor if it exists
-                    if (triggerMesh.physicsImpostor) {
-                        triggerMesh.physicsImpostor.dispose();
-                        triggerMesh.physicsImpostor = null;
-                    }
-                    
-                    // Clean up physics box if it exists
-                    if (triggerMesh._physicsBox) {
-                        triggerMesh._physicsBox.dispose(false, true);
-                        triggerMesh._physicsBox = null;
-                    }
-                    
-                    // Clean up action manager
-                    if (triggerMesh.actionManager) {
-                        triggerMesh.actionManager.dispose();
-                        triggerMesh.actionManager = null;
-                    }
-                    
-                    // Finally, dispose the mesh itself if it still exists
-                    if (triggerMesh && !triggerMesh.isDisposed()) {
-                        console.log('Removing trigger mesh from scene:', triggerMesh.name);
-                        triggerMesh.dispose(false, true);
-                    }
-                } catch (e) {
-                    console.error('Error cleaning up trigger:', e);
-                }
-            };
-            
-            // Schedule cleanup
-            setTimeout(cleanupTrigger, 1000);
-        };
-        
-        // Helper function to set up action manager based intersection
-        const setupActionManager = () => {
-            console.log('Setting up ActionManager intersection for trigger:', triggerMesh.name);
-            
-            // Make sure action manager exists
-            if (!triggerMesh.actionManager) {
-                triggerMesh.actionManager = new BABYLON.ActionManager(this.scene);
-            }
-            
-            // Clear any existing actions to prevent duplicates
-            triggerMesh.actionManager.registerAction(
-                new BABYLON.ExecuteCodeAction(
-                    {
-                        trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger,
-                        parameter: this.mainModel // Reference to the player's ship
-                    },
-                    () => {
-                        console.log('ActionManager intersection detected for trigger:', triggerMesh.name);
-                        onTriggerActivated();
-                    }
-                )
-            );
-            
-            // Also check for intersection every frame as a fallback
-            this.scene.registerBeforeRender(() => {
-                if (triggerMesh.isCollected || !triggerMesh.actionManager) return;
-                
-                if (triggerMesh.intersectsMesh(this.mainModel, false)) {
-                    console.log('Frame-based intersection detected for trigger:', triggerMesh.name);
-                    onTriggerActivated();
-                }
-            });
-        };
-        
-        // Set up ActionManager as primary collision detection
-        setupActionManager();
-        
-        // Set up physics-based collision detection
-        if (!triggerMesh.physicsImpostor) {
-            // First, create a bounding box for better collision accuracy
-            const boundingBox = triggerMesh.getBoundingInfo().boundingBox;
-            const size = boundingBox.maximum.subtract(boundingBox.minimum);
-            
-            // Create a box mesh for the physics body that matches the trigger's size
-            const physicsBox = BABYLON.MeshBuilder.CreateBox(`physics_${triggerMesh.name}`, {
-                width: size.x * triggerMesh.scaling.x,
-                height: size.y * triggerMesh.scaling.y,
-                depth: size.z * triggerMesh.scaling.z
-            }, this.scene);
-            
-            // Position the physics box at the same position as the trigger
-            physicsBox.position = triggerMesh.position.clone();
-            physicsBox.rotation = triggerMesh.rotation.clone();
-            physicsBox.isVisible = false; // Hide the physics mesh
-            physicsBox.parent = triggerMesh.parent; // Make sure it's in the same hierarchy
-            
-            // Create physics impostor for the trigger
-            triggerMesh.physicsImpostor = new BABYLON.PhysicsImpostor(
-                physicsBox, // Use the physics box instead of the trigger mesh
-                BABYLON.PhysicsImpostor.BoxImpostor,
-                { 
-                    mass: 0, // Static object
-                    friction: 0,
-                    restitution: 0,
-                    collisionResponse: true,
-                    ignoreParent: true
-                },
-                this.scene
-            );
-            
-            // Store reference to the physics box for cleanup
-            triggerMesh._physicsBox = physicsBox;
-            
-            // Get the ship's collider (the physics body)
-            const shipCollider = this.mainModel._collider || this.mainModel;
-            
-            if (shipCollider && shipCollider.physicsImpostor) {
-                // Register collision callback between trigger and ship collider
-                triggerMesh.physicsImpostor.registerOnPhysicsCollide(
-                    shipCollider.physicsImpostor,
-                    () => {
-                        if (!triggerMesh.isCollected) {
-                            console.group('TRIGGER ACTIVATED');
-                            console.log('Trigger:', triggerMesh.name);
-                            console.log('Position:', triggerMesh.position);
-                            console.log('Ship Position:', this.mainModel.position);
-                            console.log('Collision Detected at:', new Date().toISOString());
-                            console.groupEnd();
-                            onTriggerActivated();
-                        }
-                    }
-                );
-                
-                console.log(`Registered physics collision for trigger: ${triggerMesh.name}`);
-            } else {
-                console.warn('Ship collider not found or has no physics impostor for trigger:', triggerMesh.name);
-                // Fall back to ActionManager if physics isn't available
-                setupActionManager();
-            }
-        }
-        
-        console.group('Trigger Setup Complete');
-        console.log('Name:', triggerMesh.name);
-        console.log('Position:', triggerMesh.position);
-        console.log('Scaling:', triggerMesh.scaling);
-        console.log('Bounding Box:', triggerMesh.getBoundingInfo().boundingBox);
-        console.log('Physics Impostor:', triggerMesh.physicsImpostor ? 'Exists' : 'Missing');
-        console.groupEnd();
-        
-        // Log trigger position for debugging
-        const pos = triggerMesh.position;
-        console.log(`TRIGGER DEBUG: '${triggerMesh.name}' at (${pos.x.toFixed(2)}, ${pos.y.toFixed(2)}, ${pos.z.toFixed(2)}) with size x2`);
-        return triggerMesh;
-    }
-    
-    // Set up collision detection between player and upgrade meshes
+
+    /**
+     * Sets up collision detection between the player and upgrade objects
+     * @param {BABYLON.AbstractMesh} playerMesh - The player's mesh
+     * @param {BABYLON.AbstractMesh[]} upgradeMeshes - Array of upgrade meshes
+     */
     setupUpgradeCollisions(playerMesh, upgradeMeshes) {
         console.log('Setting up upgrade collisions for player mesh:', playerMesh.name);
         console.log('Number of upgrade meshes:', upgradeMeshes.length);
@@ -1084,6 +1081,44 @@ createUpgradeParticles(emitter) {
         
         console.log('Upgrade collision setup complete');
     }
+    
+    /**
+     * Clean up the trigger after a short delay
+     * @param {BABYLON.AbstractMesh} triggerMesh - The trigger mesh to clean up
+     */
+    cleanupTrigger(triggerMesh) {
+        try {
+            if (!triggerMesh) return;
+            
+            console.log('Cleaning up trigger:', triggerMesh.name);
+            
+            // Clean up physics impostor if it exists
+            if (triggerMesh.physicsImpostor) {
+                triggerMesh.physicsImpostor.dispose();
+                triggerMesh.physicsImpostor = null;
+            }
+            
+            // Clean up physics box if it exists
+            if (triggerMesh._physicsBox) {
+                triggerMesh._physicsBox.dispose(false, true);
+                triggerMesh._physicsBox = null;
+            }
+            
+            // Clean up action manager
+            if (triggerMesh.actionManager) {
+                triggerMesh.actionManager.dispose();
+                triggerMesh.actionManager = null;
+            }
+            
+            // Finally, dispose the mesh itself if it still exists
+            if (!triggerMesh.isDisposed()) {
+                console.log('Removing trigger mesh from scene:', triggerMesh.name);
+                triggerMesh.dispose(false, true);
+            }
+        } catch (e) {
+            console.error('Error cleaning up trigger:', e);
+        }
+    }
 }
 
-// Status updates are now handled by console.log directly
+export default ModelLoader;
