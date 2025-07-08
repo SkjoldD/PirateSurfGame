@@ -27,6 +27,14 @@ export class ShipControls {
         this.targetSpeed = 0;      // Speed we're trying to reach
         this.angularVelocity = 0;   // Current rotation speed
         
+        // Jump state
+        this.jumpEnabled = false;   // Whether jumping is enabled
+        this.isJumping = false;     // Whether the ship is currently jumping
+        this.jumpForce = 0;         // Current jump force being applied
+        this.gravity = -9.81;       // Gravity value for jump physics
+        this.groundY = 0;           // Y-coordinate of the ground level
+        this.jumpPower = 15;        // Initial jump power
+        
         // Input state
         this.keys = {
             w: false,

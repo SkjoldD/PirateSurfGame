@@ -429,14 +429,17 @@ window.showMessage = function(text, duration = 3000) {
 };
 
 // Global function to enable jump ability
-window.enableJumpAbility = function() {
-    if (shipControls) {
-        shipControls.jumpEnabled = true;
+window.enableJumpAbility = () => {
+    if (window.shipControls) {
+        window.shipControls.jumpEnabled = true;
+        window.shipControls.gravity = -9.81; // Standard gravity
+        window.shipControls.groundY = 0;     // Ground level
+        window.shipControls.isJumping = false; // Initialize jumping state
         console.log('Jump ability enabled!');
         
         // Show a message to the player
         if (window.showMessage) {
-            window.showMessage('Jump ability unlocked! Press SPACE to jump', 5000);
+            window.showMessage('Jump Ability Unlocked! Press SPACE to jump', 5000);
         }
     } else {
         console.warn('Cannot enable jump: ship controls not initialized');
@@ -1064,17 +1067,55 @@ function setupCollisionDetection() {
                 debugSphere.position.copyFrom(collisionPoint);
                 debugSphere.isVisible = true;
                 
-                // Log the collision with more details
+                // Function to check if a mesh or any of its parents has the upgrade-jump property
+                const hasUpgradeJump = (checkMesh) => {
+                    let current = checkMesh;
+                    while (current) {
+                        console.log('Checking mesh:', {
+                            name: current.name,
+                            id: current.id,
+                            metadata: current.metadata,
+                            parent: current.parent ? current.parent.name : 'none'
+                        });
+                        
+                        if (current.metadata && current.metadata['upgrade-jump']) {
+                            console.log('Found upgrade-jump on:', current.name);
+                            return true;
+                        }
+                        current = current.parent;
+                    }
+                    return false;
+                };
                 
-                console.log('SHIP COLLISION DETECTED WITH:', {
-                    name: mesh.name || 'unnamed',
-                    type: mesh.getClassName(),
-                    position: meshPosition.toString(),
-                    shipPosition: shipPosition.toString(),
-                    collisionPoint: collisionPoint.toString(),
-                    time: new Date().toISOString(),
-                    meshVertices: mesh.getTotalVertices()
-                });
+                // Check if the collided object or any of its parents has the upgrade-jump property
+                if (hasUpgradeJump(mesh)) {
+                    console.log('JUMP UPGRADE COLLECTED!');
+                    
+                    // Enable jump ability
+                    enableJumpAbility();
+                    
+                    // Show message to player
+                    showMessage('Jump Ability Unlocked! Press SPACE to jump', 3000);
+                    
+                    // Play collection sound if available
+                    if (window.audioManager) {
+                        window.audioManager.playSound('powerup');
+                    }
+                    
+                    // Remove the upgrade object
+                    mesh.dispose();
+                } else {
+                    // Log the collision with more details for non-upgrade objects
+                    console.log('SHIP COLLISION DETECTED WITH:', {
+                        name: mesh.name || 'unnamed',
+                        type: mesh.getClassName(),
+                        position: meshPosition.toString(),
+                        shipPosition: shipPosition.toString(),
+                        collisionPoint: collisionPoint.toString(),
+                        time: new Date().toISOString(),
+                        meshVertices: mesh.getTotalVertices()
+                    });
+                }
                 
                 // Hide debug sphere after delay
                 setTimeout(() => {
