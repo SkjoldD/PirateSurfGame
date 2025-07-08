@@ -50,10 +50,37 @@ const createScene = function() {
     // Hide the debug layer to remove X, Y, Z axes visualization
     scene.debugLayer.hide();
     
-    // Enable physics engine first thing
-    const gravityVector = new BABYLON.Vector3(0, -9.81, 0);
+    // Physics settings for better jump feel
+    // Significantly increased gravity for much faster falling
+    // Using a much higher multiplier to achieve ~1.5s fall time from max height
+    const gravityMultiplier = 150.0; // Increased from 3.0 for much stronger gravity
+    const gravityVector = new BABYLON.Vector3(0, -9.81 * gravityMultiplier, 0);
+    console.log('Gravity set to:', gravityVector.y, 'm/s²');
+    
+    // Initialize physics plugin with more iterations for better stability
     const physicsPlugin = new BABYLON.CannonJSPlugin();
+    physicsPlugin.setTimeStep(1/60); // 60 FPS physics update
+    
+    // Enable physics with our settings
     scene.enablePhysics(gravityVector, physicsPlugin);
+    
+    // Configure physics engine
+    const physicsEngine = scene.getPhysicsEngine();
+    physicsEngine.setTimeStep(1/60); // 60 FPS physics update
+    physicsEngine.setSubTimeStep(5); // Up to 5 sub-steps per frame
+    
+    // Store gravity value for use in jump calculations
+    window.PHYSICS_GRAVITY = gravityVector.y;
+    
+    // Set default physics engine parameters
+    if (physicsPlugin.setGravity) {
+        physicsPlugin.setGravity(gravityVector);
+    }
+    
+    // Enable CCD (Continuous Collision Detection) for fast-moving objects
+    if (physicsPlugin.setCcdMode) {
+        physicsPlugin.setCcdMode(0.01); // Enable CCD for objects moving faster than 0.01 units per step
+    }
     
     // Create a simple free camera
     const camera = new BABYLON.FreeCamera("shipCamera", new BABYLON.Vector3(0, 5, -10), scene);
@@ -429,13 +456,14 @@ window.showMessage = function(text, duration = 3000) {
 };
 
 // Global function to enable jump ability
-window.enableJumpAbility = () => {
+window.enableJumpAbility = (jumpPower = 5000) => {
     if (window.shipControls) {
         window.shipControls.jumpEnabled = true;
+        window.shipControls.jumpPower = parseFloat(jumpPower) || 15; // Use provided jump power or default to 15
         window.shipControls.gravity = -9.81; // Standard gravity
         window.shipControls.groundY = 0;     // Ground level
         window.shipControls.isJumping = false; // Initialize jumping state
-        console.log('Jump ability enabled!');
+        console.log(`Jump ability enabled with power: ${window.shipControls.jumpPower}`);
         
         // Show a message to the player
         if (window.showMessage) {
@@ -548,16 +576,30 @@ async function loadShip() {
         mainModel.computeWorldMatrix(true);
         
         // Create ship collider with debug visualization
-        const shipCollider = new BABYLON.MeshBuilder.CreateBox('shipCollider', {
+        console.log('Creating ship collider...');
+        
+        // First create a simple box mesh
+        const shipCollider = new BABYLON.Mesh('shipCollider', scene);
+        
+        // Create the box geometry
+        const boxOptions = {
             width: 2,
             height: 1,
-            depth: 4
-        }, scene);
+            depth: 4,
+            updatable: true
+        };
+        
+        // Create the box data
+        const boxData = BABYLON.VertexData.CreateBox(boxOptions);
+        
+        // Apply the box data to the mesh
+        boxData.applyToMesh(shipCollider);
         
         // Make collider semi-transparent red for debugging
         const colliderMaterial = new BABYLON.StandardMaterial('colliderMat', scene);
         colliderMaterial.alpha = 0.5;
         colliderMaterial.diffuseColor = new BABYLON.Color3(1, 0, 0);
+        colliderMaterial.wireframe = true; // Make it easier to see
         shipCollider.material = colliderMaterial;
         shipCollider.isPickable = false;
         shipCollider.checkCollisions = true;
@@ -567,30 +609,68 @@ async function loadShip() {
         colliderPosition.y += 0.5;  // Add y-offset
         shipCollider.position.copyFrom(colliderPosition);
 
-        shipCollider.rotationQuaternion = mainModel.rotationQuaternion ? 
-            mainModel.rotationQuaternion.clone() : 
-            BABYLON.Quaternion.RotationYawPitchRoll(mainModel.rotation.y, 0, 0);
+        // Set rotation
+        if (mainModel.rotationQuaternion) {
+            shipCollider.rotationQuaternion = mainModel.rotationQuaternion.clone();
+        } else {
+            shipCollider.rotationQuaternion = BABYLON.Quaternion.RotationYawPitchRoll(
+                mainModel.rotation.y, 
+                mainModel.rotation.x || 0, 
+                mainModel.rotation.z || 0
+            );
+        }
         
-        // Add physics to the collider
-        console.log('Creating ship collider with physics...');
-        shipCollider.physicsImpostor = new BABYLON.PhysicsImpostor(
-            shipCollider,
-            BABYLON.PhysicsImpostor.BoxImpostor,
-            { 
-                mass: 1000,
-                restitution: 0.8,
-                friction: 0.5
-            },
-            scene
-        );
+        // Force update of the world matrix
+        shipCollider.computeWorldMatrix(true);
         
-        console.log('Ship collider created');
+        console.log('Ship collider mesh created, adding physics...');
         
-        // Enable collider after 1 second
-        setTimeout(() => {
+        try {
+            // Add physics to the collider with natural movement settings
+            const physicsOptions = { 
+                mass: 1, // Lower mass for better response to forces
+                restitution: 0.2, // Very low restitution for minimal bounce
+                friction: 0.1, // Low friction for smooth movement
+                linearDamping: 0.1, // Slight linear damping
+                angularDamping: 0.9, // Higher angular damping to prevent spinning
+                disableBidirectionalTransformation: false
+            };
+            
+            console.log('Creating physics impostor with options:', physicsOptions);
+            
+            // Create the physics impostor
+            shipCollider.physicsImpostor = new BABYLON.PhysicsImpostor(
+                shipCollider,
+                BABYLON.PhysicsImpostor.BoxImpostor,
+                physicsOptions,
+                scene
+            );
+            
+            console.log('Physics impostor created, initializing...');
+            
+            // Ensure the collider is awake and responsive
+            shipCollider.physicsImpostor.wakeUp();
+            shipCollider.physicsImpostor.setLinearVelocity(BABYLON.Vector3.Zero());
+            shipCollider.physicsImpostor.setAngularVelocity(BABYLON.Vector3.Zero());
+            
+            console.log('Ship collider physics properties:', {
+                mass: shipCollider.physicsImpostor.mass,
+                position: shipCollider.position,
+                physicsEnabled: true
+            });
+            
+            // Enable collider after a short delay
+            setTimeout(() => {
+                shipCollider.checkCollisions = true;
+                console.log('Ship collider enabled and ready');
+            }, 100);
+            
+        } catch (error) {
+            console.error('Error creating physics impostor:', error);
+            // Fallback to non-physics collider
             shipCollider.checkCollisions = true;
-            console.log('Ship collider enabled');
-        }, 1000);
+            console.warn('Falling back to non-physics collider');
+        }
         
         // Add collision callback for bounce effect
         shipCollider.physicsImpostor.registerOnPhysicsCollide(
@@ -655,11 +735,6 @@ async function loadShip() {
                 // Update model rotation to match collider (yaw only)
                 mainModel.rotation.y = shipCollider.rotation.y;
                 
-                // Keep ship at water level
-                if (shipCollider.position.y < 0) {
-                    shipCollider.position.y = 0;
-                    mainModel.position.y = 0;
-                }
             }
         });
         
@@ -1079,7 +1154,10 @@ function setupCollisionDetection() {
                         });
                         
                         if (current.metadata && current.metadata['upgrade-jump']) {
-                            console.log('Found upgrade-jump on:', current.name);
+                            const jumpPower = current.metadata['upgrade-jump'];
+                            console.log(`Found upgrade-jump on ${current.name} with power: ${jumpPower}`);
+                            // Pass the jump power to enableJumpAbility
+                            enableJumpAbility(jumpPower);
                             return true;
                         }
                         current = current.parent;

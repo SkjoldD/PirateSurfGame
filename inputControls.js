@@ -33,7 +33,7 @@ export class ShipControls {
         this.jumpForce = 0;         // Current jump force being applied
         this.gravity = -9.81;       // Gravity value for jump physics
         this.groundY = 0;           // Y-coordinate of the ground level
-        this.jumpPower = 15;        // Initial jump power
+        this.jumpPower = 150;        // Initial jump power
         
         // Input state
         this.keys = {
@@ -89,14 +89,89 @@ export class ShipControls {
         };
     }
     
+    // Helper method to check if the ship is on any surface using raycasting
+    isOnSurface() {
+        if (!this.collider) {
+            console.log('No collider found');
+            return false;
+        }
+        
+        const position = this.collider.getAbsolutePosition();
+        
+        // Method 1: Check if we're at or below ground level (y=0)
+        if (position.y <= 0.2) {  // Slightly above 0 to account for floating point precision
+            console.log('On ground/water surface');
+            return true;
+        }
+        
+        // Method 2: Raycast to check for surfaces below
+        const rayLength = 1.0; // Increased ray length
+        const rayOrigin = position.add(new BABYLON.Vector3(0, 0.1, 0));
+        const rayDirection = new BABYLON.Vector3(0, -1, 0);
+        
+        // Create a ray and check for intersections
+        const ray = new BABYLON.Ray(rayOrigin, rayDirection, rayLength);
+        const hit = this.scene.pickWithRay(ray, (mesh) => {
+            // Check for ground/water or any other surface with physics
+            return mesh !== this.collider && (mesh.physicsImpostor || mesh.name === 'ground' || mesh.name === 'waterSurface');
+        });
+        
+        const isOnSurface = hit.hit || position.y <= 0.2;
+        console.log('Surface check:', {
+            positionY: position.y,
+            rayHit: hit.hit,
+            hitMesh: hit.hit ? hit.pickedMesh.name : 'none',
+            isOnSurface: isOnSurface
+        });
+        
+        return isOnSurface;
+    }
+    
     handleJump() {
-        console.log("can jump: " + this.jumpEnabled);
-        if (!this.jumpEnabled || this.isJumping) return;
-        console.log("JUMPING");
+        // Check if jump is enabled and we're not already jumping
+        const onSurface = this.isOnSurface();
+        if (!this.jumpEnabled || this.isJumping || !onSurface) {
+            console.log("Cannot jump: ", {
+                jumpEnabled: this.jumpEnabled,
+                isJumping: this.isJumping,
+                onSurface: onSurface
+            });
+            return;
+        }
+        
+        console.log("JUMPING with power: " + this.jumpPower);
         
         // Start jump
         this.isJumping = true;
         this.jumpForce = this.jumpPower;
+        this.jumpStartTime = Date.now();
+        this.jumpForceActive = true;
+        this.jumpForceDuration = 0.5;
+        
+        // Store initial position for height calculations
+        this.jumpStartY = this.ship.position.y;
+        this.maxHeightReached = this.jumpStartY;
+        
+        // Reset any existing velocity and wake up the physics body
+        if (this.collider && this.collider.physicsImpostor) {
+            const physics = this.collider.physicsImpostor;
+            physics.wakeUp();
+            
+            // Reset velocities
+            physics.setLinearVelocity(new BABYLON.Vector3(0, 0, 0));
+            physics.setAngularVelocity(new BABYLON.Vector3(0, 0, 0));
+            
+            // Apply an initial impulse to get things moving
+            const initialImpulse = new BABYLON.Vector3(0, this.jumpForce * 0.1, 0);
+            physics.applyImpulse(
+                initialImpulse,
+                this.collider.getAbsolutePosition()
+            );
+            
+            console.log('Applied initial impulse:', initialImpulse);
+        }
+        
+        console.log(`Starting jump from y=${this.jumpStartY.toFixed(2)}`);
         
         // Play jump sound if available
         if (window.audioManager) {
@@ -105,25 +180,100 @@ export class ShipControls {
     }
     
     updateJump(deltaTime) {
-        if (!this.isJumping) return;
+        if (!this.isJumping || !this.collider || !this.collider.physicsImpostor) return;
         
-        // Apply gravity
-        this.jumpForce += this.gravity * deltaTime;
+        const physics = this.collider.physicsImpostor;
+        const velocity = physics.getLinearVelocity();
+        const position = this.ship.position;
+        const currentTime = Date.now();
+        const timeSinceJump = (currentTime - this.jumpStartTime) / 1000; // in seconds
         
-        // Update position
-        this.ship.position.y += this.jumpForce * deltaTime;
+        // Track maximum height reached
+        const heightAboveStart = position.y - this.jumpStartY;
+        this.maxHeightReached = Math.max(this.maxHeightReached, position.y);
         
-        // Check for ground collision
-        if (this.ship.position.y <= this.groundY) {
-            this.ship.position.y = this.groundY;
+        // Apply continuous upward force during the initial part of the jump
+        if (this.jumpForceActive) {
+            const jumpProgress = timeSinceJump / this.jumpForceDuration;
+            
+            if (jumpProgress < 1.0) {
+                // Wake up the physics body in case it fell asleep
+                physics.wakeUp();
+                
+                // Calculate force magnitude (starts strong, decreases over time)
+                const forceMagnitude = this.jumpForce * (1 - jumpProgress);
+                
+                // Apply force in world space at the collider's position
+                const jumpForce = new BABYLON.Vector3(0, forceMagnitude, 0);
+                physics.applyForce(
+                    jumpForce,
+                    this.collider.getAbsolutePosition()
+                );
+                
+                // Debug visualization
+                if (this.debugForce) this.debugForce.dispose();
+                this.debugForce = BABYLON.MeshBuilder.CreateLines("jumpForce", {
+                    points: [
+                        this.collider.position,
+                        this.collider.position.add(new BABYLON.Vector3(0, forceMagnitude * 0.001, 0))
+                    ]
+                }, this.scene);
+                this.debugForce.color = new BABYLON.Color3(1, 0, 0);
+                
+                console.log(`Applying jump force: ${forceMagnitude.toFixed(2)} ` +
+                          `at t=${timeSinceJump.toFixed(2)}s ` +
+                          `from y=${position.y.toFixed(2)} ` +
+                          `with velocity y=${velocity.y.toFixed(2)}`);
+            } else {
+                // End the force application phase
+                this.jumpForceActive = false;
+                console.log(`Ended jump force application at t=${timeSinceJump.toFixed(2)}s`);
+                if (this.debugForce) {
+                    this.debugForce.dispose();
+                    this.debugForce = null;
+                }
+            }
+        }
+        
+        // Check for landing on any surface using raycasting
+        const isMovingDownward = velocity.y <= 0.1;
+        const isOnSurface = this.isOnSurface();
+        
+        if (isMovingDownward && isOnSurface) {
+            // Calculate actual height achieved
+            const actualHeight = this.maxHeightReached - this.jumpStartY;
+            
+            // Snap to ground and reset jump state
+            position.y = this.groundY;
             this.isJumping = false;
+            this.jumpForceActive = false;
             this.jumpForce = 0;
+            
+            // Reset velocities
+            physics.setLinearVelocity(new BABYLON.Vector3(velocity.x, 0, velocity.z));
+            physics.setAngularVelocity(BABYLON.Vector3.Zero());
+            
+            // Clean up debug visualization
+            if (this.debugForce) {
+                this.debugForce.dispose();
+                this.debugForce = null;
+            }
             
             // Play landing sound if available
             if (window.audioManager) {
                 window.audioManager.playSound('land');
             }
+            
+            console.log(`Landed after ${timeSinceJump.toFixed(2)}s, ` +
+                       `height: ${actualHeight.toFixed(2)} units`);
         }
+        
+        // Log debug info every frame for now
+        console.log(`Jump: t=${timeSinceJump.toFixed(3)}s, ` +
+                   `y=${position.y.toFixed(3)}, ` +
+                   `vy=${velocity.y.toFixed(3)}, ` +
+                   `forceActive=${this.jumpForceActive}, ` +
+                   `height=${heightAboveStart.toFixed(3)}`);
     }
     
     update() {
